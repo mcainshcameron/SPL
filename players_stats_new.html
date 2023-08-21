@@ -1,28 +1,70 @@
 
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        font-family: Arial, sans-serif;
-    }
-    th, td {
-        border: 1px solid #dddddd;
-        padding: 8px;
-        text-align: left;
-    }
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
-<table border="1" class="dataframe dataframe">
+<html>
+<head>
+    <style>
+        
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 25px 0;
+                    font-size: 15px;
+                    text-align: left;
+                }
+                th, td {
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                }
+                th {
+                    white-space: normal;
+                }
+                tr:nth-child(1) {
+                    background-color: gold;
+                }
+                tr:nth-child(2) {
+                    background-color: silver;
+                }
+                tr:nth-child(3) {
+                    background-color: #cd7f32; /* Bronze color */
+                }
+                tr:nth-child(even):not(:nth-child(-n+3)) {
+                    background-color: #f2f2f2;
+                }
+                tr:nth-child(odd):not(:nth-child(-n+3)) {
+                    background-color: #ffffff;
+                }
+                tr:hover {
+                    background-color: #f5f5f5;
+                }
+                th {
+                    background-color: #333;
+                    color: white;
+                    text-align: center;
+                }
+                td {
+                    text-align: center;
+                }
+                td:first-child {
+                    text-align: left;
+                }
+                @media (max-width: 768px) {
+                    th, td {
+                        font-size: 13px;
+                    }
+                }
+            
+    </style>
+</head>
+<body>
+    <table border="1" class="dataframe players-stats">
   <thead>
-    <tr>
-      <th></th>
-      <th>Overall Rank</th>
+    <tr style="text-align: right;">
+      <th>Player</th>
+      <th>Rank</th>
       <th>Games Played</th>
       <th>Games Won</th>
       <th>Win Ratio</th>
@@ -32,1168 +74,1167 @@
       <th>Goals Conceded</th>
       <th>MVP</th>
       <th>SPL Bonus</th>
-      <th>Average Goals/Game</th>
+      <th>Goals/Game</th>
       <th>Total Goals</th>
-      <th>Average Total Points/Game</th>
-      <th>Total Points</th>
+      <th>Points/Game</th>
+      <th>Total</th>
       <th>Rank Change</th>
-    </tr>
-    <tr>
-      <th>Player</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Daniele (Francesco)</th>
+      <td>Daniele (Francesco)</td>
       <td>1</td>
       <td>17</td>
       <td>12</td>
-      <td>0.705882</td>
+      <td>71%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>108</td>
       <td>0</td>
       <td>0</td>
-      <td>3.588235</td>
+      <td>3.59</td>
       <td>61</td>
-      <td>14.470588</td>
+      <td>14.47</td>
       <td>246</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Luca Stoppi</th>
+      <td>Luca Stoppi</td>
       <td>2</td>
       <td>23</td>
       <td>8</td>
-      <td>0.347826</td>
+      <td>35%</td>
       <td>1</td>
       <td>4</td>
       <td>2</td>
       <td>166</td>
       <td>1</td>
       <td>1</td>
-      <td>0.782609</td>
+      <td>0.78</td>
       <td>18</td>
-      <td>10.652174</td>
+      <td>10.65</td>
       <td>245</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>Andrea Limonta</th>
+      <td>Andrea Limonta</td>
       <td>3</td>
       <td>22</td>
       <td>11</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>2</td>
       <td>1</td>
       <td>154</td>
       <td>0</td>
       <td>1</td>
-      <td>0.136364</td>
+      <td>0.14</td>
       <td>3</td>
-      <td>10.500000</td>
+      <td>10.50</td>
       <td>231</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Cameron McAinsh</th>
+      <td>Cameron McAinsh</td>
       <td>4</td>
       <td>22</td>
       <td>9</td>
-      <td>0.409091</td>
+      <td>41%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>181</td>
       <td>0</td>
       <td>0</td>
-      <td>1.818182</td>
+      <td>1.82</td>
       <td>40</td>
-      <td>10.318182</td>
+      <td>10.32</td>
       <td>227</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Damiano Barbanera</th>
+      <td>Damiano Barbanera</td>
       <td>5</td>
       <td>21</td>
       <td>7</td>
-      <td>0.333333</td>
+      <td>33%</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
       <td>161</td>
       <td>0</td>
       <td>1</td>
-      <td>2.285714</td>
+      <td>2.29</td>
       <td>48</td>
-      <td>10.571429</td>
+      <td>10.57</td>
       <td>222</td>
       <td>-2</td>
     </tr>
     <tr>
-      <th>Giovanni Aiello</th>
+      <td>Giovanni Aiello</td>
       <td>6</td>
       <td>21</td>
       <td>11</td>
-      <td>0.523810</td>
+      <td>52%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>147</td>
       <td>0</td>
       <td>2</td>
-      <td>0.571429</td>
+      <td>0.57</td>
       <td>12</td>
-      <td>10.142857</td>
+      <td>10.14</td>
       <td>213</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>Sergio</th>
+      <td>Sergio</td>
       <td>7</td>
       <td>17</td>
       <td>9</td>
-      <td>0.529412</td>
+      <td>53%</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
       <td>106</td>
       <td>2</td>
       <td>0</td>
-      <td>0.705882</td>
+      <td>0.71</td>
       <td>12</td>
-      <td>10.764706</td>
+      <td>10.76</td>
       <td>183</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>Federico Paolucci</th>
+      <td>Federico Paolucci</td>
       <td>8</td>
       <td>19</td>
       <td>9</td>
-      <td>0.473684</td>
+      <td>47%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>140</td>
       <td>1</td>
       <td>1</td>
-      <td>0.263158</td>
+      <td>0.26</td>
       <td>5</td>
-      <td>9.473684</td>
+      <td>9.47</td>
       <td>180</td>
       <td>-2</td>
     </tr>
     <tr>
-      <th>Mazzu</th>
+      <td>Mazzu</td>
       <td>9</td>
       <td>14</td>
       <td>4</td>
-      <td>0.285714</td>
+      <td>29%</td>
       <td>0</td>
       <td>3</td>
       <td>1</td>
       <td>110</td>
       <td>1</td>
       <td>2</td>
-      <td>3.285714</td>
+      <td>3.29</td>
       <td>46</td>
-      <td>12.642857</td>
+      <td>12.64</td>
       <td>177</td>
       <td>-2</td>
     </tr>
     <tr>
-      <th>Roby (Cri)</th>
+      <td>Roby (Cri)</td>
       <td>10</td>
       <td>16</td>
       <td>5</td>
-      <td>0.312500</td>
+      <td>31%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>130</td>
       <td>0</td>
       <td>2</td>
-      <td>0.687500</td>
+      <td>0.69</td>
       <td>11</td>
-      <td>9.812500</td>
+      <td>9.81</td>
       <td>157</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Fabrizio Limonta</th>
+      <td>Fabrizio Limonta</td>
       <td>11</td>
       <td>16</td>
       <td>5</td>
-      <td>0.312500</td>
+      <td>31%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>132</td>
       <td>1</td>
       <td>1</td>
-      <td>0.562500</td>
+      <td>0.56</td>
       <td>9</td>
-      <td>9.437500</td>
+      <td>9.44</td>
       <td>151</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Andrea Silverstri</th>
+      <td>Andrea Silverstri</td>
       <td>12</td>
       <td>14</td>
       <td>7</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>99</td>
       <td>0</td>
       <td>0</td>
-      <td>0.714286</td>
+      <td>0.71</td>
       <td>10</td>
-      <td>10.071429</td>
+      <td>10.07</td>
       <td>141</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Federico (Damiano)</th>
+      <td>Federico (Damiano)</td>
       <td>13</td>
       <td>11</td>
       <td>6</td>
-      <td>0.545455</td>
+      <td>55%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>75</td>
       <td>2</td>
       <td>0</td>
-      <td>0.727273</td>
+      <td>0.73</td>
       <td>8</td>
-      <td>11.818182</td>
+      <td>11.82</td>
       <td>130</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Tito</th>
+      <td>Tito</td>
       <td>14</td>
       <td>9</td>
       <td>5</td>
-      <td>0.555556</td>
+      <td>56%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>71</td>
       <td>0</td>
       <td>1</td>
-      <td>0.888889</td>
+      <td>0.89</td>
       <td>8</td>
-      <td>11.888889</td>
+      <td>11.89</td>
       <td>107</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Riccardo Ricci</th>
+      <td>Riccardo Ricci</td>
       <td>15</td>
       <td>10</td>
       <td>5</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>82</td>
       <td>0</td>
       <td>1</td>
-      <td>0.700000</td>
+      <td>0.70</td>
       <td>7</td>
-      <td>10.500000</td>
+      <td>10.50</td>
       <td>105</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>Matteo (Riccardo)</th>
+      <td>Matteo (Riccardo)</td>
       <td>15</td>
       <td>7</td>
       <td>5</td>
-      <td>0.714286</td>
+      <td>71%</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
       <td>48</td>
       <td>1</td>
       <td>1</td>
-      <td>1.714286</td>
+      <td>1.71</td>
       <td>12</td>
-      <td>15.000000</td>
+      <td>15.00</td>
       <td>105</td>
       <td>2</td>
     </tr>
     <tr>
-      <th>Francesco</th>
+      <td>Francesco</td>
       <td>17</td>
       <td>10</td>
       <td>3</td>
-      <td>0.300000</td>
+      <td>30%</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
       <td>80</td>
       <td>2</td>
       <td>0</td>
-      <td>0.200000</td>
+      <td>0.20</td>
       <td>2</td>
-      <td>10.100000</td>
+      <td>10.10</td>
       <td>101</td>
       <td>-5</td>
     </tr>
     <tr>
-      <th>Franco</th>
+      <td>Franco</td>
       <td>17</td>
       <td>12</td>
       <td>6</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>3</td>
       <td>0</td>
       <td>1</td>
       <td>93</td>
       <td>0</td>
       <td>1</td>
-      <td>0.083333</td>
+      <td>0.08</td>
       <td>1</td>
-      <td>8.416667</td>
+      <td>8.42</td>
       <td>101</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Maurizio</th>
+      <td>Maurizio</td>
       <td>19</td>
       <td>9</td>
       <td>5</td>
-      <td>0.555556</td>
+      <td>56%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>55</td>
       <td>1</td>
       <td>0</td>
-      <td>1.111111</td>
+      <td>1.11</td>
       <td>10</td>
-      <td>10.444444</td>
+      <td>10.44</td>
       <td>94</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>Cri Diaz Lopez</th>
+      <td>Cri Diaz Lopez</td>
       <td>20</td>
       <td>9</td>
       <td>2</td>
-      <td>0.222222</td>
+      <td>22%</td>
       <td>0</td>
       <td>2</td>
       <td>1</td>
       <td>79</td>
       <td>1</td>
       <td>2</td>
-      <td>1.111111</td>
+      <td>1.11</td>
       <td>10</td>
-      <td>9.888889</td>
+      <td>9.89</td>
       <td>89</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Jacopo</th>
+      <td>Jacopo</td>
       <td>21</td>
       <td>10</td>
       <td>4</td>
-      <td>0.400000</td>
+      <td>40%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>81</td>
       <td>0</td>
       <td>0</td>
-      <td>1.300000</td>
+      <td>1.30</td>
       <td>13</td>
-      <td>8.700000</td>
+      <td>8.70</td>
       <td>87</td>
       <td>-2</td>
     </tr>
     <tr>
-      <th>Robi (Stoppi)</th>
+      <td>Robi (Stoppi)</td>
       <td>22</td>
       <td>6</td>
       <td>5</td>
-      <td>0.833333</td>
+      <td>83%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>24</td>
       <td>0</td>
       <td>0</td>
-      <td>0.333333</td>
+      <td>0.33</td>
       <td>2</td>
-      <td>13.666667</td>
+      <td>13.67</td>
       <td>82</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Coyote (Cri)</th>
+      <td>Coyote (Cri)</td>
       <td>23</td>
       <td>10</td>
       <td>2</td>
-      <td>0.200000</td>
+      <td>20%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>93</td>
       <td>1</td>
       <td>0</td>
-      <td>0.500000</td>
+      <td>0.50</td>
       <td>5</td>
-      <td>6.800000</td>
+      <td>6.80</td>
       <td>68</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>Emilano (Dani)</th>
+      <td>Emilano (Dani)</td>
       <td>24</td>
       <td>7</td>
       <td>2</td>
-      <td>0.285714</td>
+      <td>29%</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>57</td>
       <td>1</td>
       <td>1</td>
-      <td>1.857143</td>
+      <td>1.86</td>
       <td>13</td>
-      <td>9.571429</td>
+      <td>9.57</td>
       <td>67</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Stefano (Tito)</th>
+      <td>Stefano (Tito)</td>
       <td>25</td>
       <td>6</td>
       <td>4</td>
-      <td>0.666667</td>
+      <td>67%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>44</td>
       <td>1</td>
       <td>0</td>
-      <td>0.333333</td>
+      <td>0.33</td>
       <td>2</td>
-      <td>10.833333</td>
+      <td>10.83</td>
       <td>65</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>Pedro</th>
+      <td>Pedro</td>
       <td>26</td>
       <td>4</td>
       <td>3</td>
-      <td>0.750000</td>
+      <td>75%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>13</td>
       <td>0</td>
       <td>0</td>
-      <td>1.500000</td>
+      <td>1.50</td>
       <td>6</td>
-      <td>15.000000</td>
+      <td>15.00</td>
       <td>60</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>Guido (Sergio)</th>
+      <td>Guido (Sergio)</td>
       <td>27</td>
       <td>5</td>
       <td>2</td>
-      <td>0.400000</td>
+      <td>40%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>28</td>
       <td>1</td>
       <td>0</td>
-      <td>0.200000</td>
+      <td>0.20</td>
       <td>1</td>
-      <td>11.400000</td>
+      <td>11.40</td>
       <td>57</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>Cerro</th>
+      <td>Cerro</td>
       <td>28</td>
       <td>4</td>
       <td>4</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>11</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>4</td>
-      <td>13.500000</td>
+      <td>13.50</td>
       <td>54</td>
       <td>-6</td>
     </tr>
     <tr>
-      <th>Wissam Rahal</th>
+      <td>Wissam Rahal</td>
       <td>29</td>
       <td>3</td>
       <td>2</td>
-      <td>0.666667</td>
+      <td>67%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>14.666667</td>
+      <td>14.67</td>
       <td>44</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Ludovico Righi</th>
+      <td>Ludovico Righi</td>
       <td>30</td>
       <td>4</td>
       <td>1</td>
-      <td>0.250000</td>
+      <td>25%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>20</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>10.250000</td>
+      <td>10.25</td>
       <td>41</td>
       <td>-5</td>
     </tr>
     <tr>
-      <th>Luca SDV</th>
+      <td>Luca SDV</td>
       <td>31</td>
       <td>5</td>
       <td>2</td>
-      <td>0.400000</td>
+      <td>40%</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>52</td>
       <td>0</td>
       <td>0</td>
-      <td>0.800000</td>
+      <td>0.80</td>
       <td>4</td>
-      <td>8.000000</td>
+      <td>8.00</td>
       <td>40</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>Gianluca</th>
+      <td>Gianluca</td>
       <td>32</td>
       <td>3</td>
       <td>1</td>
-      <td>0.333333</td>
+      <td>33%</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
       <td>30</td>
       <td>0</td>
       <td>0</td>
-      <td>1.666667</td>
+      <td>1.67</td>
       <td>5</td>
-      <td>12.333333</td>
+      <td>12.33</td>
       <td>37</td>
       <td>7</td>
     </tr>
     <tr>
-      <th>Matteo Virg</th>
+      <td>Matteo Virg</td>
       <td>32</td>
       <td>3</td>
       <td>3</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>6</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>3</td>
-      <td>12.333333</td>
+      <td>12.33</td>
       <td>37</td>
       <td>-1</td>
     </tr>
     <tr>
-      <th>Davide Ang</th>
+      <td>Davide Ang</td>
       <td>34</td>
       <td>3</td>
       <td>2</td>
-      <td>0.666667</td>
+      <td>67%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>14</td>
       <td>0</td>
       <td>0</td>
-      <td>0.333333</td>
+      <td>0.33</td>
       <td>1</td>
-      <td>11.666667</td>
+      <td>11.67</td>
       <td>35</td>
       <td>-6</td>
     </tr>
     <tr>
-      <th>Omar</th>
+      <td>Omar</td>
       <td>35</td>
       <td>4</td>
       <td>1</td>
-      <td>0.250000</td>
+      <td>25%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>26</td>
       <td>0</td>
       <td>0</td>
-      <td>0.750000</td>
+      <td>0.75</td>
       <td>3</td>
-      <td>7.250000</td>
+      <td>7.25</td>
       <td>29</td>
       <td>-2</td>
     </tr>
     <tr>
-      <th>Alessandro Gibertini</th>
+      <td>Alessandro Gibertini</td>
       <td>36</td>
       <td>3</td>
       <td>1</td>
-      <td>0.333333</td>
+      <td>33%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>25</td>
       <td>0</td>
       <td>0</td>
-      <td>0.333333</td>
+      <td>0.33</td>
       <td>1</td>
-      <td>9.333333</td>
+      <td>9.33</td>
       <td>28</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Cocò (Stoppi)</th>
+      <td>Cocò (Stoppi)</td>
       <td>36</td>
       <td>2</td>
       <td>2</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>14.000000</td>
+      <td>14.00</td>
       <td>28</td>
       <td>-4</td>
     </tr>
     <tr>
-      <th>Ale Guati</th>
+      <td>Ale Guati</td>
       <td>38</td>
       <td>2</td>
       <td>1</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>13</td>
       <td>1</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>2</td>
-      <td>13.000000</td>
+      <td>13.00</td>
       <td>26</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Andrea Scalambra</th>
+      <td>Andrea Scalambra</td>
       <td>38</td>
       <td>3</td>
       <td>1</td>
-      <td>0.333333</td>
+      <td>33%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>16</td>
       <td>0</td>
       <td>0</td>
-      <td>0.333333</td>
+      <td>0.33</td>
       <td>1</td>
-      <td>8.666667</td>
+      <td>8.67</td>
       <td>26</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>Thomas</th>
+      <td>Thomas</td>
       <td>40</td>
       <td>3</td>
       <td>1</td>
-      <td>0.333333</td>
+      <td>33%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>7.666667</td>
+      <td>7.67</td>
       <td>23</td>
       <td>6</td>
     </tr>
     <tr>
-      <th>Fede Lelli</th>
+      <td>Fede Lelli</td>
       <td>41</td>
       <td>2</td>
       <td>2</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>7</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>2</td>
-      <td>11.000000</td>
+      <td>11.00</td>
       <td>22</td>
       <td>-6</td>
     </tr>
     <tr>
-      <th>Leo (Cava)</th>
+      <td>Leo (Cava)</td>
       <td>42</td>
       <td>2</td>
       <td>2</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>13</td>
       <td>0</td>
       <td>0</td>
-      <td>0.500000</td>
+      <td>0.50</td>
       <td>1</td>
-      <td>10.000000</td>
+      <td>10.00</td>
       <td>20</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Marco Taglio</th>
+      <td>Marco Taglio</td>
       <td>42</td>
       <td>3</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>40</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>3</td>
-      <td>6.666667</td>
+      <td>6.67</td>
       <td>20</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>Andrea DeGa</th>
+      <td>Andrea DeGa</td>
       <td>44</td>
       <td>3</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>16</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>6.333333</td>
+      <td>6.33</td>
       <td>19</td>
       <td>5</td>
     </tr>
     <tr>
-      <th>Gianpiero</th>
+      <td>Gianpiero</td>
       <td>45</td>
       <td>2</td>
       <td>1</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>12</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>9.000000</td>
+      <td>9.00</td>
       <td>18</td>
       <td>-8</td>
     </tr>
     <tr>
-      <th>Ale (Mazzu)</th>
+      <td>Ale (Mazzu)</td>
       <td>46</td>
       <td>2</td>
       <td>1</td>
-      <td>0.500000</td>
+      <td>50%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>15</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>8.500000</td>
+      <td>8.50</td>
       <td>17</td>
       <td>7</td>
     </tr>
     <tr>
-      <th>Eugenio Gibertini</th>
+      <td>Eugenio Gibertini</td>
       <td>47</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>4</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>16.000000</td>
+      <td>16.00</td>
       <td>16</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Giacomo (Stoppi)</th>
+      <td>Giacomo (Stoppi)</td>
       <td>48</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>4</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>15.000000</td>
+      <td>15.00</td>
       <td>15</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Matteo (Mazzu)</th>
+      <td>Matteo (Mazzu)</td>
       <td>48</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>5</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>15.000000</td>
+      <td>15.00</td>
       <td>15</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Amico Gio</th>
+      <td>Amico Gio</td>
       <td>50</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>4</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>14.000000</td>
+      <td>14.00</td>
       <td>14</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Ingra</th>
+      <td>Ingra</td>
       <td>51</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>4</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>13.000000</td>
+      <td>13.00</td>
       <td>13</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Gio (Matteo)</th>
+      <td>Gio (Matteo)</td>
       <td>52</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>7</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>12.000000</td>
+      <td>12.00</td>
       <td>12</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Jacopo (Gianluca)</th>
+      <td>Jacopo (Gianluca)</td>
       <td>53</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>11.000000</td>
+      <td>11.00</td>
       <td>11</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Fabio (Gianluca)</th>
+      <td>Fabio (Gianluca)</td>
       <td>53</td>
       <td>1</td>
       <td>1</td>
-      <td>1.000000</td>
+      <td>100%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>11.000000</td>
+      <td>11.00</td>
       <td>11</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Terni (Damiano)</th>
+      <td>Terni (Damiano)</td>
       <td>53</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>5</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>11.000000</td>
+      <td>11.00</td>
       <td>11</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Rudy Vitiello</th>
+      <td>Rudy Vitiello</td>
       <td>56</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>18</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>10.000000</td>
+      <td>10.00</td>
       <td>10</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Zen</th>
+      <td>Zen</td>
       <td>57</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>15</td>
       <td>0</td>
       <td>0</td>
-      <td>2.000000</td>
+      <td>2.00</td>
       <td>2</td>
-      <td>7.000000</td>
+      <td>7.00</td>
       <td>7</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Robi Muu</th>
+      <td>Robi Muu</td>
       <td>57</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>7</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>7.000000</td>
+      <td>7.00</td>
       <td>7</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Amico Matteo</th>
+      <td>Amico Matteo</td>
       <td>59</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>8</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>6.000000</td>
+      <td>6.00</td>
       <td>6</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Dario (Francesco)</th>
+      <td>Dario (Francesco)</td>
       <td>59</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>9</td>
       <td>0</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
-      <td>6.000000</td>
+      <td>6.00</td>
       <td>6</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Puddi</th>
+      <td>Puddi</td>
       <td>59</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>9</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>6.000000</td>
+      <td>6.00</td>
       <td>6</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Ale (Fabri)</th>
+      <td>Ale (Fabri)</td>
       <td>62</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>10</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>5.000000</td>
+      <td>5.00</td>
       <td>5</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Braz</th>
+      <td>Braz</td>
       <td>62</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>11</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>5.000000</td>
+      <td>5.00</td>
       <td>5</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>Carlo Tempesta</th>
+      <td>Carlo Tempesta</td>
       <td>64</td>
       <td>1</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0%</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>18</td>
       <td>0</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
       <td>1</td>
       <td>0</td>
     </tr>
   </tbody>
 </table>
+</body>
+</html>
