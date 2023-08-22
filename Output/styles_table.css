@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-size: 16px; /* Base font size */
+    font-size: 12px; /* Base font size */
 }
 
 h1 {
@@ -74,5 +74,5 @@ button:hover {
 .dataframe td:nth-child(2),
 .dataframe th:nth-child(10),
 .dataframe td:nth-child(10) {
-    min-width: 60px; /* Minimum width */
+    min-width: 40px; /* Minimum width */
 }
