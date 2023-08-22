@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#table-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.dataframe {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.dataframe th, .dataframe td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.dataframe tr:hover {
+    background-color: #e5e5e5; /* Slight gray color when hovering over rows */
+}
+
+.dataframe tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.dataframe th {
+    background-color: #333;
+    color: white;
+    border-bottom: 3px solid #444; /* Slight border for differentiation */
+}
+
+/* Specific widths for known shorter columns (you can adjust as needed) */
+.dataframe th:nth-child(2), /* Rank */
+.dataframe td:nth-child(2),
+.dataframe th:nth-child(10), /* MVP */
+.dataframe td:nth-child(10) {
+    width: 60px;
+}
