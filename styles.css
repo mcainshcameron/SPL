@@ -7,12 +7,15 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 h1 {
     color: #333;
 }
+
 a {
     text-decoration: none;
 }
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -21,6 +24,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #45a049;
 }
@@ -45,6 +49,10 @@ button:hover {
     text-align: left;
 }
 
+.dataframe tr:hover {
+    background-color: #e5e5e5; /* Slight gray color when hovering over rows */
+}
+
 .dataframe tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -52,4 +60,13 @@ button:hover {
 .dataframe th {
     background-color: #333;
     color: white;
+    border-bottom: 3px solid #444; /* Slight border for differentiation */
+}
+
+/* Specific widths for known shorter columns (you can adjust as needed) */
+.dataframe th:nth-child(2), /* Rank */
+.dataframe td:nth-child(2),
+.dataframe th:nth-child(10), /* MVP */
+.dataframe td:nth-child(10) {
+    width: 60px;
 }
