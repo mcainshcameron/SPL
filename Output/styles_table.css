@@ -38,8 +38,10 @@ button:hover {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
+    overflow-y: auto;  /* Allows vertical scrolling */
     max-width: 95vw; /* Allow some margin on the sides */
     max-height: 80vh; /* Allow space for headers and footers */
+    position: relative; /* To support ::before pseudo-element */
 }
 
 .dataframe {
@@ -67,6 +69,9 @@ button:hover {
     background-color: #333;
     color: white;
     border-bottom: 3px solid #444;
+    position: sticky;  /* Makes it stick within its parent */
+    top: 0;  /* Stick to the top */
+    z-index: 10;  /* Keep it above the other elements */
 }
 
 /* Adjust column widths as needed, but don't set fixed pixel values for responsiveness */
@@ -75,4 +80,15 @@ button:hover {
 .dataframe th:nth-child(10),
 .dataframe td:nth-child(10) {
     min-width: 40px; /* Minimum width */
+}
+
+#table-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    z-index: 20;  /* Above the sticky header */
 }
