@@ -92,3 +92,34 @@ button:hover {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
     z-index: 20;  /* Above the sticky header */
 }
+/* Your existing CSS remains unchanged... */
+
+/* Media query for mobile and tablet screens */
+@media only screen and (max-width: 768px) {
+
+    body {
+        font-size: 10px; /* Decrease the base font size */
+    }
+
+    h1 {
+        font-size: 1.2rem; /* Adjust according to your needs */
+    }
+
+    button {
+        font-size: 0.9rem; /* Adjust the font size for buttons */
+        padding: 8px 16px; /* You can adjust padding if required */
+    }
+
+    .dataframe th, .dataframe td {
+        padding: 0.4vw 0.8vw; /* Adjust padding to have more space */
+    }
+
+    /* Adjust column widths as needed for mobile screens */
+    .dataframe th:nth-child(2),
+    .dataframe td:nth-child(2),
+    .dataframe th:nth-child(10),
+    .dataframe td:nth-child(10) {
+        min-width: 20px; /* Adjust minimum width */
+    }
+
+}
