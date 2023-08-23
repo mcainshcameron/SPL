@@ -8,7 +8,7 @@ body, table {
 
 #table-container {
     overflow: auto;
-    height: 500px; /* Fixed height to make content scrollable */ /* Allows horizontal scrolling if needed */
+    height: 800px; /* Fixed height to make content scrollable */ /* Allows horizontal scrolling if needed */
     margin: 15px; /* Adding margin to separate table from the page borders */
 }
 
