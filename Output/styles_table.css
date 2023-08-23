@@ -62,9 +62,6 @@ button:hover {
     background-color: #333;
     color: white;
     border-bottom: 3px solid #444;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
 @media only screen and (max-width: 768px) {
@@ -81,27 +78,36 @@ button:hover {
         padding: 8px 16px;
     }
 
-    .dataframe th, .dataframe td {
-        padding: 0.4vw 0.8vw;
+    .dataframe thead {
+        display: none; /* Hide headers */
     }
 
-    .dataframe th:not(:first-child),
-    .dataframe td:not(:first-child) {
-        width: 1%; /* Using a small percentage to force columns to be as narrow as possible */
+    .dataframe tr {
+        margin: 0 0 0.625rem 0;
+        display: block;
+        min-height: 1.25rem;
+    }
+
+    .dataframe td {
+        word-wrap: break-word;
+        display: block;
+        text-align: right;
+        font-size: 0.8em;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .dataframe td:before {
+        position: absolute;
+        top: 0;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
         white-space: nowrap;
-    }
-
-    .dataframe th:not(:first-child) {
-        transform-origin: bottom left;
-        transform: rotate(-90deg) translateY(50%) translateX(-50%);
+        content: attr(data-label);
         text-align: left;
-        padding: 0 1vw;
-        vertical-align: middle;
-        height: auto;
-        line-height: 1.25;
-    }
-
-    .dataframe td:not(:first-child) {
-        vertical-align: top;
+        font-weight: bold;
     }
 }
