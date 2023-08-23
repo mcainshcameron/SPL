@@ -9,8 +9,12 @@ body {
     font-size: 12px; /* Base font size */
 }
 
-h1, a, button {
+h1 {
     color: #333;
+    font-size: 1.5rem; /* Relative to the base font size */
+}
+
+a {
     text-decoration: none;
 }
 
@@ -30,24 +34,27 @@ button:hover {
 
 #table-container {
     background-color: white;
-    padding: 2vw;
+    padding: 2vw; /* Relative to the viewport width */
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
-    max-width: 95vw;
-    max-height: 80vh;
+    overflow-y: auto;  /* Allows vertical scrolling */
+    max-width: 95vw; /* Allow some margin on the sides */
+    max-height: 80vh; /* Allow space for headers and footers */
+    position: relative; /* To support ::before pseudo-element */
 }
 
 .dataframe {
     border-collapse: collapse;
     width: 100%;
+    table-layout: auto; /* Let it auto adjust */
 }
 
 .dataframe th, .dataframe td {
     border: 1px solid #ddd;
-    padding: 0.5vw 1vw;
+    padding: 0.5vw 1vw; /* Relative padding */
     text-align: center;
-    word-wrap: break-word;
+    word-wrap: break-word; /* Allow long words to break */
 }
 
 .dataframe tr:hover {
@@ -62,52 +69,69 @@ button:hover {
     background-color: #333;
     color: white;
     border-bottom: 3px solid #444;
+    position: sticky;  /* Makes it stick within its parent */
+    top: 0;  /* Stick to the top */
+    z-index: 10;  /* Keep it above the other elements */
 }
 
+/* Adjust column widths as needed, but don't set fixed pixel values for responsiveness */
+.dataframe th:nth-child(2),
+.dataframe td:nth-child(2),
+.dataframe th:nth-child(10),
+.dataframe td:nth-child(10) {
+    min-width: 40px; /* Minimum width */
+}
+
+#table-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    z-index: 20;  /* Above the sticky header */
+}
+/* Your existing CSS remains unchanged... */
+
+/* Media query for mobile and tablet screens */
 @media only screen and (max-width: 768px) {
+
     body {
-        font-size: 10px;
+        font-size: 10px; /* Decrease the base font size */
     }
 
     h1 {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Adjust according to your needs */
     }
 
     button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
+        font-size: 0.9rem; /* Adjust the font size for buttons */
+        padding: 8px 16px; /* You can adjust padding if required */
     }
 
-    .dataframe thead {
-        display: none; /* Hide headers */
+    .dataframe th, .dataframe td {
+        padding: 0.4vw 0.8vw; /* Adjust padding to have more space */
     }
 
-    .dataframe tr {
-        margin: 0 0 0.625rem 0;
-        display: block;
-        min-height: 1.25rem;
+    /* Adjust column widths as needed for mobile screens */
+    .dataframe th:nth-child(2),
+    .dataframe td:nth-child(2),
+    .dataframe th:nth-child(10),
+    .dataframe td:nth-child(10) {
+        min-width: 20px; /* Adjust minimum width */
+    }
+    .dataframe th:not(:first-child) {
+        transform: rotate(-90deg); /* Rotate counterclockwise by 90 degrees */
+        white-space: nowrap; /* Prevent line breaks within headers */
+        text-align: left; /* Adjust alignment after rotation */
+        padding-top: 1vw; /* Adjust padding to make it visually pleasing */
+        vertical-align: bottom; /* Vertically align rotated text */
     }
 
-    .dataframe td {
-        word-wrap: break-word;
-        display: block;
-        text-align: right;
-        font-size: 0.8em;
-        border: none;
-        border-bottom: 1px solid #ddd;
-        position: relative;
-        padding-left: 50%;
+    /* Adjustments for the rotated table headers */
+    .dataframe td:not(:first-child) {
+        vertical-align: top;
     }
 
-    .dataframe td:before {
-        position: absolute;
-        top: 0;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        content: attr(data-label);
-        text-align: left;
-        font-weight: bold;
-    }
 }
