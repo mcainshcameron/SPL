@@ -29,16 +29,7 @@ h1, h2 {
     margin: 20px 0;
 }
 
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.btn, button {
-    width: 200px; /* Adjust as needed */
-    text-align: center;
+button {
     padding: 10px 20px;
     margin: 10px;
     border: none;
@@ -49,6 +40,6 @@ h1, h2 {
     transition: background-color 0.3s;
 }
 
-.btn:hover, button:hover {
+button:hover {
     background-color: rgb(217, 169, 178);
 }
