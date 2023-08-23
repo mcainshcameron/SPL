@@ -63,8 +63,7 @@ body, table {
     .dataframe th:nth-child(12), .dataframe td:nth-child(12),
     .dataframe th:nth-child(13), .dataframe td:nth-child(13),
     .dataframe th:nth-child(14), .dataframe td:nth-child(14),
-    .dataframe th:nth-child(15), .dataframe td:nth-child(15),
-    .dataframe th:nth-child(16), .dataframe td:nth-child(16) {
+    .dataframe th:nth-child(15), .dataframe td:nth-child(15) {
         display: table-cell;
     }
 }
