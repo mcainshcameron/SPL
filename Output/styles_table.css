@@ -3,10 +3,12 @@ body, table {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    font-size: 90%; /* Slightly reduced font */
 }
 
 #table-container {
     overflow-x: auto; /* Allows horizontal scrolling if needed */
+    margin: 15px; /* Adding margin to separate table from the page borders */
 }
 
 .dataframe {
@@ -20,6 +22,9 @@ body, table {
     text-align: left;
     padding: 10px 8px;
     border: 1px solid #e0e0e0;
+    position: sticky; /* Header will stick to the top when scrolling */
+    top: 0; /* Set the sticky position to the top */
+    z-index: 1; /* Ensure it's above the other content */
 }
 
 /* Rows */
@@ -65,5 +70,9 @@ body, table {
     .dataframe th:nth-child(14), .dataframe td:nth-child(14),
     .dataframe th:nth-child(15), .dataframe td:nth-child(15) {
         display: table-cell;
+    }
+
+    body, .dataframe td, .dataframe th {
+        font-size: 12px; /* Further reduced font size for mobile */
     }
 }
