@@ -1,4 +1,3 @@
-
 /* Resetting some default styles */
 body, table {
     margin: 0;
@@ -48,35 +47,4 @@ body, table {
 
 .dataframe a:hover {
     text-decoration: underline; /* Underline on hover for clarity */
-}
-
-
-/* ... Previous CSS ... */
-
-/* Rotated Headers for Mobile */
-@media (max-width: 600px) {
-    /* Adjusting table layout for more control */
-    .dataframe {
-        table-layout: fixed;
-    }
-
-    /* Rotating the headers */
-    .dataframe thead th {
-        /* Turning the cell into a flex container to center content */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 140px; /* Setting a max-height to accommodate most headers */
-        white-space: nowrap; /* Prevents the text from wrapping to next line */
-        transform: rotate(-90deg); /* Rotating the text */
-        transform-origin: center; /* Ensures rotation happens around the center */
-        width: auto !important; /* Overrides any width set elsewhere */
-    }
-
-    /* Adjusting row data for consistency with header */
-    .dataframe td {
-        white-space: nowrap; /* Ensures content doesn't wrap */
-        overflow: hidden; /* Hides any overflow */
-        text-overflow: ellipsis; /* Adds an ellipsis if content is too wide */
-    }
 }
