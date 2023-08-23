@@ -48,3 +48,23 @@ body, table {
 .dataframe a:hover {
     text-decoration: underline; /* Underline on hover for clarity */
 }
+
+/* Media query for devices with limited screen width (e.g., mobile) */
+@media (max-width: 768px) {
+    /* Hide all columns by default */
+    .dataframe th, .dataframe td {
+        display: none;
+    }
+
+    /* Display desired columns */
+    .dataframe th:nth-child(1), .dataframe td:nth-child(1),
+    .dataframe th:nth-child(2), .dataframe td:nth-child(2),
+    .dataframe th:nth-child(5), .dataframe td:nth-child(5),
+    .dataframe th:nth-child(12), .dataframe td:nth-child(12),
+    .dataframe th:nth-child(13), .dataframe td:nth-child(13),
+    .dataframe th:nth-child(14), .dataframe td:nth-child(14),
+    .dataframe th:nth-child(15), .dataframe td:nth-child(15),
+    .dataframe th:nth-child(16), .dataframe td:nth-child(16) {
+        display: table-cell;
+    }
+}
