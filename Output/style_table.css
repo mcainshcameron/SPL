@@ -1,0 +1,82 @@
+
+/* Resetting some default styles */
+body, table {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#table-container {
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+}
+
+.dataframe {
+    width: 100%; /* Ensures table stretches to full width */
+    border-collapse: collapse; /* Removes double borders */
+}
+
+/* Headings */
+.dataframe thead th {
+    background-color: #f2f2f2; /* Light grey background */
+    text-align: left;
+    padding: 10px 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Rows */
+.dataframe tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Light grey for every other row */
+}
+
+.dataframe tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for alternating rows */
+}
+
+.dataframe td, .dataframe th {
+    padding: 8px 10px; /* Padding for readability */
+    border: 1px solid #e0e0e0;
+    font-size: 14px; /* Suitable font size for mobile */
+}
+
+/* Links within the table */
+.dataframe a {
+    color: #007BFF; /* Blue link color */
+    text-decoration: none; /* Removing underlines */
+    padding: 5px; /* Making the touch area bigger for better tap experience */
+    display: inline-block; /* Allows padding to take effect */
+}
+
+.dataframe a:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+
+/* ... Previous CSS ... */
+
+/* Rotated Headers for Mobile */
+@media (max-width: 600px) {
+    /* Adjusting table layout for more control */
+    .dataframe {
+        table-layout: fixed;
+    }
+
+    /* Rotating the headers */
+    .dataframe thead th {
+        /* Turning the cell into a flex container to center content */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 140px; /* Setting a max-height to accommodate most headers */
+        white-space: nowrap; /* Prevents the text from wrapping to next line */
+        transform: rotate(-90deg); /* Rotating the text */
+        transform-origin: center; /* Ensures rotation happens around the center */
+        width: auto !important; /* Overrides any width set elsewhere */
+    }
+
+    /* Adjusting row data for consistency with header */
+    .dataframe td {
+        white-space: nowrap; /* Ensures content doesn't wrap */
+        overflow: hidden; /* Hides any overflow */
+        text-overflow: ellipsis; /* Adds an ellipsis if content is too wide */
+    }
+}
