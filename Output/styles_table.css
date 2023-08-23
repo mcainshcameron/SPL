@@ -9,12 +9,8 @@ body {
     font-size: 12px; /* Base font size */
 }
 
-h1 {
+h1, a, button {
     color: #333;
-    font-size: 1.5rem; /* Relative to the base font size */
-}
-
-a {
     text-decoration: none;
 }
 
@@ -34,27 +30,24 @@ button:hover {
 
 #table-container {
     background-color: white;
-    padding: 2vw; /* Relative to the viewport width */
+    padding: 2vw;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
-    overflow-y: auto;  /* Allows vertical scrolling */
-    max-width: 95vw; /* Allow some margin on the sides */
-    max-height: 80vh; /* Allow space for headers and footers */
-    position: relative; /* To support ::before pseudo-element */
+    max-width: 95vw;
+    max-height: 80vh;
 }
 
 .dataframe {
     border-collapse: collapse;
     width: 100%;
-    table-layout: auto; /* Let it auto adjust */
 }
 
 .dataframe th, .dataframe td {
     border: 1px solid #ddd;
-    padding: 0.5vw 1vw; /* Relative padding */
+    padding: 0.5vw 1vw;
     text-align: center;
-    word-wrap: break-word; /* Allow long words to break */
+    word-wrap: break-word;
 }
 
 .dataframe tr:hover {
@@ -69,69 +62,41 @@ button:hover {
     background-color: #333;
     color: white;
     border-bottom: 3px solid #444;
-    position: sticky;  /* Makes it stick within its parent */
-    top: 0;  /* Stick to the top */
-    z-index: 10;  /* Keep it above the other elements */
-}
-
-/* Adjust column widths as needed, but don't set fixed pixel values for responsiveness */
-.dataframe th:nth-child(2),
-.dataframe td:nth-child(2),
-.dataframe th:nth-child(10),
-.dataframe td:nth-child(10) {
-    min-width: 40px; /* Minimum width */
-}
-
-#table-container::before {
-    content: "";
-    position: absolute;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
-    z-index: 20;  /* Above the sticky header */
+    z-index: 10;
 }
-/* Your existing CSS remains unchanged... */
 
-/* Media query for mobile and tablet screens */
 @media only screen and (max-width: 768px) {
-
     body {
-        font-size: 10px; /* Decrease the base font size */
+        font-size: 10px;
     }
 
     h1 {
-        font-size: 1.2rem; /* Adjust according to your needs */
+        font-size: 1.2rem;
     }
 
     button {
-        font-size: 0.9rem; /* Adjust the font size for buttons */
-        padding: 8px 16px; /* You can adjust padding if required */
+        font-size: 0.9rem;
+        padding: 8px 16px;
     }
 
     .dataframe th, .dataframe td {
-        padding: 0.4vw 0.8vw; /* Adjust padding to have more space */
+        padding: 0.4vw 0.8vw;
     }
 
-    /* Adjust column widths as needed for mobile screens */
-    .dataframe th:nth-child(2),
-    .dataframe td:nth-child(2),
-    .dataframe th:nth-child(10),
-    .dataframe td:nth-child(10) {
-        min-width: 20px; /* Adjust minimum width */
-    }
     .dataframe th:not(:first-child) {
-        transform: rotate(-90deg); /* Rotate counterclockwise by 90 degrees */
-        white-space: nowrap; /* Prevent line breaks within headers */
-        text-align: left; /* Adjust alignment after rotation */
-        padding-top: 1vw; /* Adjust padding to make it visually pleasing */
-        vertical-align: bottom; /* Vertically align rotated text */
+        transform-origin: bottom;
+        transform: rotate(-90deg) translateY(50%);
+        white-space: nowrap;
+        text-align: left;
+        padding: 0 1vw;
+        vertical-align: bottom;
+        height: auto;
+        line-height: 1.25;
     }
 
-    /* Adjustments for the rotated table headers */
     .dataframe td:not(:first-child) {
         vertical-align: top;
     }
-
 }
