@@ -85,13 +85,18 @@ button:hover {
         padding: 0.4vw 0.8vw;
     }
 
-    .dataframe th:not(:first-child) {
-        transform-origin: bottom;
-        transform: rotate(-90deg) translateY(50%);
+    .dataframe th:not(:first-child),
+    .dataframe td:not(:first-child) {
+        width: 1%; /* Using a small percentage to force columns to be as narrow as possible */
         white-space: nowrap;
+    }
+
+    .dataframe th:not(:first-child) {
+        transform-origin: bottom left;
+        transform: rotate(-90deg) translateY(50%) translateX(-50%);
         text-align: left;
         padding: 0 1vw;
-        vertical-align: bottom;
+        vertical-align: middle;
         height: auto;
         line-height: 1.25;
     }
