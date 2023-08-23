@@ -1,6 +1,11 @@
 body {
     font-family: Arial, sans-serif;
     background-color: rgb(249, 206, 199);
+    background-image: url('Images/SPL.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0.6) sepia(0.5) contrast(0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +22,7 @@ a {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: rgb(234, 185, 179);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -25,14 +30,16 @@ button {
     cursor: pointer;
     display: block;
     margin: 10px auto; /* Vertical margin is 10px, horizontal is auto */
+    transition: transform 0.1s, background-color 0.3s; /* Add transition effect */
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: rgb(214, 115, 103); /* Fixed the wrong rgb[] syntax */
+    transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
 #table-container {
-    background-color: white;
+    background: linear-gradient(to bottom right, rgb(249, 206, 199), rgb(234, 185, 179));
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -72,26 +79,4 @@ button:hover {
 .dataframe th:nth-child(10), /* MVP */
 .dataframe td:nth-child(10) {
     width: 60px;
-}
-
-button {
-    background-color: rgb(234, 185, 179);
-    transition: transform 0.1s, background-color 0.3s; /* Add transition effect */
-}
-
-button:hover {
-    background-color: rgb[214 115 103];
-    transform: scale(1.05); /* Slight scaling effect on hover */
-}
-
-#table-container {
-    background: linear-gradient(to bottom right, rgb(249, 206, 199), rgb(234, 185, 179));
-}
-
-body {
-    background-image: url('Images/SPL.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: brightness(0.6) sepia(0.5) contrast(0.8);
 }
