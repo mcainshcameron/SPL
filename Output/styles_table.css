@@ -7,7 +7,8 @@ body, table {
 }
 
 #table-container {
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    overflow: auto;
+    height: 500px; /* Fixed height to make content scrollable */ /* Allows horizontal scrolling if needed */
     margin: 15px; /* Adding margin to separate table from the page borders */
 }
 
@@ -21,7 +22,8 @@ body, table {
     background-color: #f2f2f2; /* Light grey background */
     text-align: left;
     padding: 10px 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #f0f0f0;
+    position: -webkit-sticky; /* For Safari compatibility */
     position: sticky; /* Header will stick to the top when scrolling */
     top: 0px; /* Set the sticky position to the top */
     z-index: 2; /* Ensure it's above the other content */
@@ -37,16 +39,16 @@ body, table {
     background-color: #ffffff; /* White for alternating rows */
 }
 
-.dataframe td {
+.dataframe td, .dataframe th {
     padding: 8px 10px; /* Padding for readability */
-    border: 1px solid #e0e0e0;
+    border: 1px solid #f0f0f0;
     text-align: center; /* Center values within the table */
-    font-size: 16px; /* Slightly bigger font for table values */
+    font-size: 14px; /* Slightly bigger font for table values */
 }
 
 .dataframe th {
     padding: 8px 10px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #f0f0f0;
 }
 
 /* Links within the table */
@@ -82,4 +84,15 @@ body, table {
     body, .dataframe td, .dataframe th {
         font-size: 12px; /* Further reduced font size for mobile */
     }
+}
+
+
+/* Left-aligning the Player column */
+.dataframe td:nth-child(1) {
+    text-align: left;
+}
+
+/* Row hover effect */
+.dataframe tbody tr:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
 }
