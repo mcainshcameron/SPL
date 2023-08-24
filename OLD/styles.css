@@ -43,19 +43,3 @@ button {
 button:hover {
     background-color: rgb(217, 169, 178);
 }
-button {
-    width: 270px;  /* Set width for all buttons */
-    font-size: 16px;       /* Increase font size for better readability */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow for depth */
-    transition: all 0.3s;  /* Smooth out all transitions */
-}
-
-button:hover {
-    background-color: rgb(197, 139, 150);  /* Slightly darken hover color */
-    transform: translateY(-2px);  /* Add a subtle lift effect on hover */
-}
-
-button:active {
-    transform: translateY(0);  /* Reset lift effect on button press */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Reduce shadow on button press for a pressed effect */
-}
