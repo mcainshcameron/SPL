@@ -52,9 +52,11 @@ table {
 }
 
 th, td {
-    padding: 8px 12px;
+    padding: 4px 8px;  /* Reduced padding */
+    font-size: 0.9em;  /* Smaller font size */
     border: 1px solid rgba(223, 51, 59, 0.5);
-    text-align: left;
+    text-align: center;
+
 }
 
 th {
