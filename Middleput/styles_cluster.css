@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Calibri Light, sans-serif;
     background-color: rgb(253, 253, 252);
     color: rgb(223, 51, 59);
     margin: 0;
@@ -60,7 +60,7 @@ th, td {
 }
 
 th {
-    background-color: rgb(10, 116, 138);
+    background-color: rgb(127, 41, 119);
     color: white;
 }
 
