@@ -1,0 +1,96 @@
+/* Resetting some default styles */
+body, table {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 90%;
+}
+
+#table-container {
+    overflow: auto;
+    max-height: 800px;
+    margin: 15px;
+}
+
+.dataframe {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Headings */
+.dataframe thead th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 10px 8px;
+    border: 1px solid #f0f0f0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+    font-size: 80%;
+}
+
+/* Rows */
+.dataframe tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.dataframe tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.dataframe td, .dataframe th {
+    padding: 8px 10px;
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dataframe a {
+    color: #007BFF;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-block;
+}
+
+.dataframe a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    /* Move the table to the bottom of the screen */
+    #table-container {
+        position: absolute;
+        bottom: 0;
+        max-height: 90vh;  /* Adjust the max-height based on screen height */
+        overflow-y: scroll;  /* Enable vertical scrolling */
+    }
+
+    .dataframe th, .dataframe td {
+        display: none;
+    }
+
+    .dataframe th:nth-child(1), .dataframe td:nth-child(1),
+    .dataframe th:nth-child(2), .dataframe td:nth-child(2),
+    .dataframe th:nth-child(5), .dataframe td:nth-child(5),
+    .dataframe th:nth-child(12), .dataframe td:nth-child(12),
+    .dataframe th:nth-child(13), .dataframe td:nth-child(13),
+    .dataframe th:nth-child(14), .dataframe td:nth-child(14),
+    .dataframe th:nth-child(15), .dataframe td:nth-child(15) {
+        display: table-cell;
+    }
+
+    body, .dataframe td, .dataframe th {
+        font-size: 12px;
+    }
+}
+
+/* Left-aligning the Player column */
+.dataframe td:nth-child(1) {
+    text-align: left;
+}
+
+/* Row hover effect */
+.dataframe tbody tr:hover {
+    background-color: #e6f7ff;
+}
