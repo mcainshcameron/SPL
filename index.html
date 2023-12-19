@@ -9,7 +9,7 @@
     <!-- Favicon link -->
     <link href="Images/favicon_32.png" rel="icon" type="image/png"/>
     <!-- Link to the JavaScript file that contains the image data -->
-    <script src="Images/modified_lion_santa.js"></script>
+    <script src="Images/modified_lion.js"></script>
     <link href="Styles/styles.css" rel="stylesheet"/>
     <style>
       @keyframes rotate {
@@ -35,9 +35,9 @@
       </h2>
       <!-- Removed the button that was here -->
       <br/>
-      <a href="https://forms.gle/TMc6Y8SpGE7yg3uE6">
+      <a href="HTML/Torneo/s1/players_summary_s1.html">
         <button>
-          Torneo SantaSPL - Iscrizione
+          Torneo SantaSPL - Classifica
         </button>
       </a>
       <br/>
@@ -81,29 +81,6 @@
           }, 0);
         }, 2000);
       });
-    </script>
-    <script>
-      // Function to create a snowflake
-      function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.textContent = '❄'; // Snowflake Unicode character
-        // Randomize the snowflake's size and position
-        snowflake.style.fontSize = `${Math.random() * 24 + 10}px`;
-        snowflake.style.left = `${Math.random() * 100}vw`;
-        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duration between 2 and 5 seconds
-        snowflake.style.animationDelay = `${Math.random() * 5}s`; // Delay between 0 and 5 seconds
-        snowflake.style.animationName = 'fall';
-        document.body.appendChild(snowflake);
-    
-        // Remove the snowflake after it falls down
-        snowflake.addEventListener('animationend', function() {
-          snowflake.remove();
-        });
-      }
-    
-      // Create a snowflake every 200 milliseconds
-      setInterval(createSnowflake, 200);
     </script>
     <div class="news-marquee">
       <span>
