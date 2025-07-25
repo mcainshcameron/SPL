@@ -1,99 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>
-      FantaSPL
-    </title>
-    <!-- Favicon link -->
-    <link href="Images/Favicon (32x32)-01.png" rel="icon" type="image/png"/>
-    <!-- Link to the JavaScript file that contains the image data -->
-    <script src="Images/modified_lion.js"></script>
-    <link href="Styles/styles.css" rel="stylesheet"/>
-    <style>
-      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="table-container">
-      <!-- Make the title SPL clickable by wrapping it with an anchor tag -->
-      <h1>
-        SPL
-      </h1>
-      <!-- Keep this empty. It will be filled in by JavaScript -->
-      <img alt="Lion Logo" id="lion-logo">
-      <h2>
-        Solo Pro League
-      </h2>
-      <!-- Removed the button that was here -->
-      <br/>
-      <a href="HTML/Milano/s3/players_summary_s3.html">
-        <button>
-          Classifica Giocatori 23/24
-        </button>
-      </a>
-      <br/>
-      <a href="HTML\Milano\FantaSPL_Classifica.html">
-        <button>
-          Classifica FantaSPL 23/24
-        </button>
-      </a>
-      <br/>
-      <a href="HTML\Milano\Game_summary\game_summaries.html">
-        <button>
-          Storico Partite
-        </button>
-      </a>
-      <br/>
-      <a href="Blog/SPL_2024_explain.html">
-        <button>
-          SPL - Come Funziona
-        </button>
-      </a>
-      <br/>
-      <a href="HTML\Milano\clustered_data_web.html">
-        <button>
-          Mercato SPL Manager
-        </button>
-      </a> 
-      <br/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FantaSPL - Modern</title>
+    <link rel="icon" href="Images/Favicon (32x32)-01.png" type="image/png">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <script src="Images/modified_lion.js" defer></script>
+    <script src="Scripts/scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="" alt="Lion Logo" id="lion-logo" class="logo">
+            <div class="title-container">
+                <h1>SPL</h1>
+                <h2>Solo Pro League</h2>
+            </div>
+        </div>
+    </header>
 
-    </div>
-    <!-- Place the JavaScript here to update the image after the page has loaded -->
-    <script>
-      window.addEventListener('load', function() {
-        document.getElementById("lion-logo").src = truncatedLionLogo;
-        
-        // Start rotating the lion logo every 5 seconds
-        setInterval(function() {
-          const lionLogo = document.getElementById('lion-logo');
-          lionLogo.style.animation = 'none';
-          setTimeout(function() {
-            lionLogo.style.animation = 'rotate 0.5s linear';
-          }, 0);
-        }, 2000);
-      });
-    </script>
-    <div class="news-marquee">
-      <span>
-        |SPLNews|SPLNews|SPLNews|SPLNews|SPLNews|SPLNews|SPLNews|-->
-        |SPLNews|: Ludovico Righi richiede chiarezza - "Sono secondo e spero che l’impatto mediatico porti a galla la verità nascosta da luglio". Trump risponde direttamente da Mar-a-Lago: "Fake News."
-        |SPLNews|: Luca Stoppi trascina la squadra - "Tre gol e zero errori, difensore letale sulla griglia!"
-        |SPLNews|: Mario Croce - "Con tre marcature, si conferma una nuova minaccia SPL"
-        |SPLNews|: Cerro: "Sto entrando in stazionee" - ma non ha il biglietto, scatta la denuncia
-        |SPLNews|: Penalità cancellazione? Daniele Miccoli - "Pensavo di rimettermi ma niente non riesco" a poche ore dall'inizio.
-        |SPLNews|: Cri Diaz pronto ma stroncato  - "Sì se volete giocare 8vs8 entro io".
-        |SPLNews|: Rumors: T'eamCulo interessato a Tito. Negoziazioni in corso?
-        |SPLNews|: Damiano dichiara: "Fel Lazio è la mia prossima destinazione".
-      </span>
-    </div>
-  </body>
+    <nav>
+        <a href="HTML/Milano/s3/players_summary_s3.html" class="nav-button">Classifica Giocatori 23/24</a>
+        <a href="HTML\Milano\FantaSPL_Classifica.html" class="nav-button">Classifica FantaSPL 23/24</a>
+        <a href="HTML\Milano\Game_summary\game_summaries.html" class="nav-button">Storico Partite</a>
+        <a href="Blog/SPL_2024_explain.html" class="nav-button">SPL - Come Funziona</a>
+        <a href="HTML\Milano\clustered_data_web.html" class="nav-button">Mercato SPL Manager</a>
+    </nav>
+
+    <main>
+        <!-- Main content can go here if needed in the future -->
+    </main>
+
+    <footer>
+        <div class="news-marquee">
+            <div class="marquee-content">
+                <span>|SPLNews|: Ludovico Righi richiede chiarezza - "Sono secondo e spero che l’impatto mediatico porti a galla la verità nascosta da luglio". Trump risponde direttamente da Mar-a-Lago: "Fake News."</span>
+                <span>|SPLNews|: Luca Stoppi trascina la squadra - "Tre gol e zero errori, difensore letale sulla griglia!"</span>
+                <span>|SPLNews|: Mario Croce - "Con tre marcature, si conferma una nuova minaccia SPL"</span>
+                <span>|SPLNews|: Cerro: "Sto entrando in stazionee" - ma non ha il biglietto, scatta la denuncia</span>
+                <span>|SPLNews|: Penalità cancellazione? Daniele Miccoli - "Pensavo di rimettermi ma niente non riesco" a poche ore dall'inizio.</span>
+                <span>|SPLNews|: Cri Diaz pronto ma stroncato  - "Sì se volete giocare 8vs8 entro io".</span>
+                <span>|SPLNews|: Rumors: T'eamCulo interessato a Tito. Negoziazioni in corso?</span>
+                <span>|SPLNews|: Damiano dichiara: "Fel Lazio è la mia prossima destinazione".</span>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>

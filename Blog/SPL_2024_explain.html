@@ -8,70 +8,74 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="Cameron McAinsh" name="author"/>
 <style type="text/css">
-   /* Reset some default browser styles */
-body, h1, h2, h3, p, table, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
- /* Center the title in the body */
- .center-title {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 24px;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-/* Set a background color and text properties for the body */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: hsl(0, 13%, 3%);
-    margin: 20px;
-}
+    :root {
+        --primary-color: #1a1a1a;
+        --secondary-color: #2a2a2a;
+        --accent-color: #00aaff;
+        --text-color: #e0e0e0;
+        --header-font: 'Roboto', sans-serif;
+    }
 
-/* Container for page content */
-.container {
-    max-width: 1100px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    body {
+        font-family: var(--header-font);
+        line-height: 1.6;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 20px;
+    }
 
-/* Headings */
-h1, h2, h3 {
-    margin-bottom: 20px;
-}
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        background: var(--secondary-color);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
+    h1, h2, h3, h4 {
+        color: var(--accent-color);
+        margin-bottom: 15px;
+        margin-top: 20px;
+        border-bottom: 1px solid #444;
+        padding-bottom: 5px;
+    }
 
-th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
+    p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
 
-th {
-    background-color: #f2f2f2;
-}
+    ul, ol {
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
 
-/* Link styles */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
+    li {
+        margin-bottom: 8px;
+    }
 
-a:hover {
-    text-decoration: underline;
-}
-       
+    strong {
+        color: var(--accent-color);
+    }
+
+    a {
+        color: #00aaff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
   </style>
 <meta content="width=device-width, initial-scale=1" name="viewport"/></head>
 <div class="container">
