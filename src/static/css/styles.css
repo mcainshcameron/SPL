@@ -52,13 +52,17 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-primary);
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
-    padding-bottom: 70px; /* Space for mobile nav */
+    padding-bottom: 130px; /* Space for mobile nav + ticker */
 }
 
 a {
@@ -190,6 +194,25 @@ a:hover {
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(67, 233, 195, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-logo {
@@ -217,17 +240,25 @@ a:hover {
     .hero-logo {
         height: 60px;
     }
+    
+    .hero {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
 }
 
-/* News Ticker */
-.news-ticker {
+/* News Ticker - Fixed at Bottom */
+.news-ticker-fixed {
+    position: fixed;
+    bottom: 70px; /* Above mobile nav */
+    left: 0;
+    right: 0;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    border-top: 1px solid var(--border);
     overflow: hidden;
-    margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
+    z-index: 90;
+    box-shadow: var(--shadow-lg);
 }
 
 .ticker-label {
@@ -236,6 +267,7 @@ a:hover {
     padding: var(--spacing-sm) var(--spacing-md);
     font-weight: 700;
     flex-shrink: 0;
+    font-size: 0.875rem;
 }
 
 .ticker-content {
@@ -254,11 +286,33 @@ a:hover {
     white-space: nowrap;
     color: var(--text-secondary);
     padding: 0 var(--spacing-md);
+    font-size: 0.875rem;
 }
 
 @keyframes scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+}
+
+@media (min-width: 769px) {
+    .news-ticker-fixed {
+        bottom: 0; /* At bottom of viewport on desktop */
+    }
+    
+    body {
+        padding-bottom: 60px; /* Space for fixed ticker on desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    .ticker-label {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.75rem;
+    }
+    
+    .ticker-item {
+        font-size: 0.8rem;
+    }
 }
 
 /* Stats Grid */
@@ -276,6 +330,20 @@ a:hover {
     padding: var(--spacing-md);
     text-align: center;
     transition: all 0.2s ease;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.3s;
 }
 
 .stat-card:hover {
@@ -307,6 +375,17 @@ a:hover {
     font-size: 0.875rem;
     color: var(--text-secondary);
     margin-top: var(--spacing-xs);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Section */
@@ -457,6 +536,16 @@ a:hover {
     border-radius: var(--radius-md);
 }
 
+.season-filters {
+    margin-top: calc(-1 * var(--spacing-lg));
+    margin-bottom: var(--spacing-lg);
+}
+
+.season-filters .filters {
+    background: var(--bg-secondary);
+    border-color: var(--accent-dim);
+}
+
 .filter-group {
     display: flex;
     align-items: center;
@@ -472,6 +561,24 @@ a:hover {
 .filter-tabs {
     display: flex;
     gap: var(--spacing-xs);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) var(--bg-secondary);
+}
+
+.filter-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filter-tabs::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.filter-tabs::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 2px;
 }
 
 .filter-tab {
@@ -484,6 +591,8 @@ a:hover {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .filter-tab:hover {
@@ -495,6 +604,13 @@ a:hover {
     background: var(--accent-primary);
     border-color: var(--accent-primary);
     color: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+    .filter-tab {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
 }
 
 .filter-select, .sort-select {
@@ -523,6 +639,8 @@ a:hover {
     overflow-x: auto;
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 table {
@@ -533,6 +651,9 @@ table {
 
 thead {
     background: var(--bg-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 th {
@@ -552,11 +673,13 @@ td {
 }
 
 tbody tr {
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
 }
 
 tbody tr:hover {
     background: var(--bg-card-hover);
+    border-left-color: var(--accent-primary);
 }
 
 tbody tr:last-child td {
@@ -566,6 +689,29 @@ tbody tr:last-child td {
 .rank {
     font-weight: 700;
     color: var(--accent-primary);
+    position: relative;
+}
+
+/* Rank badges for top 3 */
+tbody tr:nth-child(1) .rank::before {
+    content: '🥇';
+    position: absolute;
+    right: -1.5rem;
+    font-size: 1rem;
+}
+
+tbody tr:nth-child(2) .rank::before {
+    content: '🥈';
+    position: absolute;
+    right: -1.5rem;
+    font-size: 1rem;
+}
+
+tbody tr:nth-child(3) .rank::before {
+    content: '🥉';
+    position: absolute;
+    right: -1.5rem;
+    font-size: 1rem;
 }
 
 .player-name a {
@@ -605,14 +751,14 @@ tbody tr:last-child td {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     display: block;
 }
 
 .market-card:hover {
     transform: translateY(-2px);
     border-color: var(--accent-primary);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 20px rgba(67, 233, 195, 0.2), var(--shadow-md);
 }
 
 .market-card-header {
@@ -771,6 +917,16 @@ tbody tr:last-child td {
     font-weight: 600;
 }
 
+.team-name a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.team-name a:hover {
+    color: var(--accent-primary);
+}
+
 .points {
     font-weight: 700;
     color: var(--accent-primary);
@@ -924,21 +1080,41 @@ tbody tr:last-child td {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .main-content {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+    
+    .section {
+        margin-bottom: var(--spacing-lg);
     }
     
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
     
     .games-grid,
     .championship-grid,
     .market-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
     
     .filters {
         flex-direction: column;
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .filter-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-tabs {
+        width: 100%;
     }
     
     .table-responsive {
@@ -950,10 +1126,25 @@ tbody tr:last-child td {
     }
     
     .player-header {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
     
     .player-info h1 {
         font-size: 1.5rem;
+    }
+    
+    .game-card,
+    .market-card,
+    .championship-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .stat-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .roster-header,
+    .roster-content {
+        padding: var(--spacing-sm);
     }
 }

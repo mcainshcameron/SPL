@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+import pandas as pd
+
 from .pipeline import (
     SPLProcessor,
     PlayerSummarizer,
@@ -17,6 +19,7 @@ from .pipeline import (
     FantasyProcessor,
     NewsGenerator
 )
+from .pipeline.supabase_loader import load_from_supabase
 from .site.slugs import generate_player_names, ensure_unique_slugs
 
 
@@ -32,7 +35,7 @@ def run_pipeline(args: argparse.Namespace) -> int:
     """
     Run the full data pipeline.
     
-    Processes Excel input and generates JSON files:
+    Processes Excel input or Supabase data and generates JSON files:
     - games.json
     - players.json
     - market_values.json
@@ -40,18 +43,31 @@ def run_pipeline(args: argparse.Namespace) -> int:
     - news.json
     """
     try:
-        input_path = Path(args.input)
         output_dir = Path(args.output)
         output_dir.mkdir(parents=True, exist_ok=True)
-        
-        logger.info(f"Starting pipeline: {input_path} -> {output_dir}")
         
         # Step 1: Process games and calculate points
         logger.info("Step 1/5: Processing games and calculating points")
         processor = SPLProcessor()
-        games_df, points_df = processor.process_file(input_path)
         
-        # Step 2: Generate player summaries
+        if args.supabase:
+            # Supabase mode
+            logger.info("Loading data from Supabase")
+            games_df_raw, points_df_raw, players_df_raw, parameters_dict = load_from_supabase()
+            games_df, points_df = processor.process_dataframes(
+                games_df_raw, 
+                points_df_raw, 
+                players_df_raw, 
+                parameters_dict
+            )
+            input_path = None  # No input file in Supabase mode
+        else:
+            # Excel mode
+            input_path = Path(args.input)
+            logger.info(f"Starting pipeline: {input_path} -> {output_dir}")
+            games_df, points_df = processor.process_file(input_path)
+        
+        # Step 2: Generate player summaries (total and per-season)
         logger.info("Step 2/5: Generating player summaries")
         summarizer = PlayerSummarizer()
         summaries = summarizer.generate_summaries(points_df, games_df)
@@ -65,13 +81,23 @@ def run_pipeline(args: argparse.Namespace) -> int:
         
         # Step 4: Process fantasy league (if file exists)
         logger.info("Step 4/5: Processing fantasy league")
-        fantasy_file = input_path.parent / "FantaSquadre" / f"FantaSquadre_{input_path.stem.split('_')[1]}.xlsx"
         fantasy_processor = FantasyProcessor()
-        fantasy_data = fantasy_processor.process_fantasy_league(
-            fantasy_file,
-            points_df,
-            season=args.fantasy_season
-        )
+        
+        if args.supabase:
+            # Supabase mode: skip fantasy data (not in DB)
+            logger.info("Supabase mode: skipping fantasy league (not in database)")
+            fantasy_data = {
+                'standings': pd.DataFrame(),
+                'teams': pd.DataFrame()
+            }
+        else:
+            # Excel mode: try to load fantasy data
+            fantasy_file = input_path.parent / "FantaSquadre" / f"FantaSquadre_{input_path.stem.split('_')[1]}.xlsx"
+            fantasy_data = fantasy_processor.process_fantasy_league(
+                fantasy_file,
+                points_df,
+                season=args.fantasy_season
+            )
         
         # Step 5: Generate news
         logger.info("Step 5/5: Generating SPLNews")
@@ -92,25 +118,57 @@ def run_pipeline(args: argparse.Namespace) -> int:
             if 'Date' in game:
                 game['Date'] = game['Date'].isoformat() if hasattr(game['Date'], 'isoformat') else str(game['Date'])
         
-        # Players JSON (with display names and slugs)
+        # Players JSON - Restructure to championship -> season -> players
+        # season_summaries has structure: {season: {championship: df}}
+        # We want: {championship: {season: players_list}}
         players_json = {}
-        for champ, summary_df in summaries.items():
-            players_list = []
-            for _, row in summary_df.iterrows():
-                player_data = row.to_dict()
-                full_name = player_data['Player']
-                
-                # Add display name and slug
-                if full_name in player_name_map:
-                    player_data['display_name'] = player_name_map[full_name]['display_name']
-                    player_data['slug'] = player_name_map[full_name]['slug']
-                else:
-                    player_data['display_name'] = full_name
-                    player_data['slug'] = full_name.lower().replace(' ', '-')
-                
-                players_list.append(player_data)
+        
+        # Championship name mapping (English -> Italian)
+        champ_name_map = {
+            'Combined': 'Combinata',
+            'Bovisa': 'Bovisa',
+            'Lambrate': 'Lambrate'
+        }
+        
+        # Season name mapping (English -> Italian)
+        def season_to_italian(season_key):
+            if season_key == 'Total':
+                return 'Totale'
+            elif season_key.startswith('Season '):
+                season_num = season_key.split()[1]
+                return f'Stagione {season_num}'
+            return season_key
+        
+        # Get all championships from total summaries
+        championships = list(summaries.keys())
+        
+        for champ in championships:
+            # Map championship name to Italian
+            italian_champ = champ_name_map.get(champ, champ)
+            players_json[italian_champ] = {}
             
-            players_json[champ] = players_list
+            # Add all seasons for this championship
+            for season_key, season_data in season_summaries.items():
+                if champ in season_data:
+                    italian_season = season_to_italian(season_key)
+                    summary_df = season_data[champ]
+                    players_list = []
+                    
+                    for _, row in summary_df.iterrows():
+                        player_data = row.to_dict()
+                        full_name = player_data['Player']
+                        
+                        # Add display name and slug
+                        if full_name in player_name_map:
+                            player_data['display_name'] = player_name_map[full_name]['display_name']
+                            player_data['slug'] = player_name_map[full_name]['slug']
+                        else:
+                            player_data['display_name'] = full_name
+                            player_data['slug'] = full_name.lower().replace(' ', '-')
+                        
+                        players_list.append(player_data)
+                    
+                    players_json[italian_champ][italian_season] = players_list
         
         # Market values JSON
         market_json = []
@@ -192,11 +250,19 @@ def main() -> int:
     
     # Pipeline command
     pipeline_parser = subparsers.add_parser('pipeline', help='Run data pipeline')
-    pipeline_parser.add_argument(
+    
+    # Data source: either --input (Excel) or --supabase (database)
+    source_group = pipeline_parser.add_mutually_exclusive_group(required=True)
+    source_group.add_argument(
         '--input',
-        required=True,
         help='Path to input Excel file'
     )
+    source_group.add_argument(
+        '--supabase',
+        action='store_true',
+        help='Load data from Supabase instead of Excel'
+    )
+    
     pipeline_parser.add_argument(
         '--output',
         default='output/data',

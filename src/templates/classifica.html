@@ -21,71 +21,142 @@
         </div>
     </div>
 
-    <!-- Rankings Tables -->
-    {% for champ, players in championships.items() %}
-    <div class="rankings-table-container" data-championship="{{ champ }}" {% if not loop.first %}style="display:none;"{% endif %}>
-        <div class="table-responsive">
-            <table class="rankings-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Giocatore</th>
-                        <th>Partite</th>
-                        <th>Vittorie</th>
-                        <th>Win%</th>
-                        <th>Gol</th>
-                        <th>PPG</th>
-                        <th>Punti Totali</th>
-                        <th>Δ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for player in players %}
-                    <tr>
-                        <td class="rank">{{ player.Rank }}</td>
-                        <td class="player-name">
-                            <a href="/players/{{ player.slug }}/">{{ player.display_name }}</a>
-                        </td>
-                        <td>{{ player['Games Played'] }}</td>
-                        <td>{{ player.Wins }}</td>
-                        <td>{{ player['Win %']|round(1) }}%</td>
-                        <td>{{ player['Total Goals'] }}</td>
-                        <td class="highlight">{{ player.PPG|round(2) }}</td>
-                        <td>{{ player['Total Points']|round(0)|int }}</td>
-                        <td class="rank-change">
-                            {% if player['Rank Change'] > 0 %}
-                            <span class="change-up">↑{{ player['Rank Change'] }}</span>
-                            {% elif player['Rank Change'] < 0 %}
-                            <span class="change-down">↓{{ player['Rank Change']|abs }}</span>
-                            {% else %}
-                            <span class="change-neutral">—</span>
-                            {% endif %}
-                        </td>
-                    </tr>
+    <!-- Season Filters (per championship) -->
+    {% for champ, seasons in championships.items() %}
+    <div class="season-filters" data-championship="{{ champ }}" {% if not loop.first %}style="display:none;"{% endif %}>
+        <div class="filters">
+            <div class="filter-group">
+                <label>Stagione:</label>
+                <div class="filter-tabs season-tabs" data-championship="{{ champ }}">
+                    {% for season in seasons.keys() %}
+                    <button class="filter-tab season-tab {% if season == 'Totale' %}active{% endif %}" 
+                            data-championship="{{ champ }}" 
+                            data-season="{{ season }}">
+                        {{ season }}
+                    </button>
                     {% endfor %}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     </div>
+    {% endfor %}
+
+    <!-- Rankings Tables -->
+    {% set first_champ = championships.keys()|list|first %}
+    {% for champ, seasons in championships.items() %}
+        {% for season, players in seasons.items() %}
+        <div class="rankings-table-container" 
+             data-championship="{{ champ }}" 
+             data-season="{{ season }}"
+             {% if not (champ == first_champ and season == 'Totale') %}style="display:none;"{% endif %}>
+            <div class="table-responsive">
+                <table class="rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Giocatore</th>
+                            <th>Partite</th>
+                            <th>Vittorie</th>
+                            <th>Win%</th>
+                            <th>Gol</th>
+                            <th>PPG</th>
+                            <th>Punti Totali</th>
+                            <th>Δ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for player in players %}
+                        <tr>
+                            <td class="rank">{{ player.Rank }}</td>
+                            <td class="player-name">
+                                <a href="/players/{{ player.slug }}/">{{ player.display_name }}</a>
+                            </td>
+                            <td>{{ player['Games Played'] }}</td>
+                            <td>{{ player.Wins }}</td>
+                            <td>{{ player['Win %']|round(1) }}%</td>
+                            <td>{{ player['Total Goals'] }}</td>
+                            <td class="highlight">{{ player.PPG|round(2) }}</td>
+                            <td>{{ player['Total Points']|round(0)|int }}</td>
+                            <td class="rank-change">
+                                {% if player['Rank Change'] > 0 %}
+                                <span class="change-up">↑{{ player['Rank Change'] }}</span>
+                                {% elif player['Rank Change'] < 0 %}
+                                <span class="change-down">↓{{ player['Rank Change']|abs }}</span>
+                                {% else %}
+                                <span class="change-neutral">—</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
     {% endfor %}
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.filter-tab');
+    const champTabs = document.querySelectorAll('#championshipTabs .filter-tab');
+    const seasonFilters = document.querySelectorAll('.season-filters');
+    const seasonTabs = document.querySelectorAll('.season-tab');
     const tables = document.querySelectorAll('.rankings-table-container');
     
-    tabs.forEach(tab => {
+    // Championship tab click handler
+    champTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const championship = this.dataset.championship;
             
-            // Update active tab
-            tabs.forEach(t => t.classList.remove('active'));
+            // Update active championship tab
+            champTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show season filters for this championship
+            seasonFilters.forEach(filter => {
+                if (filter.dataset.championship === championship) {
+                    filter.style.display = 'block';
+                } else {
+                    filter.style.display = 'none';
+                }
+            });
+            
+            // Find the active season for this championship (or default to Totale)
+            let activeSeason = 'Totale';
+            const activeSeasonTab = document.querySelector(
+                `.season-tab[data-championship="${championship}"].active`
+            );
+            if (activeSeasonTab) {
+                activeSeason = activeSeasonTab.dataset.season;
+            }
+            
+            // Show the corresponding table
+            tables.forEach(table => {
+                if (table.dataset.championship === championship && 
+                    table.dataset.season === activeSeason) {
+                    table.style.display = 'block';
+                } else {
+                    table.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Season tab click handler
+    seasonTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const championship = this.dataset.championship;
+            const season = this.dataset.season;
+            
+            // Update active season tab for this championship
+            document.querySelectorAll(`.season-tab[data-championship="${championship}"]`)
+                .forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
             // Show corresponding table
             tables.forEach(table => {
-                if (table.dataset.championship === championship) {
+                if (table.dataset.championship === championship && 
+                    table.dataset.season === season) {
                     table.style.display = 'block';
                 } else {
                     table.style.display = 'none';

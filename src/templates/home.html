@@ -8,40 +8,20 @@
 <section class="hero">
     <div class="hero-content">
         <img src="/static/images/logo.png" alt="SPL Logo" class="hero-logo">
-        <h1>Solo Pro League</h1>
-        <p class="hero-tagline">La lega calcistica più competitiva di Milano</p>
-    </div>
-</section>
-
-<!-- SPLNews Ticker -->
-<section class="news-ticker">
-    <div class="ticker-label">📰 SPLNews</div>
-    <div class="ticker-content">
-        <div class="ticker-scroll">
-            {% for item in news %}
-            <span class="ticker-item">{{ item.headline }}</span>
-            {% endfor %}
-            {% for item in news %}
-            <span class="ticker-item">{{ item.headline }}</span>
-            {% endfor %}
-        </div>
+        <p class="hero-tagline">Il calcetto che conta</p>
     </div>
 </section>
 
 <!-- Quick Stats -->
 <section class="stats-grid">
     <div class="stat-card">
-        <div class="stat-value">{{ total_players }}</div>
-        <div class="stat-label">Giocatori</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value">{{ total_games }}</div>
+        <div class="stat-value" data-count="{{ total_games }}">0</div>
         <div class="stat-label">Partite</div>
     </div>
     {% if top_performer %}
     <div class="stat-card highlight">
         <div class="stat-value">{{ top_performer.display_name }}</div>
-        <div class="stat-label">Top Performer</div>
+        <div class="stat-label">Miglior giocatore</div>
         <div class="stat-detail">{{ top_performer.PPG|round(2) }} PPG</div>
     </div>
     {% endif %}
@@ -87,9 +67,24 @@
         {% for champ in championships %}
         <a href="/classifica/?championship={{ champ }}" class="championship-card">
             <h3>{{ champ }}</h3>
-            <p>Vedi classifica →</p>
+            <p>Classifica →</p>
         </a>
         {% endfor %}
     </div>
 </section>
+
+<!-- SPLNews Ticker (Fixed at bottom) -->
+<div class="news-ticker-fixed">
+    <div class="ticker-label">📰 SPLNews</div>
+    <div class="ticker-content">
+        <div class="ticker-scroll">
+            {% for item in news %}
+            <span class="ticker-item">{{ item.headline }}</span>
+            {% endfor %}
+            {% for item in news %}
+            <span class="ticker-item">{{ item.headline }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

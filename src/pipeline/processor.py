@@ -90,6 +90,51 @@ class SPLProcessor:
         logger.info(f"Processing complete: {len(games_df)} games, {len(points_df)} point records")
         return games_df, points_df
     
+    def process_dataframes(
+        self,
+        games_df: pd.DataFrame,
+        points_df: pd.DataFrame,
+        players_df: pd.DataFrame,
+        parameters_dict: Dict
+    ) -> Tuple[pd.DataFrame, pd.DataFrame]:
+        """
+        Process SPL data from pre-loaded DataFrames (e.g., from Supabase).
+        
+        Args:
+            games_df: Games DataFrame with columns: Date, Championship, Team A Goals, Team B Goals
+            points_df: Points DataFrame with columns: Date, Championship, Player, Team, Goals, etc.
+            players_df: Players DataFrame with columns: Player, Default 5 Position, etc.
+            parameters_dict: Scoring parameters dict with 'match_parameters' key
+            
+        Returns:
+            Tuple of (games_df, points_df)
+        """
+        logger.info("Processing DataFrames")
+        
+        # Set configuration
+        self.config = parameters_dict
+        
+        # Create dict for preprocessing
+        data_frames = {
+            'Games': games_df.copy(),
+            'Points': points_df.copy(),
+            'Players': players_df.copy()
+        }
+        
+        # Preprocess and validate
+        self._preprocess_data(data_frames)
+        
+        # Process games and calculate points
+        games_df = self._process_games(data_frames['Games'], data_frames['Points'])
+        points_df = self._calculate_points(
+            data_frames['Points'],
+            games_df,
+            data_frames['Players']
+        )
+        
+        logger.info(f"Processing complete: {len(games_df)} games, {len(points_df)} point records")
+        return games_df, points_df
+    
     def _load_data(self, input_path: Path) -> Dict[str, pd.DataFrame]:
         """Load all required sheets from Excel file."""
         if not input_path.exists():
@@ -148,6 +193,14 @@ class SPLProcessor:
         
         # Apply championship split logic
         df = self._apply_championship_split(df, points_df)
+        
+        # Per-championship season renumbering (each championship starts from Season 1)
+        for champ in df['Championship'].unique():
+            mask = df['Championship'] == champ
+            champ_seasons = sorted(df.loc[mask, 'Season'].dropna().unique())
+            if champ_seasons:
+                season_map = {old: new + 1 for new, old in enumerate(champ_seasons)}
+                df.loc[mask, 'Season'] = df.loc[mask, 'Season'].map(season_map)
         
         # Calculate gameweeks per championship per season
         df['Gameweek'] = df.groupby(['Season', 'Championship']).cumcount() + 1
@@ -215,7 +268,12 @@ class SPLProcessor:
     ) -> pd.DataFrame:
         """Calculate all point components for each player."""
         # Merge with games data
-        df = pd.merge(points_df, games_df, on='Date', how='left')
+        # If both DataFrames have Championship column, merge on both Date and Championship
+        merge_on = ['Date']
+        if 'Championship' in points_df.columns and 'Championship' in games_df.columns:
+            merge_on.append('Championship')
+        
+        df = pd.merge(points_df, games_df, on=merge_on, how='left')
         
         # Drop rows where merge failed (no matching game)
         missing_games = df['Match Type'].isna().sum()

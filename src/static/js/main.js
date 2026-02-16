@@ -170,6 +170,77 @@ function copyToClipboard(text) {
     }
 }
 
+// Animated number counters
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = Math.round(target);
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.round(current);
+        }
+    }, 16);
+}
+
+// Initialize counters on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.stat-value[data-count]');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.dataset.count);
+        if (!isNaN(target)) {
+            counter.textContent = '0';
+            setTimeout(() => {
+                animateCounter(counter, target);
+            }, 300);
+        }
+    });
+});
+
+// Card entrance animations using IntersectionObserver
+if ('IntersectionObserver' in window) {
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.game-card, .market-card, .championship-card, .roster-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            cardObserver.observe(card);
+        });
+    });
+}
+
+// Auto-expand roster card when linked from standings
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement && targetElement.tagName === 'DETAILS') {
+            targetElement.open = true;
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    }
+});
+
 // Export utilities
 window.SPL = {
     formatCurrency,
@@ -177,5 +248,6 @@ window.SPL = {
     scrollToTop,
     showToast,
     copyToClipboard,
-    debounce
+    debounce,
+    animateCounter
 };

@@ -6,11 +6,11 @@
 {% block content %}
 <section class="section">
     <h1>FantaLega SPL</h1>
-    <p class="section-subtitle">Stagione 1 - Archivio</p>
+    <p class="section-subtitle">Archivio Stagione 1</p>
 
     <!-- Leaderboard -->
     <div class="fantalega-leaderboard">
-        <h2>Classifica Finale</h2>
+        <h2>Classifica</h2>
         <div class="table-responsive">
             <table class="fantalega-table">
                 <thead>
@@ -31,8 +31,10 @@
                             {% else %}{{ team.Rank }}
                             {% endif %}
                         </td>
-                        <td class="team-name">{{ team['Team Name'] }}</td>
-                        <td>{{ team.Owner }}</td>
+                        <td class="team-name">
+                            <a href="#team-{{ team['Team Name']|replace(' ', '-')|lower }}">{{ team['Team Name'] }}</a>
+                        </td>
+                        <td>{{ team.owner_display }}</td>
                         <td class="points">{{ team['Total Points']|round(0)|int }}</td>
                     </tr>
                     {% endfor %}
@@ -43,9 +45,9 @@
 
     <!-- Team Rosters -->
     <div class="fantalega-rosters">
-        <h2>Rose Complete</h2>
+        <h2>Le rose</h2>
         {% for team_name, roster in rosters.items() %}
-        <details class="roster-card">
+        <details class="roster-card" id="team-{{ team_name|replace(' ', '-')|lower }}">
             <summary class="roster-header">
                 <h3>{{ team_name }}</h3>
                 <span class="roster-count">{{ roster|length }} giocatori</span>
@@ -65,8 +67,8 @@
 
     <!-- Future Seasons Info -->
     <div class="info-card">
-        <h3>Prossima Stagione</h3>
-        <p>La Stagione 2 della FantaLega sarà annunciata presto. Stay tuned!</p>
+        <h3>Prossima stagione</h3>
+        <p>La prossima stagione verrà annunciata qui.</p>
     </div>
 </section>
 {% endblock %}

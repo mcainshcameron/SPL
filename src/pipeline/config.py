@@ -68,10 +68,65 @@ class ChampionshipConfig:
     lambrate_max_players: int = 10
 
 
+@dataclass
+class ScoringParameters:
+    """Scoring parameters for different game formats."""
+    # Parameters from Excel Parameters sheet (verified from FantaSPL_Milano.xlsx)
+    parameters: Dict[str, Dict[str, int]] = None
+    
+    def __post_init__(self) -> None:
+        if self.parameters is None:
+            self.parameters = {
+                '5-a-side': {
+                    'Win': 3,
+                    'Draw': 1,
+                    'Loss': 0,
+                    'Participation': 4,
+                    'Goal': 1,
+                    'Own Goal': -2,
+                    'Penalty': -3,
+                    'SPL Bonus': 3,
+                    'MVP': 3,
+                    'Friend Referrals': 3,
+                    'Defensive Score': 10,
+                    'Goalkeeper Score': 1
+                },
+                '7-a-side': {
+                    'Win': 3,
+                    'Draw': 1,
+                    'Loss': 0,
+                    'Participation': 5,
+                    'Goal': 1,
+                    'Own Goal': -2,
+                    'Penalty': -4,
+                    'SPL Bonus': 3,
+                    'MVP': 3,
+                    'Friend Referrals': 4,
+                    'Defensive Score': 10,
+                    'Goalkeeper Score': 1
+                },
+                '11-a-side': {
+                    'Win': 3,
+                    'Draw': 1,
+                    'Loss': 0,
+                    'Participation': 6,
+                    'Goal': 2,
+                    'Own Goal': -2,
+                    'Penalty': -5,
+                    'SPL Bonus': 5,
+                    'MVP': 5,
+                    'Friend Referrals': 5,
+                    'Defensive Score': 8,
+                    'Goalkeeper Score': 1
+                }
+            }
+
+
 # Global configuration instances
 SEASON_CONFIG = SeasonConfig()
 MARKET_CONFIG = MarketConfig()
 CHAMPIONSHIP_CONFIG = ChampionshipConfig()
+SCORING_PARAMETERS = ScoringParameters()
 
 
 def get_season_boundaries(year: int) -> tuple[date, date]:

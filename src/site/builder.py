@@ -98,13 +98,16 @@ def get_recent_games(games, championship=None, limit=5):
 
 def get_top_performers(players_data, championship=None):
     """Get top performers from rankings"""
+    # Players data now has structure: {championship: {season: players}}
+    # Always use "Totale" season for top performers
     if championship and championship in players_data:
-        data = players_data[championship]
-    elif "Combined" in players_data:
-        data = players_data["Combined"]
+        data = players_data[championship].get("Totale", [])
+    elif "Combinata" in players_data:
+        data = players_data["Combinata"].get("Totale", [])
     else:
-        # Use first available championship
-        data = list(players_data.values())[0]
+        # Use first available championship's Totale
+        first_champ = list(players_data.values())[0]
+        data = first_champ.get("Totale", [])
     
     # Return top 10 by PPG
     sorted_players = sorted(data, key=lambda x: x.get("PPG", 0), reverse=True)
@@ -124,7 +127,6 @@ def build_home_page(env, data):
     }
     
     # Quick stats
-    total_players = len(data["player_names"])
     total_games = len(data["games"])
     
     # Top performer (highest PPG from Combined)
@@ -134,7 +136,6 @@ def build_home_page(env, data):
     html = template.render(
         news=data["news"][:10],  # Latest 10 headlines
         recent_games=recent_by_champ,
-        total_players=total_players,
         total_games=total_games,
         top_performer=top_performer,
         championships=sorted(championships)
@@ -150,11 +151,17 @@ def build_classifica_page(env, data):
     print("Building classifica page...")
     template = env.get_template("classifica.html")
     
-    # Get all championships with data
-    championships_data = {
-        champ: sorted(players, key=lambda x: x["Rank"]) 
-        for champ, players in data["players"].items()
-    }
+    # Players data now has structure: {championship: {season: players}}
+    # Pass the full nested structure
+    championships_data = data["players"]
+    
+    # Sort players within each season by Rank
+    for champ in championships_data:
+        for season in championships_data[champ]:
+            championships_data[champ][season] = sorted(
+                championships_data[champ][season], 
+                key=lambda x: x["Rank"]
+            )
     
     html = template.render(
         championships=championships_data
@@ -171,10 +178,19 @@ def build_mercato_page(env, data):
     print("Building mercato page...")
     template = env.get_template("mercato.html")
     
+    # Get all unique players from Combinata Totale
+    all_players = set()
+    if "Combinata" in data["players"] and "Totale" in data["players"]["Combinata"]:
+        for p in data["players"]["Combinata"]["Totale"]:
+            all_players.add(p["Player"])
+    
     # Get latest market values per player
     latest_values = {}
     for player in data["player_names"].values():
         player_name = player["full_name"]
+        if player_name not in all_players:
+            continue
+            
         mv = get_latest_market_value(player_name, data["market_values"])
         if mv:
             latest_values[player["slug"]] = {
@@ -208,13 +224,18 @@ def build_player_pages(env, data):
         player_name = player_info["full_name"]
         slug = player_info["slug"]
         
-        # Get player stats from all championships
+        # Get player stats from all championships (use "Totale" season)
         player_stats = {}
-        for champ, players in data["players"].items():
-            for p in players:
+        for champ, seasons in data["players"].items():
+            totale_players = seasons.get("Totale", [])
+            for p in totale_players:
                 if p["Player"] == player_name:
                     player_stats[champ] = p
                     break
+        
+        # Skip if player has no stats
+        if not player_stats:
+            continue
         
         # Get market history
         market_history = get_player_market_history(player_name, data["market_values"])
@@ -244,6 +265,17 @@ def build_fantalega_page(env, data):
     print("Building fantalega page...")
     template = env.get_template("fantalega.html")
     
+    # Import display name function
+    from slugs import generate_display_name
+    
+    # Process standings to add owner display names
+    standings_with_display = []
+    for team in data["fantasy"]["standings"]:
+        team_copy = team.copy()
+        owner_full = team["Owner"]
+        team_copy["owner_display"] = generate_display_name(owner_full)
+        standings_with_display.append(team_copy)
+    
     # Group teams data by team name
     teams_list = data["fantasy"].get("teams", [])
     rosters = {}
@@ -261,7 +293,7 @@ def build_fantalega_page(env, data):
         rosters[team_name].append(player_info)
     
     html = template.render(
-        standings=data["fantasy"]["standings"],
+        standings=standings_with_display,
         rosters=rosters
     )
     
@@ -276,24 +308,17 @@ def build_risultati_page(env, data):
     print("Building risultati page...")
     template = env.get_template("risultati.html")
     
-    # Group games by championship and season
-    games_by_champ = {}
-    for game in data["games"]:
-        champ = game["Championship"]
-        if champ not in games_by_champ:
-            games_by_champ[champ] = {}
-        season = game["Season"]
-        if season not in games_by_champ[champ]:
-            games_by_champ[champ][season] = []
-        games_by_champ[champ][season].append(game)
+    # Sort all games by date descending (newest first), as a flat list
+    sorted_games = sorted(data["games"], key=lambda x: x["Date"], reverse=True)
     
-    # Sort games within each group by date (newest first)
-    for champ in games_by_champ:
-        for season in games_by_champ[champ]:
-            games_by_champ[champ][season].sort(key=lambda x: x["Date"], reverse=True)
+    # Get unique championships and seasons for filters
+    championships = sorted(set(g["Championship"] for g in data["games"]))
+    seasons = sorted(set(g["Season"] for g in data["games"]))
     
     html = template.render(
-        games_by_championship=games_by_champ
+        games=sorted_games,
+        championships=championships,
+        seasons=seasons
     )
     
     output_file = OUTPUT_DIR / "risultati" / "index.html"

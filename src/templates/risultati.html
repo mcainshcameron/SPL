@@ -13,7 +13,7 @@
             <label>Campionato:</label>
             <select id="championshipFilter" class="filter-select">
                 <option value="">Tutti</option>
-                {% for champ in games_by_championship.keys() %}
+                {% for champ in championships %}
                 <option value="{{ champ }}">{{ champ }}</option>
                 {% endfor %}
             </select>
@@ -22,50 +22,46 @@
             <label>Stagione:</label>
             <select id="seasonFilter" class="filter-select">
                 <option value="">Tutte</option>
-                <option value="1">Stagione 1</option>
-                <option value="2">Stagione 2</option>
-                <option value="3">Stagione 3</option>
+                {% for season in seasons %}
+                <option value="{{ season }}">Stagione {{ season }}</option>
+                {% endfor %}
             </select>
         </div>
     </div>
 
     <!-- Games List -->
     <div class="games-list">
-        {% for champ, seasons in games_by_championship.items() %}
-            {% for season, games in seasons.items() %}
-                {% for game in games %}
-                <details class="game-card" data-championship="{{ champ }}" data-season="{{ season }}">
-                    <summary class="game-summary">
-                        <div class="game-info">
-                            <span class="game-championship-badge">{{ champ }}</span>
-                            <span class="game-date">{{ game.Date[:10] }}</span>
-                            <span class="game-meta">S{{ season }} W{{ game.Gameweek }} • {{ game['Match Type'] }}</span>
-                        </div>
-                        <div class="game-score-summary">
-                            <span class="score">{{ game['Team A Goals'] }} - {{ game['Team B Goals'] }}</span>
-                        </div>
-                    </summary>
-                    <div class="game-details">
-                        <div class="game-teams">
-                            <div class="team {% if game['Winning Team'] == 'Team A' %}winner{% endif %}">
-                                <div class="team-label">Team A</div>
-                                <div class="team-score">{{ game['Team A Goals'] }}</div>
-                            </div>
-                            <div class="vs">vs</div>
-                            <div class="team {% if game['Winning Team'] == 'Team B' %}winner{% endif %}">
-                                <div class="team-label">Team B</div>
-                                <div class="team-score">{{ game['Team B Goals'] }}</div>
-                            </div>
-                        </div>
-                        {% if game.get('Number of Players') %}
-                        <div class="game-meta-detail">
-                            <span>👥 {{ game['Number of Players']|int }} giocatori</span>
-                        </div>
-                        {% endif %}
+        {% for game in games %}
+        <details class="game-card" data-championship="{{ game.Championship }}" data-season="{{ game.Season }}">
+            <summary class="game-summary">
+                <div class="game-info">
+                    <span class="game-championship-badge">{{ game.Championship }}</span>
+                    <span class="game-date">{{ game.Date[:10] }}</span>
+                    <span class="game-meta">S{{ game.Season }} W{{ game.Gameweek }} • {{ game['Match Type'] }}</span>
+                </div>
+                <div class="game-score-summary">
+                    <span class="score">{{ game['Team A Goals'] }} - {{ game['Team B Goals'] }}</span>
+                </div>
+            </summary>
+            <div class="game-details">
+                <div class="game-teams">
+                    <div class="team {% if game['Winning Team'] == 'Team A' %}winner{% endif %}">
+                        <div class="team-label">Team A</div>
+                        <div class="team-score">{{ game['Team A Goals'] }}</div>
                     </div>
-                </details>
-                {% endfor %}
-            {% endfor %}
+                    <div class="vs">vs</div>
+                    <div class="team {% if game['Winning Team'] == 'Team B' %}winner{% endif %}">
+                        <div class="team-label">Team B</div>
+                        <div class="team-score">{{ game['Team B Goals'] }}</div>
+                    </div>
+                </div>
+                {% if game.get('Number of Players') %}
+                <div class="game-meta-detail">
+                    <span>👥 {{ game['Number of Players']|int }} giocatori</span>
+                </div>
+                {% endif %}
+            </div>
+        </details>
         {% endfor %}
     </div>
 </section>

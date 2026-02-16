@@ -89,7 +89,7 @@
                     <span>{{ player_stats['SPL Bonus'] }}</span>
                 </div>
                 <div class="stat-row">
-                    <span>Friend Referrals:</span>
+                    <span>Inviti amici:</span>
                     <span>{{ player_stats['Friend Referrals'] }}</span>
                 </div>
                 <div class="stat-row">
@@ -107,7 +107,7 @@
 
     <!-- Market Tab -->
     <div class="tab-content" data-tab="market">
-        <h2>Storico Valore di Mercato</h2>
+        <h2>Andamento valore</h2>
         {% if market_history %}
         <div id="marketChart" style="height: 400px; margin-top: 20px;"></div>
         <script>
@@ -115,11 +115,16 @@
             const chartData = {{ market_history|map(attribute='Market Value')|list|tojson }};
             const weeks = {{ market_history|map(attribute='Week')|list|tojson }};
             
-            // Format data for Lightweight Charts
-            const data = chartData.map((value, index) => ({
-                time: weeks[index].split('/')[0], // Use start of week
-                value: value
-            }));
+            // Format data for Lightweight Charts - extract start date from week range
+            const data = chartData.map((value, index) => {
+                const weekStr = weeks[index];
+                // Week format is "YYYY-MM-DD/YYYY-MM-DD", extract first date
+                const startDate = weekStr.includes('/') ? weekStr.split('/')[0] : weekStr;
+                return {
+                    time: startDate,
+                    value: value
+                };
+            });
             
             const chart = LightweightCharts.createChart(document.getElementById('marketChart'), {
                 layout: {
@@ -150,14 +155,14 @@
         });
         </script>
         {% else %}
-        <p>Nessun dato disponibile</p>
+        <p>Dati non disponibili</p>
         {% endif %}
     </div>
 
     <!-- Games Tab -->
     {% if game_log %}
     <div class="tab-content" data-tab="games">
-        <h2>Registro Partite</h2>
+        <h2>Storico partite</h2>
         <div class="table-responsive">
             <table class="games-table">
                 <thead>
