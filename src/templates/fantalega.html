@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% set active_page = 'fantalega' %}
+
+{% block title %}FantaLega - SPL{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1>FantaLega SPL</h1>
+    <p class="section-subtitle">Stagione 1 - Archivio</p>
+
+    <!-- Leaderboard -->
+    <div class="fantalega-leaderboard">
+        <h2>Classifica Finale</h2>
+        <div class="table-responsive">
+            <table class="fantalega-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Manager</th>
+                        <th>Punti Totali</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in standings %}
+                    <tr class="{% if loop.index <= 3 %}podium podium-{{ loop.index }}{% endif %}">
+                        <td class="rank">
+                            {% if loop.index == 1 %}🥇
+                            {% elif loop.index == 2 %}🥈
+                            {% elif loop.index == 3 %}🥉
+                            {% else %}{{ team.Rank }}
+                            {% endif %}
+                        </td>
+                        <td class="team-name">{{ team['Team Name'] }}</td>
+                        <td>{{ team.Owner }}</td>
+                        <td class="points">{{ team['Total Points']|round(0)|int }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Team Rosters -->
+    <div class="fantalega-rosters">
+        <h2>Rose Complete</h2>
+        {% for team_name, roster in rosters.items() %}
+        <details class="roster-card">
+            <summary class="roster-header">
+                <h3>{{ team_name }}</h3>
+                <span class="roster-count">{{ roster|length }} giocatori</span>
+            </summary>
+            <div class="roster-content">
+                <div class="roster-grid">
+                    {% for player in roster %}
+                    <div class="roster-player">
+                        <a href="/players/{{ player.slug }}/">{{ player.display_name }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </details>
+        {% endfor %}
+    </div>
+
+    <!-- Future Seasons Info -->
+    <div class="info-card">
+        <h3>Prossima Stagione</h3>
+        <p>La Stagione 2 della FantaLega sarà annunciata presto. Stay tuned!</p>
+    </div>
+</section>
+{% endblock %}

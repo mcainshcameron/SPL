@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% set active_page = 'risultati' %}
+
+{% block title %}Risultati - SPL{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1>Risultati</h1>
+    
+    <!-- Filters -->
+    <div class="filters">
+        <div class="filter-group">
+            <label>Campionato:</label>
+            <select id="championshipFilter" class="filter-select">
+                <option value="">Tutti</option>
+                {% for champ in games_by_championship.keys() %}
+                <option value="{{ champ }}">{{ champ }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Stagione:</label>
+            <select id="seasonFilter" class="filter-select">
+                <option value="">Tutte</option>
+                <option value="1">Stagione 1</option>
+                <option value="2">Stagione 2</option>
+                <option value="3">Stagione 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Games List -->
+    <div class="games-list">
+        {% for champ, seasons in games_by_championship.items() %}
+            {% for season, games in seasons.items() %}
+                {% for game in games %}
+                <details class="game-card" data-championship="{{ champ }}" data-season="{{ season }}">
+                    <summary class="game-summary">
+                        <div class="game-info">
+                            <span class="game-championship-badge">{{ champ }}</span>
+                            <span class="game-date">{{ game.Date[:10] }}</span>
+                            <span class="game-meta">S{{ season }} W{{ game.Gameweek }} • {{ game['Match Type'] }}</span>
+                        </div>
+                        <div class="game-score-summary">
+                            <span class="score">{{ game['Team A Goals'] }} - {{ game['Team B Goals'] }}</span>
+                        </div>
+                    </summary>
+                    <div class="game-details">
+                        <div class="game-teams">
+                            <div class="team {% if game['Winning Team'] == 'Team A' %}winner{% endif %}">
+                                <div class="team-label">Team A</div>
+                                <div class="team-score">{{ game['Team A Goals'] }}</div>
+                            </div>
+                            <div class="vs">vs</div>
+                            <div class="team {% if game['Winning Team'] == 'Team B' %}winner{% endif %}">
+                                <div class="team-label">Team B</div>
+                                <div class="team-score">{{ game['Team B Goals'] }}</div>
+                            </div>
+                        </div>
+                        {% if game.get('Number of Players') %}
+                        <div class="game-meta-detail">
+                            <span>👥 {{ game['Number of Players']|int }} giocatori</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </details>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const champFilter = document.getElementById('championshipFilter');
+    const seasonFilter = document.getElementById('seasonFilter');
+    const gameCards = document.querySelectorAll('.game-card');
+    
+    function filterGames() {
+        const selectedChamp = champFilter.value;
+        const selectedSeason = seasonFilter.value;
+        
+        gameCards.forEach(card => {
+            const cardChamp = card.dataset.championship;
+            const cardSeason = card.dataset.season;
+            
+            const champMatch = !selectedChamp || cardChamp === selectedChamp;
+            const seasonMatch = !selectedSeason || cardSeason === selectedSeason;
+            
+            if (champMatch && seasonMatch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    champFilter.addEventListener('change', filterGames);
+    seasonFilter.addEventListener('change', filterGames);
+});
+</script>
+{% endblock %}

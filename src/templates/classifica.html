@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% set active_page = 'classifica' %}
+
+{% block title %}Classifica - SPL{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1>Classifica</h1>
+    
+    <!-- Championship Filters -->
+    <div class="filters">
+        <div class="filter-group">
+            <label>Campionato:</label>
+            <div class="filter-tabs" id="championshipTabs">
+                {% for champ in championships.keys() %}
+                <button class="filter-tab {% if loop.first %}active{% endif %}" data-championship="{{ champ }}">
+                    {{ champ }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Rankings Tables -->
+    {% for champ, players in championships.items() %}
+    <div class="rankings-table-container" data-championship="{{ champ }}" {% if not loop.first %}style="display:none;"{% endif %}>
+        <div class="table-responsive">
+            <table class="rankings-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Giocatore</th>
+                        <th>Partite</th>
+                        <th>Vittorie</th>
+                        <th>Win%</th>
+                        <th>Gol</th>
+                        <th>PPG</th>
+                        <th>Punti Totali</th>
+                        <th>Δ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                    <tr>
+                        <td class="rank">{{ player.Rank }}</td>
+                        <td class="player-name">
+                            <a href="/players/{{ player.slug }}/">{{ player.display_name }}</a>
+                        </td>
+                        <td>{{ player['Games Played'] }}</td>
+                        <td>{{ player.Wins }}</td>
+                        <td>{{ player['Win %']|round(1) }}%</td>
+                        <td>{{ player['Total Goals'] }}</td>
+                        <td class="highlight">{{ player.PPG|round(2) }}</td>
+                        <td>{{ player['Total Points']|round(0)|int }}</td>
+                        <td class="rank-change">
+                            {% if player['Rank Change'] > 0 %}
+                            <span class="change-up">↑{{ player['Rank Change'] }}</span>
+                            {% elif player['Rank Change'] < 0 %}
+                            <span class="change-down">↓{{ player['Rank Change']|abs }}</span>
+                            {% else %}
+                            <span class="change-neutral">—</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.filter-tab');
+    const tables = document.querySelectorAll('.rankings-table-container');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const championship = this.dataset.championship;
+            
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show corresponding table
+            tables.forEach(table => {
+                if (table.dataset.championship === championship) {
+                    table.style.display = 'block';
+                } else {
+                    table.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

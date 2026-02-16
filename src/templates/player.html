@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}{{ player.display_name }} - SPL{% endblock %}
+
+{% block extra_head %}
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+    <!-- Player Header -->
+    <div class="player-header">
+        <div class="player-info">
+            <h1>{{ player.display_name }}</h1>
+            {% if latest_value %}
+            <div class="player-value">{{ latest_value['Market Value']|currency }}</div>
+            {% if latest_value.get('Value Change') %}
+            <div class="player-value-change {% if latest_value['Value Change'] > 0 %}positive{% elif latest_value['Value Change'] < 0 %}negative{% endif %}">
+                {% if latest_value['Value Change'] > 0 %}
+                ↑ {{ latest_value['Value Change']|currency }}
+                {% elif latest_value['Value Change'] < 0 %}
+                ↓ {{ latest_value['Value Change']|abs|currency }}
+                {% else %}
+                —
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="stats">Statistiche</button>
+        <button class="tab" data-tab="market">Valore</button>
+        {% if game_log %}
+        <button class="tab" data-tab="games">Partite</button>
+        {% endif %}
+    </div>
+
+    <!-- Stats Tab -->
+    <div class="tab-content active" data-tab="stats">
+        {% for champ, player_stats in stats.items() %}
+        <div class="stats-section">
+            <h2>{{ champ }}</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats['Games Played'] }}</div>
+                    <div class="stat-label">Partite</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats.Wins }}</div>
+                    <div class="stat-label">Vittorie</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats['Win %']|round(1) }}%</div>
+                    <div class="stat-label">Win%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats['Total Goals'] }}</div>
+                    <div class="stat-label">Gol</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats['Average Goals']|round(2) }}</div>
+                    <div class="stat-label">Gol/Partita</div>
+                </div>
+                <div class="stat-card highlight">
+                    <div class="stat-value">{{ player_stats.PPG|round(2) }}</div>
+                    <div class="stat-label">PPG</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats['Total Points']|round(0)|int }}</div>
+                    <div class="stat-label">Punti Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ player_stats.Rank }}</div>
+                    <div class="stat-label">Rank</div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="additional-stats">
+                <div class="stat-row">
+                    <span>MVP:</span>
+                    <span>{{ player_stats.MVP }}</span>
+                </div>
+                <div class="stat-row">
+                    <span>SPL Bonus:</span>
+                    <span>{{ player_stats['SPL Bonus'] }}</span>
+                </div>
+                <div class="stat-row">
+                    <span>Friend Referrals:</span>
+                    <span>{{ player_stats['Friend Referrals'] }}</span>
+                </div>
+                <div class="stat-row">
+                    <span>Autogol:</span>
+                    <span>{{ player_stats['Own Goals'] }}</span>
+                </div>
+                <div class="stat-row">
+                    <span>Penalità:</span>
+                    <span>{{ player_stats.Penalties }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Market Tab -->
+    <div class="tab-content" data-tab="market">
+        <h2>Storico Valore di Mercato</h2>
+        {% if market_history %}
+        <div id="marketChart" style="height: 400px; margin-top: 20px;"></div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartData = {{ market_history|map(attribute='Market Value')|list|tojson }};
+            const weeks = {{ market_history|map(attribute='Week')|list|tojson }};
+            
+            // Format data for Lightweight Charts
+            const data = chartData.map((value, index) => ({
+                time: weeks[index].split('/')[0], // Use start of week
+                value: value
+            }));
+            
+            const chart = LightweightCharts.createChart(document.getElementById('marketChart'), {
+                layout: {
+                    background: { color: '#0a0f18' },
+                    textColor: '#d1d4dc',
+                },
+                grid: {
+                    vertLines: { color: '#1a1f2e' },
+                    horzLines: { color: '#1a1f2e' },
+                },
+                timeScale: {
+                    borderColor: '#2b3139',
+                },
+                rightPriceScale: {
+                    borderColor: '#2b3139',
+                },
+            });
+            
+            const areaSeries = chart.addAreaSeries({
+                topColor: 'rgba(67, 233, 195, 0.4)',
+                bottomColor: 'rgba(67, 233, 195, 0.0)',
+                lineColor: 'rgba(67, 233, 195, 1)',
+                lineWidth: 2,
+            });
+            
+            areaSeries.setData(data);
+            chart.timeScale().fitContent();
+        });
+        </script>
+        {% else %}
+        <p>Nessun dato disponibile</p>
+        {% endif %}
+    </div>
+
+    <!-- Games Tab -->
+    {% if game_log %}
+    <div class="tab-content" data-tab="games">
+        <h2>Registro Partite</h2>
+        <div class="table-responsive">
+            <table class="games-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Campionato</th>
+                        <th>Team</th>
+                        <th>Gol</th>
+                        <th>Punti</th>
+                        <th>Esito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in game_log %}
+                    <tr>
+                        <td>{{ game.date }}</td>
+                        <td>{{ game.championship }}</td>
+                        <td>{{ game.team }}</td>
+                        <td>{{ game.goals }}</td>
+                        <td>{{ game.points }}</td>
+                        <td>
+                            <span class="outcome {{ game.outcome|lower }}">
+                                {{ game.outcome }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
+            
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show corresponding content
+            tabContents.forEach(content => {
+                if (content.dataset.tab === tabName) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
