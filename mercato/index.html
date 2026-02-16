@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercato - SPL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/static/images/logo.png" alt="SPL Logo">
+                <span>SPL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link ">Home</a>
+                <a href="/classifica/" class="nav-link ">Classifica</a>
+                <a href="/mercato/" class="nav-link active">Mercato</a>
+                <a href="/fantalega/" class="nav-link ">FantaLega</a>
+                <a href="/risultati/" class="nav-link ">Risultati</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Tab Bar -->
+    <nav class="nav-mobile">
+        <a href="/" class="nav-tab ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="/classifica/" class="nav-tab ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Classifica</span>
+        </a>
+        <a href="/mercato/" class="nav-tab active">
+            <span class="nav-icon">💹</span>
+            <span class="nav-label">Mercato</span>
+        </a>
+        <a href="/fantalega/" class="nav-tab ">
+            <span class="nav-icon">⚽</span>
+            <span class="nav-label">FantaLega</span>
+        </a>
+        <a href="/risultati/" class="nav-tab ">
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">Risultati</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+<section class="section">
+    <h1>Mercato</h1>
+    <p class="section-subtitle">Valori di mercato aggiornati settimanalmente</p>
+    
+    <!-- Sort Controls -->
+    <div class="filters">
+        <div class="filter-group">
+            <label>Ordina per:</label>
+            <select id="sortSelect" class="sort-select">
+                <option value="value-desc">Valore (Alto → Basso)</option>
+                <option value="value-asc">Valore (Basso → Alto)</option>
+                <option value="gainer">Maggior Rialzo</option>
+                <option value="loser">Maggior Ribasso</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Market Grid -->
+    <div class="market-grid" id="marketGrid">
+        
+        <a href="/players/luca-s-1/" class="market-card" 
+           data-value="20200000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Luca S.</h3>
+                <div class="market-value">€20.2M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-0.5%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[17700000, 18800000, 18100000, 19400000, 19400000, 19300000, 19500000, 20500000, 20300000, 20200000]'></canvas>
+        </a>
+        
+        <a href="/players/cameron-m/" class="market-card" 
+           data-value="19200000" 
+           data-change="1200000.0">
+            <div class="market-card-header">
+                <h3>Cameron M.</h3>
+                <div class="market-value">€19.2M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €1.2M (6.7%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[18800000, 16800000, 17800000, 17600000, 18200000, 18400000, 18300000, 18000000, 18000000, 19200000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-l/" class="market-card" 
+           data-value="18200000" 
+           data-change="1000000.0">
+            <div class="market-card-header">
+                <h3>Andrea L.</h3>
+                <div class="market-value">€18.2M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €1.0M (5.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[18300000, 18600000, 17700000, 17000000, 17200000, 16900000, 17100000, 17500000, 17200000, 18200000]'></canvas>
+        </a>
+        
+        <a href="/players/sergio-c-1/" class="market-card" 
+           data-value="17200000" 
+           data-change="900000.0">
+            <div class="market-card-header">
+                <h3>Sergio C.</h3>
+                <div class="market-value">€17.2M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €900K (5.5%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[17700000, 15800000, 15600000, 17200000, 16900000, 16700000, 16500000, 16500000, 16300000, 17200000]'></canvas>
+        </a>
+        
+        <a href="/players/jacopo-c/" class="market-card" 
+           data-value="16400000" 
+           data-change="600000.0">
+            <div class="market-card-header">
+                <h3>Jacopo C.</h3>
+                <div class="market-value">€16.4M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €600K (3.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[14600000, 15400000, 15000000, 14600000, 14500000, 15100000, 16200000, 16200000, 15800000, 16400000]'></canvas>
+        </a>
+        
+        <a href="/players/roberto-j/" class="market-card" 
+           data-value="14100000" 
+           data-change="400000.0">
+            <div class="market-card-header">
+                <h3>Roberto J.</h3>
+                <div class="market-value">€14.1M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €400K (2.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[14000000, 12400000, 12000000, 12000000, 11800000, 12300000, 12200000, 13100000, 13700000, 14100000]'></canvas>
+        </a>
+        
+        <a href="/players/lorenzo-m/" class="market-card" 
+           data-value="13900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Lorenzo M.</h3>
+                <div class="market-value">€13.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[12000000, 13500000, 13400000, 14900000, 14800000, 14200000, 13600000, 13600000, 13900000, 13900000]'></canvas>
+        </a>
+        
+        <a href="/players/damiano-b/" class="market-card" 
+           data-value="13300000" 
+           data-change="-200000.0">
+            <div class="market-card-header">
+                <h3>Damiano B.</h3>
+                <div class="market-value">€13.3M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €200K (-1.5%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[13500000, 12500000, 12900000, 12800000, 12800000, 13700000, 13900000, 13600000, 13500000, 13300000]'></canvas>
+        </a>
+        
+        <a href="/players/tito/" class="market-card" 
+           data-value="13100000" 
+           data-change="1000000.0">
+            <div class="market-card-header">
+                <h3>Tito</h3>
+                <div class="market-value">€13.1M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €1.0M (8.3%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[12000000, 10700000, 11700000, 11300000, 11300000, 11700000, 11600000, 12400000, 12100000, 13100000]'></canvas>
+        </a>
+        
+        <a href="/players/giovanni-c/" class="market-card" 
+           data-value="11900000" 
+           data-change="-200000.0">
+            <div class="market-card-header">
+                <h3>Giovanni C.</h3>
+                <div class="market-value">€11.9M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €200K (-1.7%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[11700000, 10000000, 11200000, 12500000, 11800000, 11900000, 12300000, 11800000, 12100000, 11900000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-p-1/" class="market-card" 
+           data-value="11700000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Federico P.</h3>
+                <div class="market-value">€11.7M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-0.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[11600000, 11000000, 12100000, 12000000, 12400000, 12200000, 12000000, 12000000, 11800000, 11700000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-s-1/" class="market-card" 
+           data-value="11200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Andrea S.</h3>
+                <div class="market-value">€11.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[10900000, 10000000, 9900000, 9900000, 11000000, 11600000, 11500000, 11300000, 11200000, 11200000]'></canvas>
+        </a>
+        
+        <a href="/players/giovanni-a/" class="market-card" 
+           data-value="11000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Giovanni A.</h3>
+                <div class="market-value">€11.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-0.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[11000000, 10200000, 11600000, 11500000, 11400000, 11300000, 11200000, 11200000, 11100000, 11000000]'></canvas>
+        </a>
+        
+        <a href="/players/cristian-l/" class="market-card" 
+           data-value="11000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Cristian L.</h3>
+                <div class="market-value">€11.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[12100000, 11000000, 12000000, 11600000, 11300000, 11200000, 11100000, 11100000, 11000000, 11000000]'></canvas>
+        </a>
+        
+        <a href="/players/gianluca-s/" class="market-card" 
+           data-value="9000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Gianluca S.</h3>
+                <div class="market-value">€9.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[10300000, 9300000, 9200000, 9000000, 8800000, 9300000, 9200000, 9200000, 9100000, 9000000]'></canvas>
+        </a>
+        
+        <a href="/players/mehmet-y/" class="market-card" 
+           data-value="7900000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Mehmet Y.</h3>
+                <div class="market-value">€7.9M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.2%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[8600000, 7200000, 7000000, 7800000, 8100000, 8400000, 8400000, 8000000, 8000000, 7900000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-m-1/" class="market-card" 
+           data-value="7800000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Federico M.</h3>
+                <div class="market-value">€7.8M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.3%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7900000, 7900000, 7900000, 7900000, 7900000, 7900000, 7900000, 7900000, 7800000]'></canvas>
+        </a>
+        
+        <a href="/players/gabriele-m/" class="market-card" 
+           data-value="7700000" 
+           data-change="2500000.0">
+            <div class="market-card-header">
+                <h3>Gabriele M.</h3>
+                <div class="market-value">€7.7M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €2.5M (48.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5800000, 5200000, 5300000, 5300000, 5200000, 5200000, 5200000, 5200000, 5200000, 7700000]'></canvas>
+        </a>
+        
+        <a href="/players/roberto-r/" class="market-card" 
+           data-value="7400000" 
+           data-change="100000.0">
+            <div class="market-card-header">
+                <h3>Roberto R.</h3>
+                <div class="market-value">€7.4M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €100K (1.4%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5900000, 5600000, 5600000, 5600000, 6600000, 6500000, 6500000, 6600000, 7300000, 7400000]'></canvas>
+        </a>
+        
+        <a href="/players/daniel-f/" class="market-card" 
+           data-value="7400000" 
+           data-change="-300000.0">
+            <div class="market-card-header">
+                <h3>Daniel F.</h3>
+                <div class="market-value">€7.4M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €300K (-3.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5900000, 5400000, 5400000, 7500000, 7400000, 7300000, 7000000, 7700000, 7700000, 7400000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-p-2/" class="market-card" 
+           data-value="7000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Federico P.</h3>
+                <div class="market-value">€7.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.4%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5500000, 5300000, 5300000, 5300000, 7100000, 7600000, 7400000, 7200000, 7100000, 7000000]'></canvas>
+        </a>
+        
+        <a href="/players/mirko-b/" class="market-card" 
+           data-value="6900000" 
+           data-change="200000.0">
+            <div class="market-card-header">
+                <h3>Mirko B.</h3>
+                <div class="market-value">€6.9M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €200K (3.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5100000, 6100000, 5600000, 5400000, 5700000, 5600000, 6100000, 6400000, 6700000, 6900000]'></canvas>
+        </a>
+        
+        <a href="/players/stefano-tito/" class="market-card" 
+           data-value="6800000" 
+           data-change="1100000.0">
+            <div class="market-card-header">
+                <h3>Stefano (Tito)</h3>
+                <div class="market-value">€6.8M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €1.1M (19.3%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6500000, 5500000, 5600000, 6500000, 6500000, 6200000, 5900000, 5800000, 5700000, 6800000]'></canvas>
+        </a>
+        
+        <a href="/players/fabrizio-l/" class="market-card" 
+           data-value="6600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Fabrizio L.</h3>
+                <div class="market-value">€6.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7000000, 6900000, 6800000, 6800000, 6800000, 6700000, 6700000, 6700000, 6600000, 6600000]'></canvas>
+        </a>
+        
+        <a href="/players/daniele-m/" class="market-card" 
+           data-value="6600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Daniele M.</h3>
+                <div class="market-value">€6.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7000000, 6900000, 6800000, 6800000, 6800000, 6700000, 6700000, 6700000, 6600000, 6600000]'></canvas>
+        </a>
+        
+        <a href="/players/wissam-r/" class="market-card" 
+           data-value="6500000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Wissam R.</h3>
+                <div class="market-value">€6.5M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.5%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6300000, 5600000, 5600000, 5600000, 6000000, 6700000, 6800000, 6600000, 6600000, 6500000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-l/" class="market-card" 
+           data-value="6500000" 
+           data-change="-200000.0">
+            <div class="market-card-header">
+                <h3>Matteo L.</h3>
+                <div class="market-value">€6.5M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €200K (-3.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6100000, 5500000, 6300000, 6100000, 6400000, 6200000, 6100000, 6100000, 6700000, 6500000]'></canvas>
+        </a>
+        
+        <a href="/players/gianmarco-p/" class="market-card" 
+           data-value="6500000" 
+           data-change="900000.0">
+            <div class="market-card-header">
+                <h3>Gianmarco P.</h3>
+                <div class="market-value">€6.5M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €900K (16.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5600000, 6500000]'></canvas>
+        </a>
+        
+        <a href="/players/alfredo-a/" class="market-card" 
+           data-value="6300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alfredo A.</h3>
+                <div class="market-value">€6.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7600000, 6200000, 6300000, 6300000, 6300000, 6300000, 6300000, 6300000, 6300000, 6300000]'></canvas>
+        </a>
+        
+        <a href="/players/leo-cava/" class="market-card" 
+           data-value="6200000" 
+           data-change="900000.0">
+            <div class="market-card-header">
+                <h3>Leo (Cava)</h3>
+                <div class="market-value">€6.2M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €900K (17.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6200000, 5400000, 5400000, 5400000, 5400000, 5300000, 5300000, 5300000, 5300000, 6200000]'></canvas>
+        </a>
+        
+        <a href="/players/michele-i/" class="market-card" 
+           data-value="6200000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Michele I.</h3>
+                <div class="market-value">€6.2M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.6%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4700000, 4500000, 4500000, 4500000, 4500000, 4500000, 4400000, 4400000, 6300000, 6200000]'></canvas>
+        </a>
+        
+        <a href="/players/vittorio-b/" class="market-card" 
+           data-value="6000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Vittorio B.</h3>
+                <div class="market-value">€6.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7100000, 6100000, 6200000, 6200000, 6100000, 6100000, 6100000, 6100000, 6000000, 6000000]'></canvas>
+        </a>
+        
+        <a href="/players/tommaso-g/" class="market-card" 
+           data-value="6000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Tommaso G.</h3>
+                <div class="market-value">€6.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.6%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3600000, 3600000, 3600000, 6200000, 6100000, 6100000, 6100000, 6100000, 6100000, 6000000]'></canvas>
+        </a>
+        
+        <a href="/players/giacomo-g/" class="market-card" 
+           data-value="6000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Giacomo G.</h3>
+                <div class="market-value">€6.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7200000, 6000000, 6000000, 6000000, 6000000, 6000000, 6000000, 6000000, 6000000, 6000000]'></canvas>
+        </a>
+        
+        <a href="/players/francesco-giuseppe/" class="market-card" 
+           data-value="5800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Francesco (Giuseppe)</h3>
+                <div class="market-value">€5.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[7000000, 5800000, 5800000, 5800000, 5800000, 5800000, 5800000, 5800000, 5800000, 5800000]'></canvas>
+        </a>
+        
+        <a href="/players/orlando-f/" class="market-card" 
+           data-value="5800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Orlando F.</h3>
+                <div class="market-value">€5.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5300000, 6000000, 5900000, 5800000, 5800000]'></canvas>
+        </a>
+        
+        <a href="/players/juan-m/" class="market-card" 
+           data-value="5800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Juan M.</h3>
+                <div class="market-value">€5.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3000000, 5000000, 5700000, 5800000, 5800000]'></canvas>
+        </a>
+        
+        <a href="/players/wolf/" class="market-card" 
+           data-value="5800000" 
+           data-change="2300000.0">
+            <div class="market-card-header">
+                <h3>Wolf</h3>
+                <div class="market-value">€5.8M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €2.3M (65.7%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3500000, 5800000]'></canvas>
+        </a>
+        
+        <a href="/players/gianpiero-b/" class="market-card" 
+           data-value="5700000" 
+           data-change="-200000.0">
+            <div class="market-card-header">
+                <h3>Gianpiero B.</h3>
+                <div class="market-value">€5.7M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €200K (-3.4%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6800000, 5600000, 5600000, 5600000, 5600000, 5500000, 5500000, 5500000, 5900000, 5700000]'></canvas>
+        </a>
+        
+        <a href="/players/pouchner-j/" class="market-card" 
+           data-value="5600000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Pouchner J.</h3>
+                <div class="market-value">€5.6M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6100000, 5100000, 5100000, 5100000, 5800000, 5700000, 5700000, 5700000, 5700000, 5600000]'></canvas>
+        </a>
+        
+        <a href="/players/leonardo-r/" class="market-card" 
+           data-value="5500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Leonardo R.</h3>
+                <div class="market-value">€5.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6300000, 5500000, 5500000, 5500000, 5500000, 5500000, 5500000, 5500000, 5500000, 5500000]'></canvas>
+        </a>
+        
+        <a href="/players/maurizio-r/" class="market-card" 
+           data-value="5400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Maurizio R.</h3>
+                <div class="market-value">€5.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5600000, 5600000, 5600000, 5600000, 5500000, 5500000, 5500000, 5500000, 5400000, 5400000]'></canvas>
+        </a>
+        
+        <a href="/players/francesco-gio/" class="market-card" 
+           data-value="5400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Francesco (Gio)</h3>
+                <div class="market-value">€5.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6000000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-r/" class="market-card" 
+           data-value="5400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Andrea R.</h3>
+                <div class="market-value">€5.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5900000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000, 5400000]'></canvas>
+        </a>
+        
+        <a href="/players/fabrizio-c/" class="market-card" 
+           data-value="5200000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Fabrizio C.</h3>
+                <div class="market-value">€5.2M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5900000, 5300000, 5300000, 5300000, 5300000, 5300000, 5300000, 5300000, 5300000, 5200000]'></canvas>
+        </a>
+        
+        <a href="/players/claudio-gio/" class="market-card" 
+           data-value="5200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Claudio (Gio)</h3>
+                <div class="market-value">€5.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5700000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000]'></canvas>
+        </a>
+        
+        <a href="/players/giuseppe-p/" class="market-card" 
+           data-value="5200000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Giuseppe P.</h3>
+                <div class="market-value">€5.2M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6200000, 5200000, 5200000, 5200000, 5200000, 5300000, 5300000, 5300000, 5300000, 5200000]'></canvas>
+        </a>
+        
+        <a href="/players/giam-robi/" class="market-card" 
+           data-value="5100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Giam (Robi)</h3>
+                <div class="market-value">€5.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5200000, 5100000, 5100000, 5100000, 5100000, 5100000, 5100000, 5100000, 5100000, 5100000]'></canvas>
+        </a>
+        
+        <a href="/players/eric-r/" class="market-card" 
+           data-value="5100000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Eric R.</h3>
+                <div class="market-value">€5.1M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-1.9%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6000000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5200000, 5100000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-z/" class="market-card" 
+           data-value="5000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Alessandro Z.</h3>
+                <div class="market-value">€5.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4700000, 4300000, 4300000, 4300000, 4300000, 4300000, 5100000, 5100000, 5100000, 5000000]'></canvas>
+        </a>
+        
+        <a href="/players/erhan-k/" class="market-card" 
+           data-value="5000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Erhan K.</h3>
+                <div class="market-value">€5.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5700000, 5000000, 5000000, 5000000, 5000000, 5000000, 5000000, 5000000, 5000000, 5000000]'></canvas>
+        </a>
+        
+        <a href="/players/stefano-g/" class="market-card" 
+           data-value="5000000" 
+           data-change="900000.0">
+            <div class="market-card-header">
+                <h3>Stefano G.</h3>
+                <div class="market-value">€5.0M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €900K (22.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3500000, 4800000, 4300000, 4100000, 4100000, 5000000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-m-2/" class="market-card" 
+           data-value="5000000" 
+           data-change="-300000.0">
+            <div class="market-card-header">
+                <h3>Federico M.</h3>
+                <div class="market-value">€5.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €300K (-5.7%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5300000, 5000000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-a/" class="market-card" 
+           data-value="4900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessandro A.</h3>
+                <div class="market-value">€4.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3300000, 3300000, 5000000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000]'></canvas>
+        </a>
+        
+        <a href="/players/leon-g/" class="market-card" 
+           data-value="4900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Leon G.</h3>
+                <div class="market-value">€4.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5800000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000, 4900000]'></canvas>
+        </a>
+        
+        <a href="/players/omar-r/" class="market-card" 
+           data-value="4800000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Omar R.</h3>
+                <div class="market-value">€4.8M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5300000, 5000000, 5000000, 5000000, 5000000, 4900000, 4900000, 4900000, 4900000, 4800000]'></canvas>
+        </a>
+        
+        <a href="/players/stefano-t/" class="market-card" 
+           data-value="4800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Stefano T.</h3>
+                <div class="market-value">€4.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5400000, 4800000, 4800000, 4800000, 4800000, 4800000, 4800000, 4800000, 4800000, 4800000]'></canvas>
+        </a>
+        
+        <a href="/players/franco/" class="market-card" 
+           data-value="4700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Franco</h3>
+                <div class="market-value">€4.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4800000, 4800000, 4800000, 4800000, 4800000, 4700000, 4700000, 4700000, 4700000, 4700000]'></canvas>
+        </a>
+        
+        <a href="/players/pedro/" class="market-card" 
+           data-value="4700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Pedro</h3>
+                <div class="market-value">€4.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5300000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-g-1/" class="market-card" 
+           data-value="4700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Andrea G.</h3>
+                <div class="market-value">€4.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5100000, 4500000, 4500000, 4500000, 4700000, 4800000, 4700000, 4700000, 4700000, 4700000]'></canvas>
+        </a>
+        
+        <a href="/players/roberto-c/" class="market-card" 
+           data-value="4700000" 
+           data-change="-1300000.0">
+            <div class="market-card-header">
+                <h3>Roberto C.</h3>
+                <div class="market-value">€4.7M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €1.3M (-21.7%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6000000, 4700000]'></canvas>
+        </a>
+        
+        <a href="/players/alessio-cava/" class="market-card" 
+           data-value="4600000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Alessio (Cava)</h3>
+                <div class="market-value">€4.6M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5400000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4600000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-m/" class="market-card" 
+           data-value="4600000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Alessandro M.</h3>
+                <div class="market-value">€4.6M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4800000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4700000, 4600000]'></canvas>
+        </a>
+        
+        <a href="/players/rocco/" class="market-card" 
+           data-value="4500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Rocco</h3>
+                <div class="market-value">€4.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4800000, 4600000, 4600000, 4600000, 4600000, 4500000, 4500000, 4500000, 4500000, 4500000]'></canvas>
+        </a>
+        
+        <a href="/players/fabio-gianluca/" class="market-card" 
+           data-value="4400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Fabio (Gianluca)</h3>
+                <div class="market-value">€4.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[6600000, 5500000, 4500000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-riccardo/" class="market-card" 
+           data-value="4400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo (Riccardo)</h3>
+                <div class="market-value">€4.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4400000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000, 4400000]'></canvas>
+        </a>
+        
+        <a href="/players/willy-r/" class="market-card" 
+           data-value="4300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Willy R.</h3>
+                <div class="market-value">€4.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4600000, 4400000, 4400000, 4400000, 4300000, 4300000, 4300000, 4300000, 4300000, 4300000]'></canvas>
+        </a>
+        
+        <a href="/players/cri-cri/" class="market-card" 
+           data-value="4300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Cri (Cri)</h3>
+                <div class="market-value">€4.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4800000, 4300000, 4300000, 4300000, 4300000, 4300000, 4300000, 4300000, 4300000, 4300000]'></canvas>
+        </a>
+        
+        <a href="/players/giacomo-stoppi/" class="market-card" 
+           data-value="4200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Giacomo (Stoppi)</h3>
+                <div class="market-value">€4.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000]'></canvas>
+        </a>
+        
+        <a href="/players/amico-robi/" class="market-card" 
+           data-value="4200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Amico (Robi)</h3>
+                <div class="market-value">€4.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000]'></canvas>
+        </a>
+        
+        <a href="/players/simone-orlando/" class="market-card" 
+           data-value="4200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Simone (Orlando)</h3>
+                <div class="market-value">€4.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[5200000, 4300000, 4200000, 4200000, 4200000]'></canvas>
+        </a>
+        
+        <a href="/players/riccardo-r/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Riccardo R.</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4100000, 4200000, 4200000, 4200000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-l/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Federico L.</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4400000, 4200000, 4200000, 4200000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-mazzu/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo (Mazzu)</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-c/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo C.</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4200000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/sergio-c-2/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Sergio C.</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4700000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/vicenzo-cava/" class="market-card" 
+           data-value="4100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Vicenzo (Cava)</h3>
+                <div class="market-value">€4.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4400000, 4000000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000, 4100000]'></canvas>
+        </a>
+        
+        <a href="/players/amico-g/" class="market-card" 
+           data-value="4000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Amico G.</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-v/" class="market-card" 
+           data-value="4000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo V.</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-gio/" class="market-card" 
+           data-value="4000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo (Gio)</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4200000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/dario-gio/" class="market-card" 
+           data-value="4000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Dario (Gio)</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4400000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/jacopo-b/" class="market-card" 
+           data-value="4000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Jacopo B.</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4300000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/federico-a/" class="market-card" 
+           data-value="4000000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Federico A.</h3>
+                <div class="market-value">€4.0M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.4%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4100000, 4100000, 4100000, 4000000]'></canvas>
+        </a>
+        
+        <a href="/players/francesco/" class="market-card" 
+           data-value="3900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Francesco</h3>
+                <div class="market-value">€3.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 4000000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000]'></canvas>
+        </a>
+        
+        <a href="/players/eugenio-g/" class="market-card" 
+           data-value="3900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Eugenio G.</h3>
+                <div class="market-value">€3.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000]'></canvas>
+        </a>
+        
+        <a href="/players/ingra/" class="market-card" 
+           data-value="3900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Ingra</h3>
+                <div class="market-value">€3.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000]'></canvas>
+        </a>
+        
+        <a href="/players/luca-riccardo/" class="market-card" 
+           data-value="3900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Luca (Riccardo)</h3>
+                <div class="market-value">€3.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000]'></canvas>
+        </a>
+        
+        <a href="/players/cristian-g/" class="market-card" 
+           data-value="3900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Cristian G.</h3>
+                <div class="market-value">€3.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4100000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000]'></canvas>
+        </a>
+        
+        <a href="/players/jacopo-gianluca/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Jacopo (Gianluca)</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[4100000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/davide-a/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Davide A.</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/riccardo-cameron/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Riccardo (Cameron)</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/matteo-green/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Matteo (Green)</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/omar-s/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Omar S.</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/rohit-k/" class="market-card" 
+           data-value="3800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Rohit K.</h3>
+                <div class="market-value">€3.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3900000, 3800000, 3800000, 3800000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-g-2/" class="market-card" 
+           data-value="3700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessandro G.</h3>
+                <div class="market-value">€3.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000]'></canvas>
+        </a>
+        
+        <a href="/players/davide-mazzu/" class="market-card" 
+           data-value="3700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Davide (Mazzu)</h3>
+                <div class="market-value">€3.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000, 3700000]'></canvas>
+        </a>
+        
+        <a href="/players/gio-matteo/" class="market-card" 
+           data-value="3600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Gio (Matteo)</h3>
+                <div class="market-value">€3.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3500000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000]'></canvas>
+        </a>
+        
+        <a href="/players/fabrizio-gian/" class="market-card" 
+           data-value="3600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Fabrizio (Gian)</h3>
+                <div class="market-value">€3.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000]'></canvas>
+        </a>
+        
+        <a href="/players/omar-l/" class="market-card" 
+           data-value="3600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Omar L.</h3>
+                <div class="market-value">€3.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3700000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000]'></canvas>
+        </a>
+        
+        <a href="/players/diego-f/" class="market-card" 
+           data-value="3600000" 
+           data-change="300000.0">
+            <div class="market-card-header">
+                <h3>Diego F.</h3>
+                <div class="market-value">€3.6M</div>
+            </div>
+            <div class="market-change positive">
+                
+                ↑ €300K (9.1%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3300000, 3300000, 3300000, 3300000, 3600000]'></canvas>
+        </a>
+        
+        <a href="/players/emilano-dani/" class="market-card" 
+           data-value="3500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Emilano (Dani)</h3>
+                <div class="market-value">€3.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3500000, 3500000, 3500000, 3500000, 3500000, 3500000, 3500000, 3500000, 3500000, 3500000]'></canvas>
+        </a>
+        
+        <a href="/players/gian-s/" class="market-card" 
+           data-value="3500000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Gian S.</h3>
+                <div class="market-value">€3.5M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3500000]'></canvas>
+        </a>
+        
+        <a href="/players/brambo/" class="market-card" 
+           data-value="3500000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Brambo</h3>
+                <div class="market-value">€3.5M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-2.8%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3600000, 3500000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3600000, 3500000]'></canvas>
+        </a>
+        
+        <a href="/players/karlo-r/" class="market-card" 
+           data-value="3500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Karlo R.</h3>
+                <div class="market-value">€3.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3200000, 3600000, 3500000, 3500000, 3500000, 3500000]'></canvas>
+        </a>
+        
+        <a href="/players/guido-sergio/" class="market-card" 
+           data-value="3400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Guido (Sergio)</h3>
+                <div class="market-value">€3.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3400000, 3500000, 3500000, 3500000, 3500000, 3400000, 3400000, 3400000, 3400000, 3400000]'></canvas>
+        </a>
+        
+        <a href="/players/cormac-m/" class="market-card" 
+           data-value="3400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Cormac M.</h3>
+                <div class="market-value">€3.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3400000, 3400000, 3400000, 3400000, 3400000, 3400000, 3400000, 3400000, 3400000, 3400000]'></canvas>
+        </a>
+        
+        <a href="/players/stefano-c/" class="market-card" 
+           data-value="3300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Stefano C.</h3>
+                <div class="market-value">€3.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3300000]'></canvas>
+        </a>
+        
+        <a href="/players/terni-damiano/" class="market-card" 
+           data-value="3200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Terni (Damiano)</h3>
+                <div class="market-value">€3.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000]'></canvas>
+        </a>
+        
+        <a href="/players/ludovico-r/" class="market-card" 
+           data-value="3200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Ludovico R.</h3>
+                <div class="market-value">€3.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3100000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-s-2/" class="market-card" 
+           data-value="3200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Andrea S.</h3>
+                <div class="market-value">€3.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000]'></canvas>
+        </a>
+        
+        <a href="/players/stefano-cava/" class="market-card" 
+           data-value="3200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Stefano (Cava)</h3>
+                <div class="market-value">€3.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3100000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000]'></canvas>
+        </a>
+        
+        <a href="/players/thomas/" class="market-card" 
+           data-value="3100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Thomas</h3>
+                <div class="market-value">€3.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000]'></canvas>
+        </a>
+        
+        <a href="/players/mario-c/" class="market-card" 
+           data-value="3100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Mario C.</h3>
+                <div class="market-value">€3.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3100000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3200000, 3100000, 3100000]'></canvas>
+        </a>
+        
+        <a href="/players/francesco-mazzu/" class="market-card" 
+           data-value="3100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Francesco (Mazzu)</h3>
+                <div class="market-value">€3.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000, 3100000]'></canvas>
+        </a>
+        
+        <a href="/players/zen/" class="market-card" 
+           data-value="3000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Zen</h3>
+                <div class="market-value">€3.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2900000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000]'></canvas>
+        </a>
+        
+        <a href="/players/mirko-gio/" class="market-card" 
+           data-value="3000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Mirko (Gio)</h3>
+                <div class="market-value">€3.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3300000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000]'></canvas>
+        </a>
+        
+        <a href="/players/ale-mazzu/" class="market-card" 
+           data-value="2900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Ale (Mazzu)</h3>
+                <div class="market-value">€2.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000]'></canvas>
+        </a>
+        
+        <a href="/players/luca-s-2/" class="market-card" 
+           data-value="2900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Luca S.</h3>
+                <div class="market-value">€2.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2800000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000]'></canvas>
+        </a>
+        
+        <a href="/players/mirko-cava/" class="market-card" 
+           data-value="2900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Mirko (Cava)</h3>
+                <div class="market-value">€2.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000]'></canvas>
+        </a>
+        
+        <a href="/players/alessio-p/" class="market-card" 
+           data-value="2900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessio P.</h3>
+                <div class="market-value">€2.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[3200000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000, 2900000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-g-1/" class="market-card" 
+           data-value="2800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessandro G.</h3>
+                <div class="market-value">€2.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2700000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000]'></canvas>
+        </a>
+        
+        <a href="/players/amico-m/" class="market-card" 
+           data-value="2800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Amico M.</h3>
+                <div class="market-value">€2.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2700000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000, 2800000]'></canvas>
+        </a>
+        
+        <a href="/players/ivo/" class="market-card" 
+           data-value="2700000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Ivo</h3>
+                <div class="market-value">€2.7M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2800000, 2700000, 2700000, 2700000, 2700000, 2700000, 2700000, 2700000, 2700000, 2700000]'></canvas>
+        </a>
+        
+        <a href="/players/marco-t/" class="market-card" 
+           data-value="2600000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Marco T.</h3>
+                <div class="market-value">€2.6M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2600000, 2600000, 2600000, 2600000, 2600000, 2600000, 2600000, 2600000, 2600000, 2600000]'></canvas>
+        </a>
+        
+        <a href="/players/robi-m/" class="market-card" 
+           data-value="2500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Robi M.</h3>
+                <div class="market-value">€2.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2500000, 2500000, 2500000, 2500000, 2500000, 2500000, 2500000, 2500000, 2500000, 2500000]'></canvas>
+        </a>
+        
+        <a href="/players/andrea-g-2/" class="market-card" 
+           data-value="2500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Andrea G.</h3>
+                <div class="market-value">€2.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2500000, 2500000, 2500000, 2500000, 2500000, 2500000, 2500000]'></canvas>
+        </a>
+        
+        <a href="/players/alberto-cerro/" class="market-card" 
+           data-value="2500000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alberto (Cerro)</h3>
+                <div class="market-value">€2.5M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2600000, 2500000, 2500000]'></canvas>
+        </a>
+        
+        <a href="/players/dario-francesco/" class="market-card" 
+           data-value="2400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Dario (Francesco)</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2300000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/claudio/" class="market-card" 
+           data-value="2400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Claudio</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2300000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/marco-g/" class="market-card" 
+           data-value="2400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Marco G.</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/gabriele-l/" class="market-card" 
+           data-value="2400000" 
+           data-change="-100000.0">
+            <div class="market-card-header">
+                <h3>Gabriele L.</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change negative">
+                
+                ↓ €100K (-4.0%)
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2500000, 2400000, 2400000, 2500000, 2400000, 2500000, 2500000, 2400000, 2500000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/mario-zito/" class="market-card" 
+           data-value="2400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Mario (Zito)</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2500000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/simone-zito/" class="market-card" 
+           data-value="2400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Simone (Zito)</h3>
+                <div class="market-value">€2.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2500000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000, 2400000]'></canvas>
+        </a>
+        
+        <a href="/players/fabio-mario/" class="market-card" 
+           data-value="2300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Fabio (Mario)</h3>
+                <div class="market-value">€2.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2200000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000]'></canvas>
+        </a>
+        
+        <a href="/players/roccos-b/" class="market-card" 
+           data-value="2300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Rocco's B.</h3>
+                <div class="market-value">€2.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000]'></canvas>
+        </a>
+        
+        <a href="/players/jacopo-robi/" class="market-card" 
+           data-value="2300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Jacopo (Robi)</h3>
+                <div class="market-value">€2.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2200000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-v/" class="market-card" 
+           data-value="2300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessandro V.</h3>
+                <div class="market-value">€2.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2200000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000]'></canvas>
+        </a>
+        
+        <a href="/players/michelangelo-v/" class="market-card" 
+           data-value="2300000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Michelangelo V.</h3>
+                <div class="market-value">€2.3M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2400000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000, 2300000]'></canvas>
+        </a>
+        
+        <a href="/players/fabrizio-s/" class="market-card" 
+           data-value="2200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Fabrizio S.</h3>
+                <div class="market-value">€2.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2400000, 2100000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000]'></canvas>
+        </a>
+        
+        <a href="/players/antonio-g/" class="market-card" 
+           data-value="2200000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Antonio G.</h3>
+                <div class="market-value">€2.2M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2400000, 2100000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000, 2200000]'></canvas>
+        </a>
+        
+        <a href="/players/puddi/" class="market-card" 
+           data-value="2100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Puddi</h3>
+                <div class="market-value">€2.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000]'></canvas>
+        </a>
+        
+        <a href="/players/luca-cava/" class="market-card" 
+           data-value="2100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Luca (Cava)</h3>
+                <div class="market-value">€2.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2000000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000]'></canvas>
+        </a>
+        
+        <a href="/players/alessandro-maurizio/" class="market-card" 
+           data-value="2100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Alessandro (Maurizio)</h3>
+                <div class="market-value">€2.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000]'></canvas>
+        </a>
+        
+        <a href="/players/giuseppe-gio/" class="market-card" 
+           data-value="2100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Giuseppe (Gio)</h3>
+                <div class="market-value">€2.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2000000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000]'></canvas>
+        </a>
+        
+        <a href="/players/rudy-v/" class="market-card" 
+           data-value="2000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Rudy V.</h3>
+                <div class="market-value">€2.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000]'></canvas>
+        </a>
+        
+        <a href="/players/braz/" class="market-card" 
+           data-value="2000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Braz</h3>
+                <div class="market-value">€2.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1900000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000]'></canvas>
+        </a>
+        
+        <a href="/players/ale-fabri/" class="market-card" 
+           data-value="2000000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Ale (Fabri)</h3>
+                <div class="market-value">€2.0M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1900000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000, 2000000]'></canvas>
+        </a>
+        
+        <a href="/players/lipi-mirko/" class="market-card" 
+           data-value="1900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Lipi (Mirko)</h3>
+                <div class="market-value">€1.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000]'></canvas>
+        </a>
+        
+        <a href="/players/vincenzo-cava/" class="market-card" 
+           data-value="1900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Vincenzo (Cava)</h3>
+                <div class="market-value">€1.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1800000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000]'></canvas>
+        </a>
+        
+        <a href="/players/jacopo-r/" class="market-card" 
+           data-value="1900000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Jacopo R.</h3>
+                <div class="market-value">€1.9M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[2000000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000, 1900000]'></canvas>
+        </a>
+        
+        <a href="/players/frank-cava/" class="market-card" 
+           data-value="1800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Frank (Cava)</h3>
+                <div class="market-value">€1.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1700000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000]'></canvas>
+        </a>
+        
+        <a href="/players/sergio-leo/" class="market-card" 
+           data-value="1800000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Sergio (Leo)</h3>
+                <div class="market-value">€1.8M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1700000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000, 1800000]'></canvas>
+        </a>
+        
+        <a href="/players/mirco-jacopo/" class="market-card" 
+           data-value="1400000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Mirco (Jacopo)</h3>
+                <div class="market-value">€1.4M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1400000, 1400000, 1400000, 1400000, 1400000, 1400000, 1400000, 1400000, 1400000]'></canvas>
+        </a>
+        
+        <a href="/players/carlo-t/" class="market-card" 
+           data-value="1100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Carlo T.</h3>
+                <div class="market-value">€1.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1000000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000]'></canvas>
+        </a>
+        
+        <a href="/players/davide-scotti/" class="market-card" 
+           data-value="1100000" 
+           data-change="0.0">
+            <div class="market-card-header">
+                <h3>Davide (Scotti)</h3>
+                <div class="market-value">€1.1M</div>
+            </div>
+            <div class="market-change ">
+                
+                — Invariato
+                
+            </div>
+            <canvas class="sparkline" width="200" height="40" 
+                    data-history='[1000000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000, 1100000]'></canvas>
+        </a>
+        
+    </div>
+</section>
+
+<script src="/static/js/sparkline.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize sparklines
+    document.querySelectorAll('.sparkline').forEach(canvas => {
+        const history = JSON.parse(canvas.dataset.history);
+        drawSparkline(canvas, history);
+    });
+    
+    // Sort functionality
+    const sortSelect = document.getElementById('sortSelect');
+    const grid = document.getElementById('marketGrid');
+    
+    sortSelect.addEventListener('change', function() {
+        const cards = Array.from(grid.querySelectorAll('.market-card'));
+        
+        cards.sort((a, b) => {
+            const valueA = parseFloat(a.dataset.value);
+            const valueB = parseFloat(b.dataset.value);
+            const changeA = parseFloat(a.dataset.change);
+            const changeB = parseFloat(b.dataset.change);
+            
+            switch(this.value) {
+                case 'value-desc':
+                    return valueB - valueA;
+                case 'value-asc':
+                    return valueA - valueB;
+                case 'gainer':
+                    return changeB - changeA;
+                case 'loser':
+                    return changeA - changeB;
+                default:
+                    return 0;
+            }
+        });
+        
+        // Re-append in new order
+        cards.forEach(card => grid.appendChild(card));
+    });
+});
+</script>
+
+    </main>
+
+    <script src="/static/js/main.js"></script>
+    
+</body>
+</html>

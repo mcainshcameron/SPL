@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar S. - SPL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/static/images/logo.png" alt="SPL Logo">
+                <span>SPL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link ">Home</a>
+                <a href="/classifica/" class="nav-link ">Classifica</a>
+                <a href="/mercato/" class="nav-link ">Mercato</a>
+                <a href="/fantalega/" class="nav-link ">FantaLega</a>
+                <a href="/risultati/" class="nav-link ">Risultati</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Tab Bar -->
+    <nav class="nav-mobile">
+        <a href="/" class="nav-tab ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="/classifica/" class="nav-tab ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Classifica</span>
+        </a>
+        <a href="/mercato/" class="nav-tab ">
+            <span class="nav-icon">💹</span>
+            <span class="nav-label">Mercato</span>
+        </a>
+        <a href="/fantalega/" class="nav-tab ">
+            <span class="nav-icon">⚽</span>
+            <span class="nav-label">FantaLega</span>
+        </a>
+        <a href="/risultati/" class="nav-tab ">
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">Risultati</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+<section class="section">
+    <!-- Player Header -->
+    <div class="player-header">
+        <div class="player-info">
+            <h1>Omar S.</h1>
+            
+            <div class="player-value">€3.8M</div>
+            
+            
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="stats">Statistiche</button>
+        <button class="tab" data-tab="market">Valore</button>
+        
+    </div>
+
+    <!-- Stats Tab -->
+    <div class="tab-content active" data-tab="stats">
+        
+        <div class="stats-section">
+            <h2>Bovisa</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Partite</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Vittorie</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">66.7%</div>
+                    <div class="stat-label">Win%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Gol</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0.33</div>
+                    <div class="stat-label">Gol/Partita</div>
+                </div>
+                <div class="stat-card highlight">
+                    <div class="stat-value">13.67</div>
+                    <div class="stat-label">PPG</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">41</div>
+                    <div class="stat-label">Punti Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">52</div>
+                    <div class="stat-label">Rank</div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="additional-stats">
+                <div class="stat-row">
+                    <span>MVP:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>SPL Bonus:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Friend Referrals:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Autogol:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Penalità:</span>
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Combined</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Partite</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Vittorie</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">66.7%</div>
+                    <div class="stat-label">Win%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Gol</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0.33</div>
+                    <div class="stat-label">Gol/Partita</div>
+                </div>
+                <div class="stat-card highlight">
+                    <div class="stat-value">13.67</div>
+                    <div class="stat-label">PPG</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">41</div>
+                    <div class="stat-label">Punti Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">59</div>
+                    <div class="stat-label">Rank</div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="additional-stats">
+                <div class="stat-row">
+                    <span>MVP:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>SPL Bonus:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Friend Referrals:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Autogol:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Penalità:</span>
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Market Tab -->
+    <div class="tab-content" data-tab="market">
+        <h2>Storico Valore di Mercato</h2>
+        
+        <div id="marketChart" style="height: 400px; margin-top: 20px;"></div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartData = [6200000, 6000000, 4900000, 4900000, 4900000, 4600000, 4700000, 4600000, 4600000, 4500000, 4600000, 4600000, 4600000, 4200000, 4200000, 4300000, 4100000, 4100000, 4000000, 4000000, 4000000, 4000000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000, 3800000];
+            const weeks = ["2024-06-17/2024-06-23", "2024-06-24/2024-06-30", "2024-09-09/2024-09-15", "2024-09-16/2024-09-22", "2024-09-23/2024-09-29", "2024-09-30/2024-10-06", "2024-10-07/2024-10-13", "2024-10-14/2024-10-20", "2024-10-21/2024-10-27", "2024-10-28/2024-11-03", "2024-11-04/2024-11-10", "2024-11-11/2024-11-17", "2024-11-18/2024-11-24", "2024-11-25/2024-12-01", "2024-12-09/2024-12-15", "2024-12-16/2024-12-22", "2024-12-30/2025-01-05", "2025-01-06/2025-01-12", "2025-01-13/2025-01-19", "2025-01-20/2025-01-26", "2025-02-03/2025-02-09", "2025-02-10/2025-02-16", "2025-02-17/2025-02-23", "2025-02-24/2025-03-02", "2025-03-03/2025-03-09", "2025-03-10/2025-03-16", "2025-03-17/2025-03-23", "2025-03-31/2025-04-06", "2025-04-07/2025-04-13", "2025-04-14/2025-04-20", "2025-04-28/2025-05-04", "2025-05-05/2025-05-11", "2025-05-12/2025-05-18", "2025-05-19/2025-05-25", "2025-05-26/2025-06-01", "2025-06-02/2025-06-08", "2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-06-23/2025-06-29"];
+            
+            // Format data for Lightweight Charts
+            const data = chartData.map((value, index) => ({
+                time: weeks[index].split('/')[0], // Use start of week
+                value: value
+            }));
+            
+            const chart = LightweightCharts.createChart(document.getElementById('marketChart'), {
+                layout: {
+                    background: { color: '#0a0f18' },
+                    textColor: '#d1d4dc',
+                },
+                grid: {
+                    vertLines: { color: '#1a1f2e' },
+                    horzLines: { color: '#1a1f2e' },
+                },
+                timeScale: {
+                    borderColor: '#2b3139',
+                },
+                rightPriceScale: {
+                    borderColor: '#2b3139',
+                },
+            });
+            
+            const areaSeries = chart.addAreaSeries({
+                topColor: 'rgba(67, 233, 195, 0.4)',
+                bottomColor: 'rgba(67, 233, 195, 0.0)',
+                lineColor: 'rgba(67, 233, 195, 1)',
+                lineWidth: 2,
+            });
+            
+            areaSeries.setData(data);
+            chart.timeScale().fitContent();
+        });
+        </script>
+        
+    </div>
+
+    <!-- Games Tab -->
+    
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
+            
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show corresponding content
+            tabContents.forEach(content => {
+                if (content.dataset.tab === tabName) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+</script>
+
+    </main>
+
+    <script src="/static/js/main.js"></script>
+    
+</body>
+</html>
