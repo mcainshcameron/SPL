@@ -3,6 +3,10 @@
 
 {% block title %}SPL - Solo Pro League{% endblock %}
 
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
@@ -15,16 +19,47 @@
 <!-- Quick Stats -->
 <section class="stats-grid">
     <div class="stat-card">
-        <div class="stat-value" data-count="{{ total_games }}">0</div>
+        <div class="stat-value" data-target="{{ total_games }}">0</div>
         <div class="stat-label">Partite</div>
     </div>
-    {% if top_performer %}
-    <div class="stat-card highlight">
-        <div class="stat-value">{{ top_performer.display_name }}</div>
-        <div class="stat-label">Miglior giocatore</div>
-        <div class="stat-detail">{{ top_performer.PPG|round(2) }} PPG</div>
+    <div class="stat-card">
+        <div class="stat-value" data-target="{{ total_goals }}">0</div>
+        <div class="stat-label">Gol</div>
     </div>
-    {% endif %}
+    <div class="stat-card">
+        <div class="stat-value" data-target="{{ total_players }}">0</div>
+        <div class="stat-label">Giocatori</div>
+    </div>
+</section>
+
+<!-- Hall of Fame -->
+<section class="section hall-of-fame">
+    <h2>Hall of Fame</h2>
+    <div class="podium-grid">
+        {% for player in hall_of_fame[:3] %}
+        <div class="podium-card {% if loop.index == 1 %}gold{% elif loop.index == 2 %}silver{% elif loop.index == 3 %}bronze{% endif %}">
+            <div class="podium-medal">
+                {% if loop.index == 1 %}🥇
+                {% elif loop.index == 2 %}🥈
+                {% elif loop.index == 3 %}🥉
+                {% endif %}
+            </div>
+            <h3>
+                <a href="/players/{{ player.slug }}/" class="player-name">{{ player.display_name }}</a>
+            </h3>
+            <div class="podium-points">{{ player['Total Points']|round(0)|int }}</div>
+            <div class="podium-label">Punti Totali</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Goals per Week Chart -->
+<section class="section">
+    <h2>Gol per Settimana — Bovisa S3</h2>
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--spacing-lg);">
+        <canvas id="goalsChart" style="max-height: 400px;"></canvas>
+    </div>
 </section>
 
 <!-- Recent Games -->
@@ -87,4 +122,115 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Count-up animation for stats
+    function animateValue(element, start, end, duration) {
+        const range = end - start;
+        const increment = range / (duration / 16); // 60fps
+        let current = start;
+        const isDecimal = end % 1 !== 0;
+        
+        function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+        }
+        
+        const startTime = performance.now();
+        
+        function step(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutQuart(progress);
+            
+            current = start + (range * easedProgress);
+            
+            if (isDecimal) {
+                element.textContent = current.toFixed(1);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                element.textContent = isDecimal ? end.toFixed(1) : end;
+            }
+        }
+        
+        requestAnimationFrame(step);
+    }
+    
+    // Animate all stat values
+    const statValues = document.querySelectorAll('.stat-value[data-target]');
+    statValues.forEach(element => {
+        const target = parseFloat(element.dataset.target);
+        animateValue(element, 0, target, 1500);
+    });
+    
+    // Goals per Week chart
+    const ctx = document.getElementById('goalsChart');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ goals_per_week_labels|tojson }},
+                datasets: [{
+                    label: 'Gol Totali',
+                    data: {{ goals_per_week_data|tojson }},
+                    borderColor: 'rgba(67, 233, 195, 1)',
+                    backgroundColor: 'rgba(67, 233, 195, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: 'rgba(67, 233, 195, 1)',
+                    pointBorderColor: '#0a0f18',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a1f2e',
+                        titleColor: '#f9fafb',
+                        bodyColor: '#d1d4dc',
+                        borderColor: '#43e9c3',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#1a1f2e'
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            maxRotation: 45,
+                            minRotation: 0
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: '#1a1f2e'
+                        },
+                        ticks: {
+                            color: '#9ca3af'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

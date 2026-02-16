@@ -23,18 +23,35 @@
 
     <!-- Season Filters (per championship) -->
     {% for champ, seasons in championships.items() %}
+    {% set season_list = seasons.keys()|list %}
+    {% set numeric_seasons = [] %}
+    {% for s in season_list %}
+        {% if s != 'Totale' %}
+            {% set season_num = s.replace('Stagione ', '')|int %}
+            {% set _ = numeric_seasons.append(season_num) %}
+        {% endif %}
+    {% endfor %}
+    {% set latest_season_num = numeric_seasons|max if numeric_seasons else None %}
+    {% set latest_season = 'Stagione ' ~ latest_season_num if latest_season_num else None %}
     <div class="season-filters" data-championship="{{ champ }}" {% if not loop.first %}style="display:none;"{% endif %}>
         <div class="filters">
             <div class="filter-group">
                 <label>Stagione:</label>
                 <div class="filter-tabs season-tabs" data-championship="{{ champ }}">
-                    {% for season in seasons.keys() %}
-                    <button class="filter-tab season-tab {% if season == 'Totale' %}active{% endif %}" 
+                    {% for season in season_list %}
+                    {% if season != 'Totale' %}
+                    <button class="filter-tab season-tab {% if season == latest_season %}active{% endif %}" 
                             data-championship="{{ champ }}" 
                             data-season="{{ season }}">
                         {{ season }}
                     </button>
+                    {% endif %}
                     {% endfor %}
+                    <button class="filter-tab season-tab archivio-tab {% if not latest_season %}active{% endif %}" 
+                            data-championship="{{ champ }}" 
+                            data-season="Totale">
+                        Storico
+                    </button>
                 </div>
             </div>
         </div>
@@ -43,13 +60,25 @@
 
     <!-- Rankings Tables -->
     {% set first_champ = championships.keys()|list|first %}
+    {% set first_champ_seasons = championships[first_champ].keys()|list %}
+    {% set first_numeric_seasons = [] %}
+    {% for s in first_champ_seasons %}
+        {% if s != 'Totale' %}
+            {% set season_num = s.replace('Stagione ', '')|int %}
+            {% set _ = first_numeric_seasons.append(season_num) %}
+        {% endif %}
+    {% endfor %}
+    {% set first_latest_season_num = first_numeric_seasons|max if first_numeric_seasons else None %}
+    {% set first_latest_season = 'Stagione ' ~ first_latest_season_num|string if first_latest_season_num else 'Totale' %}
+    
     {% for champ, seasons in championships.items() %}
         {% for season, players in seasons.items() %}
         <div class="rankings-table-container" 
              data-championship="{{ champ }}" 
              data-season="{{ season }}"
-             {% if not (champ == first_champ and season == 'Totale') %}style="display:none;"{% endif %}>
-            <div class="table-responsive">
+             {% if not (champ == first_champ and season == first_latest_season) %}style="display:none;"{% endif %}>
+            <!-- Desktop Table View -->
+            <div class="table-responsive desktop-only">
                 <table class="rankings-table">
                     <thead>
                         <tr>
@@ -67,7 +96,13 @@
                     <tbody>
                         {% for player in players %}
                         <tr>
-                            <td class="rank">{{ player.Rank }}</td>
+                            <td class="rank">
+                                {% if loop.index == 1 %}🥇
+                                {% elif loop.index == 2 %}🥈
+                                {% elif loop.index == 3 %}🥉
+                                {% else %}{{ player.Rank }}
+                                {% endif %}
+                            </td>
                             <td class="player-name">
                                 <a href="/players/{{ player.slug }}/">{{ player.display_name }}</a>
                             </td>
@@ -90,6 +125,52 @@
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+            
+            <!-- Mobile Card View -->
+            <div class="rankings-cards mobile-only">
+                {% for player in players %}
+                <div class="ranking-card">
+                    <div class="ranking-card-header">
+                        <div class="rank-badge">
+                            {% if loop.index == 1 %}🥇
+                            {% elif loop.index == 2 %}🥈
+                            {% elif loop.index == 3 %}🥉
+                            {% else %}#{{ player.Rank }}
+                            {% endif %}
+                        </div>
+                        <div class="player-info">
+                            <a href="/players/{{ player.slug }}/" class="player-name">{{ player.display_name }}</a>
+                            <div class="player-meta">{{ player['Games Played'] }} partite</div>
+                        </div>
+                        <div class="rank-change-mobile">
+                            {% if player['Rank Change'] > 0 %}
+                            <span class="change-up">↑{{ player['Rank Change'] }}</span>
+                            {% elif player['Rank Change'] < 0 %}
+                            <span class="change-down">↓{{ player['Rank Change']|abs }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="ranking-card-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">PPG</span>
+                            <span class="stat-value highlight">{{ player.PPG|round(2) }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Punti</span>
+                            <span class="stat-value">{{ player['Total Points']|round(0)|int }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Gol</span>
+                            <span class="stat-value">{{ player['Total Goals'] }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Win%</span>
+                            <span class="stat-value">{{ player['Win %']|round(1) }}%</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
         {% endfor %}
@@ -121,13 +202,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Find the active season for this championship (or default to Totale)
-            let activeSeason = 'Totale';
+            // Find the active season for this championship
             const activeSeasonTab = document.querySelector(
                 `.season-tab[data-championship="${championship}"].active`
             );
-            if (activeSeasonTab) {
-                activeSeason = activeSeasonTab.dataset.season;
+            let activeSeason = activeSeasonTab ? activeSeasonTab.dataset.season : null;
+            
+            // If no active season found, default to the highest numeric season
+            if (!activeSeason) {
+                const seasonTabs = document.querySelectorAll(
+                    `.season-tab[data-championship="${championship}"]:not(.archivio-tab)`
+                );
+                if (seasonTabs.length > 0) {
+                    activeSeason = seasonTabs[seasonTabs.length - 1].dataset.season;
+                } else {
+                    activeSeason = 'Totale';
+                }
             }
             
             // Show the corresponding table

@@ -134,17 +134,85 @@ def build_home_page(env, data):
         for champ in championships
     }
     
-    # Quick stats
+    # Calculate stats
     total_games = len(data["games"])
+    
+    # Total goals scored across all games
+    total_goals = sum(g.get("Team A Goals", 0) + g.get("Team B Goals", 0) for g in data["games"])
+    
+    # Average goals per game
+    avg_goals_per_game = total_goals / total_games if total_games > 0 else 0
+    
+    # Total unique players (from Combinata Totale)
+    total_players = 0
+    if "Combinata" in data["players"] and "Totale" in data["players"]["Combinata"]:
+        total_players = len(data["players"]["Combinata"]["Totale"])
+    
+    # Total seasons (from games)
+    total_seasons = len(set(g.get("Season", 1) for g in data["games"]))
+    
+    # Longest active streak - simplified version (would need detailed game-by-game tracking)
+    # For now, just show player with most consecutive wins based on win count
+    longest_streak = None
+    if "Combinata" in data["players"] and "Totale" in data["players"]["Combinata"]:
+        players_sorted = sorted(
+            data["players"]["Combinata"]["Totale"], 
+            key=lambda x: x.get("Wins", 0), 
+            reverse=True
+        )
+        if players_sorted:
+            top = players_sorted[0]
+            longest_streak = {
+                "player": top.get("display_name", top.get("Player")),
+                "streak": top.get("Wins", 0)  # Placeholder - would need actual streak tracking
+            }
+    
+    # Hall of Fame - top 3 all-time by total points
+    hall_of_fame = []
+    if "Combinata" in data["players"] and "Totale" in data["players"]["Combinata"]:
+        hall_of_fame = sorted(
+            data["players"]["Combinata"]["Totale"],
+            key=lambda x: x.get("Total Points", 0),
+            reverse=True
+        )[:3]
+    
+    # Goals per week chart data - Season 3 Bovisa only
+    from collections import defaultdict
+    goals_by_week = defaultdict(int)
+    
+    for game in data["games"]:
+        championship = game.get("Championship", "")
+        season = game.get("Season", 1)
+        week = game.get("Gameweek", 0)
+        
+        # Filter: Only Bovisa Season 3
+        if championship == "Bovisa" and season == 3:
+            week_key = f"W{week}"
+            goals = game.get("Team A Goals", 0) + game.get("Team B Goals", 0)
+            goals_by_week[week_key] += goals
+    
+    # Sort by week number
+    sorted_weeks = sorted(goals_by_week.items(), key=lambda x: int(x[0][1:]))
+    
+    goals_per_week_labels = [week for week, _ in sorted_weeks]
+    goals_per_week_data = [goals for _, goals in sorted_weeks]
     
     # Top performer (highest PPG from Combined)
     top_performers = get_top_performers(data["players"])
     top_performer = top_performers[0] if top_performers else None
     
     html = template.render(
-        news=data["news"][:10],  # Latest 10 headlines
+        news=data["news"][:10],
         recent_games=recent_by_champ,
         total_games=total_games,
+        total_goals=total_goals,
+        total_players=total_players,
+        avg_goals_per_game=avg_goals_per_game,
+        longest_streak=longest_streak,
+        total_seasons=total_seasons,
+        hall_of_fame=hall_of_fame,
+        goals_per_week_labels=goals_per_week_labels,
+        goals_per_week_data=goals_per_week_data,
         top_performer=top_performer,
         championships=sorted(championships)
     )
@@ -253,12 +321,46 @@ def build_player_pages(env, data):
         # For now, just pass empty
         game_log = []
         
+        # Calculate recent form (last 5 games)
+        recent_form = []
+        player_games = []
+        
+        # Find all games this player participated in
+        for game in data["games"]:
+            team_a = game.get("team_a_players", [])
+            team_b = game.get("team_b_players", [])
+            
+            # Check if player is in this game
+            player_in_a = any(p.get("slug") == slug for p in team_a)
+            player_in_b = any(p.get("slug") == slug for p in team_b)
+            
+            if player_in_a or player_in_b:
+                player_team = "Team A" if player_in_a else "Team B"
+                winning_team = game.get("Winning Team", "")
+                
+                if winning_team == player_team:
+                    result = "win"
+                elif winning_team == "Draw":
+                    result = "draw"
+                else:
+                    result = "loss"
+                
+                player_games.append({
+                    "date": game.get("Date", ""),
+                    "result": result
+                })
+        
+        # Sort by date (most recent first) and take last 5
+        player_games.sort(key=lambda x: x["date"], reverse=True)
+        recent_form = [g["result"] for g in player_games[:5]]
+        
         html = template.render(
             player=player_info,
             stats=player_stats,
             market_history=market_history,
             latest_value=latest_value,
-            game_log=game_log
+            game_log=game_log,
+            recent_form=recent_form
         )
         
         output_file = OUTPUT_DIR / "players" / slug / "index.html"
@@ -274,7 +376,7 @@ def build_fantalega_page(env, data):
     template = env.get_template("fantalega.html")
     
     # Import display name function
-    from slugs import generate_display_name
+    from .slugs import generate_display_name
     
     # Process standings to add owner display names
     standings_with_display = []

@@ -55,6 +55,38 @@
                         <div class="team-score">{{ game['Team B Goals'] }}</div>
                     </div>
                 </div>
+                
+                {% if game.get('team_a_players') or game.get('team_b_players') %}
+                <div class="team-compositions">
+                    <div class="team-roster">
+                        <h4>Team A</h4>
+                        <div class="roster-list">
+                            {% for player in game.get('team_a_players', []) %}
+                            <div class="roster-player-item">
+                                <a href="/players/{{ player.slug }}/">{{ player.name }}</a>
+                                {% if player.goals > 0 %}
+                                <span class="player-goals">⚽ {{ player.goals }}</span>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="team-roster">
+                        <h4>Team B</h4>
+                        <div class="roster-list">
+                            {% for player in game.get('team_b_players', []) %}
+                            <div class="roster-player-item">
+                                <a href="/players/{{ player.slug }}/">{{ player.name }}</a>
+                                {% if player.goals > 0 %}
+                                <span class="player-goals">⚽ {{ player.goals }}</span>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
                 {% if game.get('Number of Players') %}
                 <div class="game-meta-detail">
                     <span>👥 {{ game['Number of Players']|int }} giocatori</span>

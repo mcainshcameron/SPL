@@ -18,7 +18,8 @@ class NewsGenerator:
     def generate_news(
         self,
         weekly_values: pd.DataFrame,
-        player_summaries: Dict[str, pd.DataFrame]
+        player_summaries: Dict[str, pd.DataFrame],
+        player_name_map: Dict[str, Dict] = None
     ) -> List[Dict[str, str]]:
         """
         Generate news headlines from market changes.
@@ -26,11 +27,14 @@ class NewsGenerator:
         Args:
             weekly_values: Weekly market values with changes
             player_summaries: Player summaries by championship
+            player_name_map: Optional mapping of full name -> {display_name, slug}
             
         Returns:
             List of news items with headline and type
         """
         logger.info("Generating SPLNews headlines")
+        
+        self._name_map = player_name_map or {}
         
         news_items = []
         
@@ -56,6 +60,12 @@ class NewsGenerator:
         
         return news_items
     
+    def _get_display_name(self, full_name: str) -> str:
+        """Get display name for a player (first name + surname initial)."""
+        if full_name in self._name_map:
+            return self._name_map[full_name].get('display_name', full_name)
+        return full_name
+    
     def _generate_gainer_headlines(self, latest_data: pd.DataFrame) -> List[Dict[str, str]]:
         """Generate headlines for biggest gainers."""
         headlines = []
@@ -70,7 +80,8 @@ class NewsGenerator:
             if row['Value Change'] <= 0:
                 continue
             
-            player = row['Player']
+            player_full = row['Player']
+            player = self._get_display_name(player_full)
             change = row['Value Change']
             change_pct = row.get('Value Change %', 0)
             
@@ -108,7 +119,8 @@ class NewsGenerator:
             if row['Value Change'] >= 0:
                 continue
             
-            player = row['Player']
+            player_full = row['Player']
+            player = self._get_display_name(player_full)
             change = abs(row['Value Change'])
             change_pct = abs(row.get('Value Change %', 0))
             weeks_absent = row.get('Weeks Since Last Game', 0)
@@ -149,7 +161,8 @@ class NewsGenerator:
             ]
             
             for _, row in milestone_players.head(2).iterrows():
-                player = row['Player']
+                player_full = row['Player']
+                player = self._get_display_name(player_full)
                 value = self._format_value(row['Market Value'])
                 
                 headlines.append({
@@ -169,7 +182,8 @@ class NewsGenerator:
             debuts = latest_data[latest_data['Games Played'] == 1]
             
             for _, row in debuts.head(3).iterrows():
-                player = row['Player']
+                player_full = row['Player']
+                player = self._get_display_name(player_full)
                 value = self._format_value(row['Market Value'])
                 
                 headlines.append({
@@ -191,7 +205,8 @@ class NewsGenerator:
             )
             
             for _, row in streak_players.iterrows():
-                player = row['Player']
+                player_full = row['Player']
+                player = self._get_display_name(player_full)
                 streak = int(row['Week Streak'])
                 
                 headlines.append({

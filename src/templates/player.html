@@ -26,6 +26,17 @@
             </div>
             {% endif %}
             {% endif %}
+            
+            {% if recent_form %}
+            <div class="recent-form">
+                <span class="recent-form-label">Forma recente:</span>
+                <div class="form-dots">
+                    {% for result in recent_form %}
+                    <div class="form-dot {{ result|lower }}" title="{{ result }}"></div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -110,50 +121,6 @@
         <h2>Andamento valore</h2>
         {% if market_history %}
         <div id="marketChart" style="height: 400px; margin-top: 20px;"></div>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chartData = {{ market_history|map(attribute='Market Value')|list|tojson }};
-            const weeks = {{ market_history|map(attribute='Week')|list|tojson }};
-            
-            // Format data for Lightweight Charts - extract start date from week range
-            const data = chartData.map((value, index) => {
-                const weekStr = weeks[index];
-                // Week format is "YYYY-MM-DD/YYYY-MM-DD", extract first date
-                const startDate = weekStr.includes('/') ? weekStr.split('/')[0] : weekStr;
-                return {
-                    time: startDate,
-                    value: value
-                };
-            });
-            
-            const chart = LightweightCharts.createChart(document.getElementById('marketChart'), {
-                layout: {
-                    background: { color: '#0a0f18' },
-                    textColor: '#d1d4dc',
-                },
-                grid: {
-                    vertLines: { color: '#1a1f2e' },
-                    horzLines: { color: '#1a1f2e' },
-                },
-                timeScale: {
-                    borderColor: '#2b3139',
-                },
-                rightPriceScale: {
-                    borderColor: '#2b3139',
-                },
-            });
-            
-            const areaSeries = chart.addAreaSeries({
-                topColor: 'rgba(67, 233, 195, 0.4)',
-                bottomColor: 'rgba(67, 233, 195, 0.0)',
-                lineColor: 'rgba(67, 233, 195, 1)',
-                lineWidth: 2,
-            });
-            
-            areaSeries.setData(data);
-            chart.timeScale().fitContent();
-        });
-        </script>
         {% else %}
         <p>Dati non disponibili</p>
         {% endif %}
@@ -201,6 +168,68 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
+    let marketChartInitialized = false;
+    
+    // Market chart data (if available)
+    {% if market_history %}
+    const chartData = {{ market_history|map(attribute='Market Value')|list|tojson }};
+    const weeks = {{ market_history|map(attribute='Week')|list|tojson }};
+    {% endif %}
+    
+    function initMarketChart() {
+        if (marketChartInitialized) return;
+        
+        {% if market_history %}
+        const chartContainer = document.getElementById('marketChart');
+        if (!chartContainer) return;
+        
+        // Format data for Lightweight Charts
+        const data = chartData.map((value, index) => {
+            const weekStr = weeks[index];
+            const startDate = weekStr.includes('/') ? weekStr.split('/')[0] : weekStr;
+            return {
+                time: startDate,
+                value: value
+            };
+        });
+        
+        const chart = LightweightCharts.createChart(chartContainer, {
+            layout: {
+                background: { color: '#0a0f18' },
+                textColor: '#d1d4dc',
+            },
+            grid: {
+                vertLines: { color: '#1a1f2e' },
+                horzLines: { color: '#1a1f2e' },
+            },
+            timeScale: {
+                borderColor: '#2b3139',
+            },
+            rightPriceScale: {
+                borderColor: '#2b3139',
+            },
+            width: chartContainer.clientWidth,
+            height: 400
+        });
+        
+        const areaSeries = chart.addAreaSeries({
+            topColor: 'rgba(67, 233, 195, 0.4)',
+            bottomColor: 'rgba(67, 233, 195, 0.0)',
+            lineColor: 'rgba(67, 233, 195, 1)',
+            lineWidth: 2,
+        });
+        
+        areaSeries.setData(data);
+        chart.timeScale().fitContent();
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            chart.resize(chartContainer.clientWidth, 400);
+        });
+        
+        marketChartInitialized = true;
+        {% endif %}
+    }
     
     tabs.forEach(tab => {
         tab.addEventListener('click', function() {
@@ -218,6 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     content.classList.remove('active');
                 }
             });
+            
+            // Initialize market chart when tab is clicked
+            if (tabName === 'market') {
+                setTimeout(initMarketChart, 100);
+            }
         });
     });
 });

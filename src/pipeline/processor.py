@@ -216,10 +216,56 @@ class SPLProcessor:
             lambda x: MatchType.from_players(x).value if pd.notna(x) else None
         )
         
+        # Fix any remaining NaN match types
+        df = self._fix_nan_match_types(df, points_df)
+        
         return df[[
             'Date', 'Season', 'Gameweek', 'Match Type', 'Championship',
             'Winning Team', 'Team A Goals', 'Team B Goals', 'Number of Players'
         ]]
+    
+    def _fix_nan_match_types(
+        self, 
+        games_df: pd.DataFrame, 
+        points_df: pd.DataFrame
+    ) -> pd.DataFrame:
+        """
+        Fix any NaN or missing match types by inferring from player counts.
+        
+        Args:
+            games_df: Games DataFrame
+            points_df: Points DataFrame
+            
+        Returns:
+            Games DataFrame with fixed match types
+        """
+        missing_mask = games_df['Match Type'].isna()
+        missing_count = missing_mask.sum()
+        
+        if missing_count > 0:
+            logger.info(f"Fixing {missing_count} games with missing match types")
+            
+            for idx in games_df[missing_mask].index:
+                game_date = games_df.loc[idx, 'Date']
+                
+                # Try to get Number of Players first
+                num_players = games_df.loc[idx, 'Number of Players']
+                
+                # If still NaN, count from points_df
+                if pd.isna(num_players):
+                    # Count unique players who played on that date
+                    date_players = points_df[points_df['Date'] == game_date]
+                    num_players = len(date_players)
+                    games_df.loc[idx, 'Number of Players'] = num_players
+                    logger.debug(f"Inferred {num_players} players for game on {game_date}")
+                
+                # Infer match type from player count
+                if pd.notna(num_players) and num_players > 0:
+                    match_type = MatchType.from_players(int(num_players))
+                    games_df.loc[idx, 'Match Type'] = match_type.value
+                    logger.debug(f"Fixed match type for {game_date}: {match_type.value} ({num_players} players)")
+        
+        return games_df
     
     def _apply_championship_split(
         self, 

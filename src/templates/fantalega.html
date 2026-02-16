@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% set active_page = 'fantalega' %}
 
-{% block title %}FantaLega - SPL{% endblock %}
+{% block title %}FantaSPL - SPL{% endblock %}
 
 {% block content %}
 <section class="section">
-    <h1>FantaLega SPL</h1>
-    <p class="section-subtitle">Archivio Stagione 1</p>
+    <h1>FantaSPL</h1>
 
     <!-- Leaderboard -->
     <div class="fantalega-leaderboard">
         <h2>Classifica</h2>
-        <div class="table-responsive">
+        
+        <!-- Desktop Table View -->
+        <div class="table-responsive desktop-only">
             <table class="fantalega-table">
                 <thead>
                     <tr>
@@ -41,6 +42,28 @@
                 </tbody>
             </table>
         </div>
+        
+        <!-- Mobile Card View -->
+        <div class="fantalega-cards mobile-only">
+            {% for team in standings %}
+            <div class="fantalega-card">
+                <div class="fantalega-card-header">
+                    <div class="rank-badge">
+                        {% if loop.index == 1 %}🥇
+                        {% elif loop.index == 2 %}🥈
+                        {% elif loop.index == 3 %}🥉
+                        {% else %}#{{ team.Rank }}
+                        {% endif %}
+                    </div>
+                    <div class="team-info">
+                        <a href="#team-{{ team['Team Name']|replace(' ', '-')|lower }}" class="team-name">{{ team['Team Name'] }}</a>
+                        <div class="team-manager">{{ team.owner_display }}</div>
+                    </div>
+                    <div class="team-points">{{ team['Total Points']|round(0)|int }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <!-- Team Rosters -->
@@ -63,12 +86,6 @@
             </div>
         </details>
         {% endfor %}
-    </div>
-
-    <!-- Future Seasons Info -->
-    <div class="info-card">
-        <h3>Prossima stagione</h3>
-        <p>La prossima stagione verrà annunciata qui.</p>
     </div>
 </section>
 {% endblock %}

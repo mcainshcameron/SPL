@@ -99,24 +99,67 @@ def run_pipeline(args: argparse.Namespace) -> int:
                 season=args.fantasy_season
             )
         
-        # Step 5: Generate news
-        logger.info("Step 5/5: Generating SPLNews")
-        news_gen = NewsGenerator()
-        news_items = news_gen.generate_news(weekly_values, summaries)
-        
-        # Generate player name mappings
+        # Generate player name mappings (before news, so news can use display names)
         all_players = points_df['Player'].unique().tolist()
         player_name_map = generate_player_names(all_players)
         player_name_map = ensure_unique_slugs(player_name_map)
         
+        # Step 5: Generate news
+        logger.info("Step 5/5: Generating SPLNews")
+        news_gen = NewsGenerator()
+        news_items = news_gen.generate_news(weekly_values, summaries, player_name_map)
+        
         # Convert DataFrames to JSON-friendly formats
         logger.info("Converting data to JSON")
         
-        # Games JSON
+        # Games JSON - Enrich with team compositions
         games_json = games_df.to_dict(orient='records')
         for game in games_json:
             if 'Date' in game:
                 game['Date'] = game['Date'].isoformat() if hasattr(game['Date'], 'isoformat') else str(game['Date'])
+            
+            # Extract team compositions from points_df
+            game_date = game.get('Date')
+            game_champ = game.get('Championship')
+            
+            # Find all players from this game
+            game_players = points_df[
+                (points_df['Date'].astype(str).str[:10] == str(game_date)[:10]) &
+                (points_df['Championship'] == game_champ)
+            ]
+            
+            if not game_players.empty:
+                # Group by team
+                team_a_players = []
+                team_b_players = []
+                
+                for _, player_row in game_players.iterrows():
+                    player_name = player_row['Player']
+                    team = player_row.get('Team', 'Team A')
+                    goals = player_row.get('Goals', 0)
+                    
+                    # Get display name and slug
+                    if player_name in player_name_map:
+                        display_name = player_name_map[player_name]['display_name']
+                        slug = player_name_map[player_name]['slug']
+                    else:
+                        display_name = player_name
+                        slug = player_name.lower().replace(' ', '-')
+                    
+                    player_data = {
+                        'name': display_name,
+                        'slug': slug,
+                        'goals': int(goals) if pd.notna(goals) else 0
+                    }
+                    
+                    if team == 'Team A':
+                        team_a_players.append(player_data)
+                    else:
+                        team_b_players.append(player_data)
+                
+                # Add to game
+                game['team_a_players'] = sorted(team_a_players, key=lambda x: x['goals'], reverse=True)
+                game['team_b_players'] = sorted(team_b_players, key=lambda x: x['goals'], reverse=True)
         
         # Players JSON - Restructure to championship -> season -> players
         # season_summaries has structure: {season: {championship: df}}
