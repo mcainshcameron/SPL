@@ -2,11 +2,6 @@
  * SPL v2 - Main JavaScript
  */
 
-// Smooth scroll to top
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 // Format currency
 function formatCurrency(value) {
     if (value >= 1000000) {
@@ -245,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
 window.SPL = {
     formatCurrency,
     formatPercent,
-    scrollToTop,
     showToast,
     copyToClipboard,
     debounce,
