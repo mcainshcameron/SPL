@@ -264,6 +264,17 @@ class SPLProcessor:
                     match_type = MatchType.from_players(int(num_players))
                     games_df.loc[idx, 'Match Type'] = match_type.value
                     logger.debug(f"Fixed match type for {game_date}: {match_type.value} ({num_players} players)")
+                else:
+                    # No player data at all — estimate from total goals
+                    total_goals = (games_df.loc[idx, 'Team A Goals'] or 0) + (games_df.loc[idx, 'Team B Goals'] or 0)
+                    if total_goals <= 12:
+                        estimated_type = "5-a-side"
+                    elif total_goals <= 20:
+                        estimated_type = "7-a-side"
+                    else:
+                        estimated_type = "11-a-side"
+                    games_df.loc[idx, 'Match Type'] = estimated_type
+                    logger.info(f"Estimated match type for {game_date} from goals ({total_goals}): {estimated_type}")
         
         return games_df
     
