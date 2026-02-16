@@ -1,0 +1,461 @@
+{% extends "base.html" %}
+{% set active_page = 'squadre' %}
+
+{% block title %}Squadre Proposte - SPL{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1>Squadre Proposte</h1>
+    <p class="section-subtitle">Formazioni bilanciate per le prossime partite</p>
+    
+    {% if proposals|length > 0 %}
+    
+    <!-- Championship Filter (if multiple championships) -->
+    {% set championships = proposals|map(attribute='championship')|unique|list %}
+    {% if championships|length > 1 %}
+    <div class="filters">
+        <div class="filter-group">
+            <label>Campionato:</label>
+            <div class="filter-tabs" id="championshipTabs">
+                <button class="filter-tab active" data-championship="all">Tutti</button>
+                {% for champ in championships %}
+                <button class="filter-tab" data-championship="{{ champ }}">
+                    {{ champ }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Proposals -->
+    <div class="proposals-container">
+        {% for proposal in proposals %}
+        <div class="proposal-card" data-championship="{{ proposal.championship }}">
+            <!-- Proposal Header -->
+            <div class="proposal-header">
+                <div class="proposal-info">
+                    <h2>{{ proposal.championship }}</h2>
+                    <div class="proposal-meta">
+                        <span class="proposal-date">📅 {{ proposal.date }}</span>
+                        {% if proposal.venue %}
+                        <span class="proposal-venue">📍 {{ proposal.venue }}</span>
+                        {% endif %}
+                        <span class="proposal-status status-{{ proposal.status }}">
+                            {% if proposal.status == 'proposed' %}⏳ Proposta
+                            {% elif proposal.status == 'confirmed' %}✅ Confermata
+                            {% elif proposal.status == 'played' %}✔️ Giocata
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Sets -->
+            {% for set in proposal.sets %}
+            <div class="team-set">
+                {% if proposal.sets|length > 1 %}
+                <div class="set-header">
+                    <h3>Set {{ set.set_number }}</h3>
+                </div>
+                {% endif %}
+                
+                <!-- Balance Score & Prediction -->
+                <div class="set-metrics">
+                    <div class="balance-score">
+                        <span class="metric-label">Bilanciamento:</span>
+                        <span class="balance-value score-{{ (set.balance_score * 10)|int }}">
+                            {{ set.balance_score|round(1) }}/10
+                        </span>
+                    </div>
+                    <div class="predicted-score">
+                        <span class="metric-label">Pronostico:</span>
+                        <span class="prediction">{{ set.predicted_score }}</span>
+                    </div>
+                </div>
+                
+                <!-- Teams Side by Side -->
+                <div class="teams-container">
+                    <!-- Team A -->
+                    <div class="team-card team-a">
+                        <div class="team-header">
+                            <h4>{{ set.team_a.name }}</h4>
+                        </div>
+                        <div class="team-players">
+                            {% for player in set.team_a.players %}
+                            <div class="player-item">
+                                <a href="/players/{{ player.slug }}/" class="player-link">
+                                    {{ player.display_name }}
+                                </a>
+                                <span class="player-rank rank-{{ player.rank }}">
+                                    #{{ player.rank }}
+                                </span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if set.team_metrics %}
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Win%</span>
+                                <span class="stat-value">{{ set.team_metrics.team_a.win_ratio }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Goal/xG</span>
+                                <span class="stat-value">{{ set.team_metrics.team_a.goalxg }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">PPG</span>
+                                <span class="stat-value">{{ set.team_metrics.team_a.ppg }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- VS Divider -->
+                    <div class="vs-divider">
+                        <span class="vs-text">VS</span>
+                    </div>
+                    
+                    <!-- Team B -->
+                    <div class="team-card team-b">
+                        <div class="team-header">
+                            <h4>{{ set.team_b.name }}</h4>
+                        </div>
+                        <div class="team-players">
+                            {% for player in set.team_b.players %}
+                            <div class="player-item">
+                                <a href="/players/{{ player.slug }}/" class="player-link">
+                                    {{ player.display_name }}
+                                </a>
+                                <span class="player-rank rank-{{ player.rank }}">
+                                    #{{ player.rank }}
+                                </span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if set.team_metrics %}
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Win%</span>
+                                <span class="stat-value">{{ set.team_metrics.team_b.win_ratio }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Goal/xG</span>
+                                <span class="stat-value">{{ set.team_metrics.team_b.goalxg }}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">PPG</span>
+                                <span class="stat-value">{{ set.team_metrics.team_b.ppg }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state">
+        <div class="empty-icon">⚔️</div>
+        <h2>Nessuna proposta al momento</h2>
+        <p>Le squadre proposte verranno mostrate qui prima di ogni partita</p>
+    </div>
+    {% endif %}
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const champTabs = document.querySelectorAll('#championshipTabs .filter-tab');
+    const proposals = document.querySelectorAll('.proposal-card');
+    
+    if (champTabs.length > 0) {
+        champTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const championship = this.dataset.championship;
+                
+                // Update active tab
+                champTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter proposals
+                proposals.forEach(proposal => {
+                    if (championship === 'all' || proposal.dataset.championship === championship) {
+                        proposal.style.display = 'block';
+                    } else {
+                        proposal.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+});
+</script>
+
+<style>
+.section-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.proposals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.proposal-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.proposal-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.proposal-info h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.proposal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.proposal-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.status-proposed { background: #fff3cd; color: #856404; }
+.status-confirmed { background: #d4edda; color: #155724; }
+.status-played { background: #d1ecf1; color: #0c5460; }
+
+.team-set {
+    margin-top: 1.5rem;
+}
+
+.set-header {
+    margin-bottom: 1rem;
+}
+
+.set-header h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.set-metrics {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--background);
+    border-radius: 8px;
+}
+
+.balance-score, .predicted-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metric-label {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.balance-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+}
+
+.score-8, .score-9, .score-10 { background: #d4edda; color: #155724; }
+.score-6, .score-7 { background: #fff3cd; color: #856404; }
+.score-0, .score-1, .score-2, .score-3, .score-4, .score-5 { background: #f8d7da; color: #721c24; }
+
+.prediction {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.teams-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.team-card {
+    background: var(--background);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-a { border-left: 4px solid #2c3e50; }
+.team-b { border-left: 4px solid #ecf0f1; }
+
+.team-header {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.team-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-a h4 { color: #2c3e50; }
+.team-b h4 { color: #95a5a6; }
+
+.team-players {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.player-item:hover {
+    transform: translateX(4px);
+}
+
+.player-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.player-link:hover {
+    color: var(--primary);
+}
+
+.player-rank {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: var(--border);
+    color: var(--text-muted);
+}
+
+.rank-1, .rank-2, .rank-3 { background: #ffd700; color: #000; }
+.rank-4, .rank-5, .rank-6 { background: #c0c0c0; color: #000; }
+
+.team-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vs-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.empty-state p {
+    color: var(--text-muted);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .teams-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .vs-divider {
+        padding: 0.5rem 0;
+    }
+    
+    .vs-text {
+        font-size: 1.2rem;
+    }
+    
+    .set-metrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .proposal-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+</style>
+{% endblock %}

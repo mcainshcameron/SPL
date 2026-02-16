@@ -45,13 +45,13 @@ class PlayerSummarizer:
             else:
                 champ_data = points_df[points_df['Championship'] == championship]
             
-            summary = self._compute_summary(champ_data, games_df)
+            summary = self._compute_summary_with_rank_changes(champ_data, games_df)
             summaries[championship] = summary
             logger.info(f"Generated summary for {championship}: {len(summary)} players")
         
         # Also generate combined summary across all championships
         if len(championships) > 1:
-            combined = self._compute_summary(points_df, games_df)
+            combined = self._compute_summary_with_rank_changes(points_df, games_df)
             summaries['Combined'] = combined
             logger.info(f"Generated combined summary: {len(combined)} players")
         
@@ -120,6 +120,37 @@ class PlayerSummarizer:
         summary = summary[columns].sort_values('Rank').reset_index(drop=True)
         
         return summary
+    
+    def _compute_summary_with_rank_changes(
+        self,
+        points_df: pd.DataFrame,
+        games_df: pd.DataFrame
+    ) -> pd.DataFrame:
+        """
+        Compute summary with rank changes based on last game date.
+        
+        Rank change = previous rank - current rank (positive = moved up)
+        """
+        if len(points_df) == 0:
+            return self._compute_summary(points_df, games_df)
+        
+        # Find the last game date
+        last_date = points_df['Date'].max()
+        
+        # Compute "previous" summary (excluding last game date)
+        previous_data = points_df[points_df['Date'] < last_date]
+        if len(previous_data) > 0:
+            previous_summary = self._compute_summary(previous_data, games_df)
+        else:
+            previous_summary = None
+        
+        # Compute current summary (all games)
+        current_summary = self._compute_summary(points_df, games_df)
+        
+        # Calculate rank changes
+        current_summary = self.calculate_rank_changes(current_summary, previous_summary)
+        
+        return current_summary
     
     def generate_season_summaries(
         self,

@@ -31,10 +31,21 @@ export SPL_SUPABASE_KEY="your_supabase_key_here"
 ✅ Transform data to match Excel structure exactly
 ✅ Championship split (Bovisa/Lambrate/Combinata)
 ✅ Season calculation (Sep 1 → Jul 30)
+✅ **Per-championship season numbering** - Each championship's seasons start from 1
 ✅ All point calculations work identically
 ✅ Market value calculations
 ✅ News generation
 ✅ Player name slugs
+
+### Per-Championship Season Numbering
+
+Each championship maintains its own season counter starting from 1, even if they overlap in calendar time:
+
+- **Bovisa** (started 2023): Stagione 1, 2, 3, 4...
+- **Lambrate** (started 2024): Stagione 1, 2...
+- **Combinata** (overlap period): Stagione 1, 2...
+
+This means Lambrate's first season is "Stagione 1" even though it chronologically overlaps with Bovisa's "Stagione 3". This makes sense from a user perspective - each venue has its own history.
 
 ## Differences from Excel Mode
 

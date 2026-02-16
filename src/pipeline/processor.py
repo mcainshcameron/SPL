@@ -202,6 +202,10 @@ class SPLProcessor:
                 season_map = {old: new + 1 for new, old in enumerate(champ_seasons)}
                 df.loc[mask, 'Season'] = df.loc[mask, 'Season'].map(season_map)
         
+        # Log per-championship season ranges
+        season_ranges = df.groupby('Championship')['Season'].agg(['min', 'max'])
+        logger.info(f"Per-championship seasons: {season_ranges.to_dict('index')}")
+        
         # Calculate gameweeks per championship per season
         df['Gameweek'] = df.groupby(['Season', 'Championship']).cumcount() + 1
         

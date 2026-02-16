@@ -35,13 +35,21 @@ def load_data():
     with open(DATA_DIR / "player_names.json") as f:
         player_names = json.load(f)
     
+    # Load team proposals (optional - may not exist)
+    team_proposals = {"proposals": []}
+    proposals_file = DATA_DIR / "team_proposals.json"
+    if proposals_file.exists():
+        with open(proposals_file) as f:
+            team_proposals = json.load(f)
+    
     return {
         "games": games,
         "players": players,
         "market_values": market_values,
         "fantasy": fantasy,
         "news": news,
-        "player_names": player_names
+        "player_names": player_names,
+        "team_proposals": team_proposals
     }
 
 
@@ -327,6 +335,31 @@ def build_risultati_page(env, data):
     print(f"  ✓ {output_file}")
 
 
+def build_squadre_page(env, data):
+    """Build team proposals page"""
+    print("Building squadre page...")
+    template = env.get_template("squadre.html")
+    
+    # Get proposals from data
+    proposals = data["team_proposals"].get("proposals", [])
+    
+    # Sort by date (most recent first)
+    proposals_sorted = sorted(
+        proposals, 
+        key=lambda x: x.get("date", ""), 
+        reverse=True
+    )
+    
+    html = template.render(
+        proposals=proposals_sorted
+    )
+    
+    output_file = OUTPUT_DIR / "squadre" / "index.html"
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    output_file.write_text(html)
+    print(f"  ✓ {output_file}")
+
+
 def copy_static_assets():
     """Copy CSS, JS, images to output"""
     print("Copying static assets...")
@@ -369,6 +402,7 @@ def build_site():
     build_home_page(env, data)
     build_classifica_page(env, data)
     build_mercato_page(env, data)
+    build_squadre_page(env, data)
     build_player_pages(env, data)
     build_fantalega_page(env, data)
     build_risultati_page(env, data)
