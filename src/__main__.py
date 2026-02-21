@@ -19,7 +19,7 @@ from .pipeline import (
     FantasyProcessor,
     NewsGenerator
 )
-from .pipeline.supabase_loader import load_from_supabase
+from .pipeline.supabase_loader import load_from_supabase, load_fantasy_from_supabase
 from .site.slugs import generate_player_names, ensure_unique_slugs
 
 
@@ -84,17 +84,17 @@ def run_pipeline(args: argparse.Namespace) -> int:
         fantasy_processor = FantasyProcessor()
         
         if args.supabase:
-            # Supabase mode: try to load fantasy data from Excel file
-            fantasy_excel = Path(__file__).parent.parent / "data" / "input" / "FantaSquadre" / "FantaSquadre_Milano.xlsx"
-            if fantasy_excel.exists():
-                logger.info(f"Loading fantasy data from {fantasy_excel}")
-                fantasy_data = fantasy_processor.process_fantasy_league(
-                    fantasy_excel,
+            # Supabase mode: load fantasy data from DB
+            try:
+                fantasy_teams, fantasy_rosters = load_fantasy_from_supabase()
+                fantasy_data = fantasy_processor.process_fantasy_from_supabase(
+                    fantasy_teams,
+                    fantasy_rosters,
                     points_df,
                     season=args.fantasy_season
                 )
-            else:
-                logger.info("Supabase mode: no fantasy Excel file found, skipping")
+            except Exception as e:
+                logger.warning(f"Failed to load fantasy from Supabase: {e}")
                 fantasy_data = {
                     'standings': pd.DataFrame(),
                     'teams': pd.DataFrame()

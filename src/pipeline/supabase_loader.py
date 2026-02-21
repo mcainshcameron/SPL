@@ -210,3 +210,29 @@ def load_from_supabase() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, Dict
                 f"{len(players_df)} players")
     
     return games_df, points_df, players_df, parameters_dict
+
+
+def load_fantasy_from_supabase() -> Tuple[list, list]:
+    """
+    Load fantasy teams and rosters from Supabase.
+    
+    Returns:
+        Tuple of (teams, rosters) where:
+        - teams: list of dicts with id, team_name, owner_name
+        - rosters: list of dicts with team_id, player_display_name, tier, price_millions
+    """
+    logger.info("Loading fantasy data from Supabase")
+    
+    teams = get_all("fantasy_teams", select="*", order="team_name.asc")
+    rosters = get_all("fantasy_rosters", select="*")
+    players = get_all("players", select="id,display_name")
+    
+    player_lookup = {p['id']: p['display_name'] for p in players}
+    
+    # Enrich rosters with player display names
+    for r in rosters:
+        r['player_display_name'] = player_lookup.get(r['player_id'], 'Unknown')
+    
+    logger.info(f"Loaded {len(teams)} fantasy teams, {len(rosters)} roster entries")
+    
+    return teams, rosters

@@ -65,6 +65,73 @@ class FantasyProcessor:
             'teams': teams
         }
     
+    def process_fantasy_from_supabase(
+        self,
+        teams: list,
+        rosters: list,
+        points_df: pd.DataFrame,
+        season: Optional[int] = None
+    ) -> Dict[str, pd.DataFrame]:
+        """
+        Process fantasy league data loaded from Supabase.
+        
+        Args:
+            teams: list of dicts with id, team_name, owner_name
+            rosters: list of dicts with team_id, player_display_name, tier, price_millions
+            points_df: Processed points data
+            season: Season to filter (None = all)
+            
+        Returns:
+            Dict with 'standings' and 'teams' DataFrames
+        """
+        logger.info("Processing fantasy league from Supabase data")
+        
+        if not teams:
+            logger.warning("No fantasy teams found in Supabase")
+            return {'standings': pd.DataFrame(), 'teams': pd.DataFrame()}
+        
+        if season is not None:
+            season_points = points_df[points_df['Season'] == season]
+        else:
+            season_points = points_df
+        
+        # Build team lookup
+        team_lookup = {t['id']: t for t in teams}
+        
+        # Build per-player total points from points_df
+        player_totals = season_points.groupby('Player')['Total Points'].sum().to_dict()
+        
+        # Build roster rows in the format standings/rosters generators expect
+        rows = []
+        for r in rosters:
+            team = team_lookup.get(r['team_id'])
+            if not team:
+                continue
+            player_name = r['player_display_name']
+            total_pts = player_totals.get(player_name, 0)
+            rows.append({
+                'Nome e Cognome': team['owner_name'],
+                'Nome della tua squadra FantaSPL': team['team_name'],
+                'Selection': player_name,
+                'Player': player_name,
+                'Total Points': total_pts
+            })
+        
+        team_data = pd.DataFrame(rows)
+        
+        if team_data.empty:
+            return {'standings': pd.DataFrame(), 'teams': pd.DataFrame()}
+        
+        standings = self._generate_standings(team_data)
+        teams_df = self._generate_team_rosters(team_data)
+        
+        logger.info(f"Processed {len(standings)} fantasy teams from Supabase")
+        
+        return {
+            'standings': standings,
+            'teams': teams_df
+        }
+    
     def _process_team_selections(
         self,
         fantasy_data: pd.DataFrame,
