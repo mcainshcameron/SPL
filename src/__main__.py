@@ -84,12 +84,21 @@ def run_pipeline(args: argparse.Namespace) -> int:
         fantasy_processor = FantasyProcessor()
         
         if args.supabase:
-            # Supabase mode: skip fantasy data (not in DB)
-            logger.info("Supabase mode: skipping fantasy league (not in database)")
-            fantasy_data = {
-                'standings': pd.DataFrame(),
-                'teams': pd.DataFrame()
-            }
+            # Supabase mode: try to load fantasy data from Excel file
+            fantasy_excel = Path(__file__).parent.parent / "data" / "input" / "FantaSquadre" / "FantaSquadre_Milano.xlsx"
+            if fantasy_excel.exists():
+                logger.info(f"Loading fantasy data from {fantasy_excel}")
+                fantasy_data = fantasy_processor.process_fantasy_league(
+                    fantasy_excel,
+                    points_df,
+                    season=args.fantasy_season
+                )
+            else:
+                logger.info("Supabase mode: no fantasy Excel file found, skipping")
+                fantasy_data = {
+                    'standings': pd.DataFrame(),
+                    'teams': pd.DataFrame()
+                }
         else:
             # Excel mode: try to load fantasy data
             fantasy_file = input_path.parent / "FantaSquadre" / f"FantaSquadre_{input_path.stem.split('_')[1]}.xlsx"

@@ -159,7 +159,7 @@ def load_from_supabase() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, Dict
             'Date': pd.to_datetime(game['game_date']),
             'Championship': game.get('championship') or 'Bovisa',
             'Player': player['display_name'],  # Use display_name as the primary identifier
-            'Team': 'Team A' if stat['team'] == 'A' else 'Team B',
+            'Team': stat['team'] if stat['team'] in ('Team A', 'Team B') else ('Team A' if stat['team'] == 'A' else 'Team B'),
             'Goals': stat.get('goals') or 0,
             'Own Goals': stat.get('own_goals') or 0,
             'SPL Bonus': stat.get('spl_bonus') or 0,
