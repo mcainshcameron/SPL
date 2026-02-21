@@ -67,7 +67,7 @@
         <div class="player-info">
             <h1>Orlando F.</h1>
             
-            <div class="player-value">€5.8M</div>
+            <div class="player-value">€4.7M</div>
             
             
             
@@ -75,6 +75,12 @@
             <div class="recent-form">
                 <span class="recent-form-label">Forma recente:</span>
                 <div class="form-dots">
+                    
+                    <div class="form-dot win" title="win"></div>
+                    
+                    <div class="form-dot win" title="win"></div>
+                    
+                    <div class="form-dot loss" title="loss"></div>
                     
                     <div class="form-dot win" title="win"></div>
                     
@@ -120,15 +126,77 @@
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">13.5</div>
+                    <div class="stat-value">11.0</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">27</div>
+                    <div class="stat-value">22</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">66</div>
+                    <div class="stat-value">74</div>
+                    <div class="stat-label">Rank</div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="additional-stats">
+                <div class="stat-row">
+                    <span>MVP:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>SPL Bonus:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Inviti amici:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Autogol:</span>
+                    <span>0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Penalità:</span>
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Lambrate</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Partite</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Vittorie</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">66.7%</div>
+                    <div class="stat-label">Win%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Gol</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2.33</div>
+                    <div class="stat-label">Gol/Partita</div>
+                </div>
+                <div class="stat-card highlight">
+                    <div class="stat-value">8.33</div>
+                    <div class="stat-label">PPG</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">25</div>
+                    <div class="stat-label">Punti Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">18</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -162,35 +230,35 @@
             <h2>Combinata</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">2</div>
+                    <div class="stat-value">5</div>
                     <div class="stat-label">Partite</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">2</div>
+                    <div class="stat-value">4</div>
                     <div class="stat-label">Vittorie</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">100.0%</div>
+                    <div class="stat-value">80.0%</div>
                     <div class="stat-label">Win%</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">6</div>
+                    <div class="stat-value">13</div>
                     <div class="stat-label">Gol</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">3.0</div>
+                    <div class="stat-value">2.6</div>
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">13.5</div>
+                    <div class="stat-value">9.4</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">27</div>
+                    <div class="stat-value">47</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">80</div>
+                    <div class="stat-value">56</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -242,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Market chart data (if available)
     
-    const chartData = [5300000, 6000000, 5900000, 5800000, 5800000];
-    const weeks = ["2025-05-26/2025-06-01", "2025-06-02/2025-06-08", "2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-06-23/2025-06-29"];
+    const chartData = [5800000, 6300000, 6000000, 5800000, 5600000, 4700000, 4900000, 4900000, 4700000, 5600000, 5300000, 5300000, 5900000, 5400000, 5100000, 5100000, 4900000, 4700000, 4700000];
+    const weeks = ["2025-05-26/2025-06-01", "2025-06-02/2025-06-08", "2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-06-23/2025-06-29", "2025-09-22/2025-09-28", "2025-09-29/2025-10-05", "2025-10-06/2025-10-12", "2025-10-13/2025-10-19", "2025-10-27/2025-11-02", "2025-11-03/2025-11-09", "2025-11-10/2025-11-16", "2025-11-17/2025-11-23", "2025-12-08/2025-12-14", "2026-01-05/2026-01-11", "2026-01-12/2026-01-18", "2026-01-26/2026-02-01", "2026-02-09/2026-02-15", "2026-02-16/2026-02-22"];
     
     
     function initMarketChart() {

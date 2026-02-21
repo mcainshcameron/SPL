@@ -67,7 +67,13 @@
         <div class="player-info">
             <h1>Alberto (Cerro)</h1>
             
-            <div class="player-value">€2.5M</div>
+            <div class="player-value">€3.9M</div>
+            
+            <div class="player-value-change negative">
+                
+                ↓ €100K
+                
+            </div>
             
             
             
@@ -75,6 +81,8 @@
             <div class="recent-form">
                 <span class="recent-form-label">Forma recente:</span>
                 <div class="form-dots">
+                    
+                    <div class="form-dot win" title="win"></div>
                     
                     <div class="form-dot loss" title="loss"></div>
                     
@@ -98,35 +106,35 @@
             <h2>Bovisa</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value">2</div>
                     <div class="stat-label">Partite</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value">1</div>
                     <div class="stat-label">Vittorie</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0.0%</div>
+                    <div class="stat-value">50.0%</div>
                     <div class="stat-label">Win%</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value">3</div>
                     <div class="stat-label">Gol</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0.0</div>
+                    <div class="stat-value">1.5</div>
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">5.0</div>
+                    <div class="stat-value">8.0</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">16</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">130</div>
+                    <div class="stat-value">91</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -160,35 +168,35 @@
             <h2>Combinata</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">1</div>
+                    <div class="stat-value">2</div>
                     <div class="stat-label">Partite</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value">1</div>
                     <div class="stat-label">Vittorie</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0.0%</div>
+                    <div class="stat-value">50.0%</div>
                     <div class="stat-label">Win%</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value">3</div>
                     <div class="stat-label">Gol</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">0.0</div>
+                    <div class="stat-value">1.5</div>
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">5.0</div>
+                    <div class="stat-value">8.0</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">16</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">143</div>
+                    <div class="stat-value">105</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -240,8 +248,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Market chart data (if available)
     
-    const chartData = [2600000, 2500000, 2500000];
-    const weeks = ["2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-06-23/2025-06-29"];
+    const chartData = [2900000, 2800000, 2700000, 2300000, 2300000, 2300000, 2200000, 2200000, 2200000, 2200000, 2200000, 2100000, 4500000, 4400000, 4200000, 4000000, 3900000];
+    const weeks = ["2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-06-23/2025-06-29", "2025-09-22/2025-09-28", "2025-09-29/2025-10-05", "2025-10-06/2025-10-12", "2025-10-13/2025-10-19", "2025-10-27/2025-11-02", "2025-11-03/2025-11-09", "2025-11-10/2025-11-16", "2025-11-17/2025-11-23", "2025-12-08/2025-12-14", "2026-01-05/2026-01-11", "2026-01-12/2026-01-18", "2026-01-26/2026-02-01", "2026-02-09/2026-02-15", "2026-02-16/2026-02-22"];
     
     
     function initMarketChart() {
