@@ -2,6 +2,28 @@
 
 Work through these in order in the Supabase SQL Editor. No solutions provided — figure it out, run it, verify the output makes sense. If you get stuck, Google the concept then come back.
 
+## Progress Tracker
+
+| Level | Queries | Status | Date |
+|-------|---------|--------|------|
+| 1 — SELECT Basics | 1–15 | ✅ Done | 2026-02-21 |
+| 2 — Filtering & Sorting | 16–25 | ✅ Done | 2026-02-21 |
+| 3 — Aggregations | 26–40 | ✅ Done | 2026-02-21 |
+| 4 — JOINs | 41–58 | ⬜ Next up (start at Q41) | |
+| 5 — Subqueries & CTEs | 59–72 | ⬜ | |
+| 6 — Window Functions | 73–82 | ⬜ | |
+| 7 — Data Manipulation | 83–92 | ⬜ | |
+| 8 — Real-World Challenges | 93–100 | ⬜ | |
+
+### Notes from Session 1 (2026-02-21)
+- Completed 40 queries in one session — strong pace
+- **HAVING**: Can't use column aliases — must repeat the expression: `HAVING COUNT(*) >= 10` not `HAVING games_played >= 10`. Subquery workaround is valid but practice HAVING too.
+- **Q21 fix**: Used ASC instead of DESC — got lowest not highest scoring games
+- **Q24 fix**: Used `> 10` but max price is 10.0, should be `= 10`
+- **Q28 note**: `COUNT(expr)` counts non-nulls, not sums — use `COUNT(*)` for row counts
+- **Q40 breakthrough**: Learned CASE WHEN inside aggregate — this is a key pattern for pivots and conditional counting
+- **JOINs are next** — this is THE most important section, take your time with it
+
 ## Database Quick Reference
 
 | Table | Key Columns |
