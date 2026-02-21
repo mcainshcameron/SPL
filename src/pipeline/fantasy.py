@@ -71,10 +71,10 @@ class FantasyProcessor:
         points_df: pd.DataFrame
     ) -> pd.DataFrame:
         """Process player selections and merge with points."""
-        # Get player selection columns (skip owner and team name columns)
+        # Get player selection columns (skip owner, team name, and timestamp columns)
         selection_cols = [
             col for col in fantasy_data.columns
-            if col not in ['Nome e Cognome', 'Nome della tua squadra FantaSPL']
+            if col not in ['Nome e Cognome', 'Nome della tua squadra FantaSPL', 'Timestamp']
         ]
         
         # Melt to long format
