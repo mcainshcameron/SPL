@@ -512,6 +512,10 @@ def build_site():
     # Copy static assets
     copy_static_assets()
     
+    # Write CNAME for GitHub Pages custom domain
+    (OUTPUT_DIR / "CNAME").write_text("fantaspl.com\n")
+    print("  ✓ CNAME written")
+    
     print("=" * 60)
     print(f"✓ Site built successfully!")
     print(f"  Output: {OUTPUT_DIR}")
