@@ -67,11 +67,11 @@
         <div class="player-info">
             <h1>Dennis (Gabri)</h1>
             
-            <div class="player-value">€5.0M</div>
+            <div class="player-value">€6.0M</div>
             
             <div class="player-value-change positive">
                 
-                ↑ €300K
+                ↑ €400K
                 
             </div>
             
@@ -112,15 +112,15 @@
             <h2>Bovisa</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">8</div>
+                    <div class="stat-value">16</div>
                     <div class="stat-label">Partite</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">6</div>
+                    <div class="stat-value">10</div>
                     <div class="stat-label">Vittorie</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">75.0%</div>
+                    <div class="stat-value">62.5%</div>
                     <div class="stat-label">Win%</div>
                 </div>
                 <div class="stat-card">
@@ -132,15 +132,15 @@
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">7.25</div>
+                    <div class="stat-value">6.88</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">58</div>
+                    <div class="stat-value">110</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">47</div>
+                    <div class="stat-value">30</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -174,15 +174,15 @@
             <h2>Combinata</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">8</div>
+                    <div class="stat-value">16</div>
                     <div class="stat-label">Partite</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">6</div>
+                    <div class="stat-value">10</div>
                     <div class="stat-label">Vittorie</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">75.0%</div>
+                    <div class="stat-value">62.5%</div>
                     <div class="stat-label">Win%</div>
                 </div>
                 <div class="stat-card">
@@ -194,15 +194,15 @@
                     <div class="stat-label">Gol/Partita</div>
                 </div>
                 <div class="stat-card highlight">
-                    <div class="stat-value">7.25</div>
+                    <div class="stat-value">6.88</div>
                     <div class="stat-label">PPG</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">58</div>
+                    <div class="stat-value">110</div>
                     <div class="stat-label">Punti Totali</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">50</div>
+                    <div class="stat-value">31</div>
                     <div class="stat-label">Rank</div>
                 </div>
             </div>
@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Market chart data (if available)
     
-    const chartData = [5100000, 5300000, 4700000, 5100000, 5400000, 5800000, 5600000, 6100000, 5300000, 5100000, 5000000, 4900000, 4800000, 4700000, 5000000];
-    const weeks = ["2025-09-22/2025-09-28", "2025-09-29/2025-10-05", "2025-10-06/2025-10-12", "2025-10-13/2025-10-19", "2025-10-27/2025-11-02", "2025-11-03/2025-11-09", "2025-11-10/2025-11-16", "2025-11-17/2025-11-23", "2025-12-08/2025-12-14", "2026-01-05/2026-01-11", "2026-01-12/2026-01-18", "2026-01-26/2026-02-01", "2026-02-09/2026-02-15", "2026-02-16/2026-02-22", "2026-02-23/2026-03-01"];
+    const chartData = [5500000, 5300000, 4600000, 5200000, 5600000, 6000000, 5900000, 6500000, 5600000, 5400000, 5300000, 5400000, 5200000, 5100000, 5100000, 5500000, 5300000, 5100000, 5100000, 5200000, 5200000, 5200000, 4800000, 4700000, 4600000, 5100000, 5500000, 5400000, 5300000, 6000000, 5600000, 6000000];
+    const weeks = ["2025-09-22/2025-09-28", "2025-09-29/2025-10-05", "2025-10-06/2025-10-12", "2025-10-13/2025-10-19", "2025-10-27/2025-11-02", "2025-11-03/2025-11-09", "2025-11-10/2025-11-16", "2025-11-17/2025-11-23", "2025-12-08/2025-12-14", "2026-01-05/2026-01-11", "2026-01-12/2026-01-18", "2026-01-19/2026-01-25", "2026-02-09/2026-02-15", "2026-02-16/2026-02-22", "2026-02-23/2026-03-01", "2026-03-02/2026-03-08", "2026-03-09/2026-03-15", "2026-03-16/2026-03-22", "2026-03-30/2026-04-05", "2026-04-06/2026-04-12", "2026-04-13/2026-04-19", "2026-04-20/2026-04-26", "2026-04-27/2026-05-03", "2026-05-04/2026-05-10", "2026-05-11/2026-05-17", "2026-05-18/2026-05-24", "2026-05-25/2026-05-31", "2026-06-01/2026-06-07", "2026-06-08/2026-06-14", "2026-06-15/2026-06-21", "2026-06-22/2026-06-28", "2026-06-29/2026-07-05"];
     
     
     function initMarketChart() {
