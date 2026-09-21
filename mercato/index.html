@@ -65,7 +65,7 @@
     <h1>Mercato</h1>
     <p class="section-subtitle">Valutazioni aggiornate ogni settimana</p>
     
-    <!-- Sort Controls -->
+    <!-- Search + Sort + Championship Controls -->
     <div class="filters">
         <div class="filter-group">
             <label>Ordina per:</label>
@@ -76,6 +76,24 @@
                 <option value="loser">Maggior Ribasso</option>
             </select>
         </div>
+        <div class="filter-group">
+            <label>Campionato:</label>
+            <select id="champFilter" class="sort-select">
+                <option value="">Tutti</option>
+                
+                <option value="Bovisa">Bovisa</option>
+                
+                <option value="Lambrate">Lambrate</option>
+                
+                <option value="Moscova">Moscova</option>
+                
+            </select>
+        </div>
+        <div class="filter-group filter-group-search">
+            <label for="searchInput">Cerca giocatore:</label>
+            <input type="search" id="searchInput" class="search-input"
+                   placeholder="Nome giocatore..." autocomplete="off">
+        </div>
     </div>
 
     <!-- Market Grid -->
@@ -83,7 +101,9 @@
         
         <a href="/players/luca-s-1/" class="market-card" 
            data-value="19500000" 
-           data-change="1200000.0">
+           data-change="1200000.0"
+           data-championships="Bovisa,Moscova"
+           data-name="luca s.">
             <div class="market-card-header">
                 <h3>Luca S.</h3>
                 <div class="market-value">€19.5M</div>
@@ -99,7 +119,9 @@
         
         <a href="/players/andrea-l/" class="market-card" 
            data-value="14400000" 
-           data-change="400000.0">
+           data-change="400000.0"
+           data-championships="Bovisa,Lambrate,Moscova"
+           data-name="andrea l.">
             <div class="market-card-header">
                 <h3>Andrea L.</h3>
                 <div class="market-value">€14.4M</div>
@@ -115,7 +137,9 @@
         
         <a href="/players/cameron-m/" class="market-card" 
            data-value="14300000" 
-           data-change="1400000.0">
+           data-change="1400000.0"
+           data-championships="Bovisa,Lambrate,Moscova"
+           data-name="cameron m.">
             <div class="market-card-header">
                 <h3>Cameron M.</h3>
                 <div class="market-value">€14.3M</div>
@@ -131,7 +155,9 @@
         
         <a href="/players/jacopo/" class="market-card" 
            data-value="12900000" 
-           data-change="-700000.0">
+           data-change="-700000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="jacopo">
             <div class="market-card-header">
                 <h3>Jacopo</h3>
                 <div class="market-value">€12.9M</div>
@@ -147,7 +173,9 @@
         
         <a href="/players/cerro/" class="market-card" 
            data-value="12800000" 
-           data-change="-800000.0">
+           data-change="-800000.0"
+           data-championships="Bovisa"
+           data-name="cerro">
             <div class="market-card-header">
                 <h3>Cerro</h3>
                 <div class="market-value">€12.8M</div>
@@ -163,7 +191,9 @@
         
         <a href="/players/roby-cri/" class="market-card" 
            data-value="12700000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa"
+           data-name="roby (cri)">
             <div class="market-card-header">
                 <h3>Roby (Cri)</h3>
                 <div class="market-value">€12.7M</div>
@@ -179,7 +209,9 @@
         
         <a href="/players/sergio/" class="market-card" 
            data-value="12500000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="sergio">
             <div class="market-card-header">
                 <h3>Sergio</h3>
                 <div class="market-value">€12.5M</div>
@@ -195,7 +227,9 @@
         
         <a href="/players/tito/" class="market-card" 
            data-value="11500000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa"
+           data-name="tito">
             <div class="market-card-header">
                 <h3>Tito</h3>
                 <div class="market-value">€11.5M</div>
@@ -211,7 +245,9 @@
         
         <a href="/players/giovanni-a/" class="market-card" 
            data-value="10100000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="giovanni a.">
             <div class="market-card-header">
                 <h3>Giovanni A.</h3>
                 <div class="market-value">€10.1M</div>
@@ -227,7 +263,9 @@
         
         <a href="/players/federico-p/" class="market-card" 
            data-value="9600000" 
-           data-change="-300000.0">
+           data-change="-300000.0"
+           data-championships="Bovisa"
+           data-name="federico p.">
             <div class="market-card-header">
                 <h3>Federico P.</h3>
                 <div class="market-value">€9.6M</div>
@@ -243,7 +281,9 @@
         
         <a href="/players/damiano-b/" class="market-card" 
            data-value="9000000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="damiano b.">
             <div class="market-card-header">
                 <h3>Damiano B.</h3>
                 <div class="market-value">€9.0M</div>
@@ -259,7 +299,9 @@
         
         <a href="/players/mazzu/" class="market-card" 
            data-value="8800000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="mazzu">
             <div class="market-card-header">
                 <h3>Mazzu</h3>
                 <div class="market-value">€8.8M</div>
@@ -275,7 +317,9 @@
         
         <a href="/players/mirko-b/" class="market-card" 
            data-value="8800000" 
-           data-change="-2200000.0">
+           data-change="-2200000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="mirko b.">
             <div class="market-card-header">
                 <h3>Mirko B.</h3>
                 <div class="market-value">€8.8M</div>
@@ -291,7 +335,9 @@
         
         <a href="/players/gabry-m/" class="market-card" 
            data-value="8300000" 
-           data-change="-1500000.0">
+           data-change="-1500000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="gabry m.">
             <div class="market-card-header">
                 <h3>Gabry M.</h3>
                 <div class="market-value">€8.3M</div>
@@ -307,7 +353,9 @@
         
         <a href="/players/mehmet/" class="market-card" 
            data-value="7800000" 
-           data-change="-400000.0">
+           data-change="-400000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="mehmet">
             <div class="market-card-header">
                 <h3>Mehmet</h3>
                 <div class="market-value">€7.8M</div>
@@ -323,7 +371,9 @@
         
         <a href="/players/cri-l/" class="market-card" 
            data-value="7600000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="cri l.">
             <div class="market-card-header">
                 <h3>Cri L.</h3>
                 <div class="market-value">€7.6M</div>
@@ -339,7 +389,9 @@
         
         <a href="/players/matteo-l/" class="market-card" 
            data-value="7500000" 
-           data-change="-400000.0">
+           data-change="-400000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="matteo l.">
             <div class="market-card-header">
                 <h3>Matteo L.</h3>
                 <div class="market-value">€7.5M</div>
@@ -355,7 +407,9 @@
         
         <a href="/players/andrea-s-1/" class="market-card" 
            data-value="7500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="andrea s.">
             <div class="market-card-header">
                 <h3>Andrea S.</h3>
                 <div class="market-value">€7.5M</div>
@@ -371,7 +425,9 @@
         
         <a href="/players/giacomo-g/" class="market-card" 
            data-value="7500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="giacomo g.">
             <div class="market-card-header">
                 <h3>Giacomo G.</h3>
                 <div class="market-value">€7.5M</div>
@@ -387,7 +443,9 @@
         
         <a href="/players/stefano-m/" class="market-card" 
            data-value="7300000" 
-           data-change="-900000.0">
+           data-change="-900000.0"
+           data-championships="Bovisa"
+           data-name="stefano m.">
             <div class="market-card-header">
                 <h3>Stefano M.</h3>
                 <div class="market-value">€7.3M</div>
@@ -403,7 +461,9 @@
         
         <a href="/players/erick-t/" class="market-card" 
            data-value="6300000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="erick t.">
             <div class="market-card-header">
                 <h3>Erick T.</h3>
                 <div class="market-value">€6.3M</div>
@@ -419,7 +479,9 @@
         
         <a href="/players/daniele-r/" class="market-card" 
            data-value="6300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="daniele r.">
             <div class="market-card-header">
                 <h3>Daniele R.</h3>
                 <div class="market-value">€6.3M</div>
@@ -435,7 +497,9 @@
         
         <a href="/players/gianluca/" class="market-card" 
            data-value="6200000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="gianluca">
             <div class="market-card-header">
                 <h3>Gianluca</h3>
                 <div class="market-value">€6.2M</div>
@@ -451,7 +515,9 @@
         
         <a href="/players/ruiz-eric/" class="market-card" 
            data-value="6200000" 
-           data-change="-900000.0">
+           data-change="-900000.0"
+           data-championships="Bovisa"
+           data-name="ruiz (eric)">
             <div class="market-card-header">
                 <h3>Ruiz (Eric)</h3>
                 <div class="market-value">€6.2M</div>
@@ -467,7 +533,9 @@
         
         <a href="/players/kevin-daniel/" class="market-card" 
            data-value="6000000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa"
+           data-name="kevin (daniel)">
             <div class="market-card-header">
                 <h3>Kevin (Daniel)</h3>
                 <div class="market-value">€6.0M</div>
@@ -483,7 +551,9 @@
         
         <a href="/players/gianpiero/" class="market-card" 
            data-value="5800000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="gianpiero">
             <div class="market-card-header">
                 <h3>Gianpiero</h3>
                 <div class="market-value">€5.8M</div>
@@ -499,7 +569,9 @@
         
         <a href="/players/dennis-gabri/" class="market-card" 
            data-value="5500000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="dennis (gabri)">
             <div class="market-card-header">
                 <h3>Dennis (Gabri)</h3>
                 <div class="market-value">€5.5M</div>
@@ -515,7 +587,9 @@
         
         <a href="/players/daniel-gabry/" class="market-card" 
            data-value="5500000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="daniel (gabry)">
             <div class="market-card-header">
                 <h3>Daniel (Gabry)</h3>
                 <div class="market-value">€5.5M</div>
@@ -531,7 +605,9 @@
         
         <a href="/players/fabrizio-l/" class="market-card" 
            data-value="5500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="fabrizio l.">
             <div class="market-card-header">
                 <h3>Fabrizio L.</h3>
                 <div class="market-value">€5.5M</div>
@@ -547,7 +623,9 @@
         
         <a href="/players/daniel-jacopo/" class="market-card" 
            data-value="5400000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="daniel (jacopo)">
             <div class="market-card-header">
                 <h3>Daniel (Jacopo)</h3>
                 <div class="market-value">€5.4M</div>
@@ -563,7 +641,9 @@
         
         <a href="/players/daniele-m/" class="market-card" 
            data-value="5400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="daniele m.">
             <div class="market-card-header">
                 <h3>Daniele M.</h3>
                 <div class="market-value">€5.4M</div>
@@ -579,7 +659,9 @@
         
         <a href="/players/francesco-erick/" class="market-card" 
            data-value="5300000" 
-           data-change="-700000.0">
+           data-change="-700000.0"
+           data-championships="Bovisa"
+           data-name="francesco (erick)">
             <div class="market-card-header">
                 <h3>Francesco (Erick)</h3>
                 <div class="market-value">€5.3M</div>
@@ -595,7 +677,9 @@
         
         <a href="/players/davide-gabri/" class="market-card" 
            data-value="5200000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa"
+           data-name="davide (gabri)">
             <div class="market-card-header">
                 <h3>Davide (Gabri)</h3>
                 <div class="market-value">€5.2M</div>
@@ -611,7 +695,9 @@
         
         <a href="/players/alessandro-s/" class="market-card" 
            data-value="5200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="alessandro s.">
             <div class="market-card-header">
                 <h3>Alessandro S.</h3>
                 <div class="market-value">€5.2M</div>
@@ -627,7 +713,9 @@
         
         <a href="/players/marco-v/" class="market-card" 
            data-value="5200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="marco v.">
             <div class="market-card-header">
                 <h3>Marco V.</h3>
                 <div class="market-value">€5.2M</div>
@@ -643,7 +731,9 @@
         
         <a href="/players/federico-damiano/" class="market-card" 
            data-value="5000000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="federico (damiano)">
             <div class="market-card-header">
                 <h3>Federico (Damiano)</h3>
                 <div class="market-value">€5.0M</div>
@@ -659,7 +749,9 @@
         
         <a href="/players/luigi-gabri/" class="market-card" 
            data-value="5000000" 
-           data-change="-600000.0">
+           data-change="-600000.0"
+           data-championships="Bovisa"
+           data-name="luigi (gabri)">
             <div class="market-card-header">
                 <h3>Luigi (Gabri)</h3>
                 <div class="market-value">€5.0M</div>
@@ -675,7 +767,9 @@
         
         <a href="/players/coco-stoppi/" class="market-card" 
            data-value="5000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="coco' (stoppi)">
             <div class="market-card-header">
                 <h3>Coco' (Stoppi)</h3>
                 <div class="market-value">€5.0M</div>
@@ -691,7 +785,9 @@
         
         <a href="/players/amir-gabri/" class="market-card" 
            data-value="4900000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="amir (gabri)">
             <div class="market-card-header">
                 <h3>Amir (Gabri)</h3>
                 <div class="market-value">€4.9M</div>
@@ -707,7 +803,9 @@
         
         <a href="/players/pietro-p/" class="market-card" 
            data-value="4800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="pietro p.">
             <div class="market-card-header">
                 <h3>Pietro P.</h3>
                 <div class="market-value">€4.8M</div>
@@ -723,7 +821,9 @@
         
         <a href="/players/francesco-gio/" class="market-card" 
            data-value="4800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="francesco (gio)">
             <div class="market-card-header">
                 <h3>Francesco (Gio)</h3>
                 <div class="market-value">€4.8M</div>
@@ -739,7 +839,9 @@
         
         <a href="/players/wissam-r/" class="market-card" 
            data-value="4700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="wissam r.">
             <div class="market-card-header">
                 <h3>Wissam R.</h3>
                 <div class="market-value">€4.7M</div>
@@ -755,7 +857,9 @@
         
         <a href="/players/maurizio/" class="market-card" 
            data-value="4700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="maurizio">
             <div class="market-card-header">
                 <h3>Maurizio</h3>
                 <div class="market-value">€4.7M</div>
@@ -771,7 +875,9 @@
         
         <a href="/players/giam-robi/" class="market-card" 
            data-value="4700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="giam (robi)">
             <div class="market-card-header">
                 <h3>Giam (Robi)</h3>
                 <div class="market-value">€4.7M</div>
@@ -787,7 +893,9 @@
         
         <a href="/players/giacomo-dam/" class="market-card" 
            data-value="4600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="giacomo (dam)">
             <div class="market-card-header">
                 <h3>Giacomo (Dam)</h3>
                 <div class="market-value">€4.6M</div>
@@ -803,7 +911,9 @@
         
         <a href="/players/robi-stoppi/" class="market-card" 
            data-value="4600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="robi (stoppi)">
             <div class="market-card-header">
                 <h3>Robi (Stoppi)</h3>
                 <div class="market-value">€4.6M</div>
@@ -819,7 +929,9 @@
         
         <a href="/players/andrea-matteo/" class="market-card" 
            data-value="4600000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="andrea (matteo)">
             <div class="market-card-header">
                 <h3>Andrea (Matteo)</h3>
                 <div class="market-value">€4.6M</div>
@@ -835,7 +947,9 @@
         
         <a href="/players/ale-m/" class="market-card" 
            data-value="4600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ale m.">
             <div class="market-card-header">
                 <h3>Ale M.</h3>
                 <div class="market-value">€4.6M</div>
@@ -851,7 +965,9 @@
         
         <a href="/players/andrea-r/" class="market-card" 
            data-value="4600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="andrea r.">
             <div class="market-card-header">
                 <h3>Andrea R.</h3>
                 <div class="market-value">€4.6M</div>
@@ -867,7 +983,9 @@
         
         <a href="/players/vitto/" class="market-card" 
            data-value="4500000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="vitto">
             <div class="market-card-header">
                 <h3>Vitto</h3>
                 <div class="market-value">€4.5M</div>
@@ -883,7 +1001,9 @@
         
         <a href="/players/amico-robi/" class="market-card" 
            data-value="4500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="amico (robi)">
             <div class="market-card-header">
                 <h3>Amico (Robi)</h3>
                 <div class="market-value">€4.5M</div>
@@ -899,7 +1019,9 @@
         
         <a href="/players/michele-i/" class="market-card" 
            data-value="4500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="michele i.">
             <div class="market-card-header">
                 <h3>Michele I.</h3>
                 <div class="market-value">€4.5M</div>
@@ -915,7 +1037,9 @@
         
         <a href="/players/claudio-gio/" class="market-card" 
            data-value="4500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="claudio (gio)">
             <div class="market-card-header">
                 <h3>Claudio (Gio)</h3>
                 <div class="market-value">€4.5M</div>
@@ -931,7 +1055,9 @@
         
         <a href="/players/leonardo-r/" class="market-card" 
            data-value="4500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="leonardo r.">
             <div class="market-card-header">
                 <h3>Leonardo R.</h3>
                 <div class="market-value">€4.5M</div>
@@ -947,7 +1073,9 @@
         
         <a href="/players/alessio-antonio/" class="market-card" 
            data-value="4400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="alessio (antonio)">
             <div class="market-card-header">
                 <h3>Alessio (Antonio)</h3>
                 <div class="market-value">€4.4M</div>
@@ -963,7 +1091,9 @@
         
         <a href="/players/mattia-gabri/" class="market-card" 
            data-value="4400000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="mattia (gabri)">
             <div class="market-card-header">
                 <h3>Mattia (Gabri)</h3>
                 <div class="market-value">€4.4M</div>
@@ -979,7 +1109,9 @@
         
         <a href="/players/omar-k/" class="market-card" 
            data-value="4400000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="omar k.">
             <div class="market-card-header">
                 <h3>Omar K.</h3>
                 <div class="market-value">€4.4M</div>
@@ -995,7 +1127,9 @@
         
         <a href="/players/matteo-riccardo/" class="market-card" 
            data-value="4400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="matteo (riccardo)">
             <div class="market-card-header">
                 <h3>Matteo (Riccardo)</h3>
                 <div class="market-value">€4.4M</div>
@@ -1011,7 +1145,9 @@
         
         <a href="/players/eric-r/" class="market-card" 
            data-value="4300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="eric r.">
             <div class="market-card-header">
                 <h3>Eric R.</h3>
                 <div class="market-value">€4.3M</div>
@@ -1027,7 +1163,9 @@
         
         <a href="/players/francesco-giuseppe/" class="market-card" 
            data-value="4300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="francesco (giuseppe)">
             <div class="market-card-header">
                 <h3>Francesco (Giuseppe)</h3>
                 <div class="market-value">€4.3M</div>
@@ -1043,7 +1181,9 @@
         
         <a href="/players/barkin/" class="market-card" 
            data-value="4300000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="barkin">
             <div class="market-card-header">
                 <h3>Barkin</h3>
                 <div class="market-value">€4.3M</div>
@@ -1059,7 +1199,9 @@
         
         <a href="/players/franco-g/" class="market-card" 
            data-value="4300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="franco g.">
             <div class="market-card-header">
                 <h3>Franco G.</h3>
                 <div class="market-value">€4.3M</div>
@@ -1075,7 +1217,9 @@
         
         <a href="/players/giacomo-stoppi/" class="market-card" 
            data-value="4300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="giacomo (stoppi)">
             <div class="market-card-header">
                 <h3>Giacomo (Stoppi)</h3>
                 <div class="market-value">€4.3M</div>
@@ -1091,7 +1235,9 @@
         
         <a href="/players/matteo-v/" class="market-card" 
            data-value="4300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="matteo v.">
             <div class="market-card-header">
                 <h3>Matteo V.</h3>
                 <div class="market-value">€4.3M</div>
@@ -1107,7 +1253,9 @@
         
         <a href="/players/erhan/" class="market-card" 
            data-value="4200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="erhan">
             <div class="market-card-header">
                 <h3>Erhan</h3>
                 <div class="market-value">€4.2M</div>
@@ -1123,7 +1271,9 @@
         
         <a href="/players/claudio-cerro/" class="market-card" 
            data-value="4200000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="claudio (cerro)">
             <div class="market-card-header">
                 <h3>Claudio (Cerro)</h3>
                 <div class="market-value">€4.2M</div>
@@ -1139,7 +1289,9 @@
         
         <a href="/players/amico-g/" class="market-card" 
            data-value="4200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="amico g.">
             <div class="market-card-header">
                 <h3>Amico G.</h3>
                 <div class="market-value">€4.2M</div>
@@ -1155,7 +1307,9 @@
         
         <a href="/players/luca-riccardo/" class="market-card" 
            data-value="4200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="luca (riccardo)">
             <div class="market-card-header">
                 <h3>Luca (Riccardo)</h3>
                 <div class="market-value">€4.2M</div>
@@ -1171,7 +1325,9 @@
         
         <a href="/players/alessio-cava/" class="market-card" 
            data-value="4100000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="alessio (cava)">
             <div class="market-card-header">
                 <h3>Alessio (Cava)</h3>
                 <div class="market-value">€4.1M</div>
@@ -1187,7 +1343,9 @@
         
         <a href="/players/squeo/" class="market-card" 
            data-value="4100000" 
-           data-change="-400000.0">
+           data-change="-400000.0"
+           data-championships="Bovisa"
+           data-name="squeo">
             <div class="market-card-header">
                 <h3>Squeo</h3>
                 <div class="market-value">€4.1M</div>
@@ -1203,7 +1361,9 @@
         
         <a href="/players/ingra/" class="market-card" 
            data-value="4100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ingra">
             <div class="market-card-header">
                 <h3>Ingra</h3>
                 <div class="market-value">€4.1M</div>
@@ -1219,7 +1379,9 @@
         
         <a href="/players/matteo-mazzu/" class="market-card" 
            data-value="4100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="matteo (mazzu)">
             <div class="market-card-header">
                 <h3>Matteo (Mazzu)</h3>
                 <div class="market-value">€4.1M</div>
@@ -1235,7 +1397,9 @@
         
         <a href="/players/matteo-green/" class="market-card" 
            data-value="4100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="matteo (green)">
             <div class="market-card-header">
                 <h3>Matteo (Green)</h3>
                 <div class="market-value">€4.1M</div>
@@ -1251,7 +1415,9 @@
         
         <a href="/players/omar-l/" class="market-card" 
            data-value="4100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="omar l.">
             <div class="market-card-header">
                 <h3>Omar L.</h3>
                 <div class="market-value">€4.1M</div>
@@ -1267,7 +1433,9 @@
         
         <a href="/players/sergio-n/" class="market-card" 
            data-value="4000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="sergio n.">
             <div class="market-card-header">
                 <h3>Sergio N.</h3>
                 <div class="market-value">€4.0M</div>
@@ -1283,7 +1451,9 @@
         
         <a href="/players/alfredo-dam/" class="market-card" 
            data-value="4000000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="alfredo (dam)">
             <div class="market-card-header">
                 <h3>Alfredo (Dam)</h3>
                 <div class="market-value">€4.0M</div>
@@ -1299,7 +1469,9 @@
         
         <a href="/players/alessandro-z/" class="market-card" 
            data-value="4000000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="alessandro z.">
             <div class="market-card-header">
                 <h3>Alessandro Z.</h3>
                 <div class="market-value">€4.0M</div>
@@ -1315,7 +1487,9 @@
         
         <a href="/players/jacopo-gabri/" class="market-card" 
            data-value="4000000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="jacopo (gabri)">
             <div class="market-card-header">
                 <h3>Jacopo (Gabri)</h3>
                 <div class="market-value">€4.0M</div>
@@ -1331,7 +1505,9 @@
         
         <a href="/players/riccardo-r/" class="market-card" 
            data-value="4000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="riccardo r.">
             <div class="market-card-header">
                 <h3>Riccardo R.</h3>
                 <div class="market-value">€4.0M</div>
@@ -1347,7 +1523,9 @@
         
         <a href="/players/rocco/" class="market-card" 
            data-value="4000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="rocco">
             <div class="market-card-header">
                 <h3>Rocco</h3>
                 <div class="market-value">€4.0M</div>
@@ -1363,7 +1541,9 @@
         
         <a href="/players/davide-mazzu/" class="market-card" 
            data-value="4000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="davide (mazzu)">
             <div class="market-card-header">
                 <h3>Davide (Mazzu)</h3>
                 <div class="market-value">€4.0M</div>
@@ -1379,7 +1559,9 @@
         
         <a href="/players/riccardo-cameron/" class="market-card" 
            data-value="4000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="riccardo (cameron)">
             <div class="market-card-header">
                 <h3>Riccardo (Cameron)</h3>
                 <div class="market-value">€4.0M</div>
@@ -1395,7 +1577,9 @@
         
         <a href="/players/cri-cri/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="cri (cri)">
             <div class="market-card-header">
                 <h3>Cri (Cri)</h3>
                 <div class="market-value">€3.9M</div>
@@ -1411,7 +1595,9 @@
         
         <a href="/players/andrea-d/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="andrea d.">
             <div class="market-card-header">
                 <h3>Andrea D.</h3>
                 <div class="market-value">€3.9M</div>
@@ -1427,7 +1613,9 @@
         
         <a href="/players/leo-cava/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="leo (cava)">
             <div class="market-card-header">
                 <h3>Leo (Cava)</h3>
                 <div class="market-value">€3.9M</div>
@@ -1443,7 +1631,9 @@
         
         <a href="/players/alessandro-a/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="alessandro a.">
             <div class="market-card-header">
                 <h3>Alessandro A.</h3>
                 <div class="market-value">€3.9M</div>
@@ -1459,7 +1649,9 @@
         
         <a href="/players/simone-orlando/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="simone (orlando)">
             <div class="market-card-header">
                 <h3>Simone (Orlando)</h3>
                 <div class="market-value">€3.9M</div>
@@ -1475,7 +1667,9 @@
         
         <a href="/players/mauro-gabri/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="mauro (gabri)">
             <div class="market-card-header">
                 <h3>Mauro (Gabri)</h3>
                 <div class="market-value">€3.9M</div>
@@ -1491,7 +1685,9 @@
         
         <a href="/players/luca-b/" class="market-card" 
            data-value="3900000" 
-           data-change="-300000.0">
+           data-change="-300000.0"
+           data-championships="Bovisa"
+           data-name="luca b.">
             <div class="market-card-header">
                 <h3>Luca B.</h3>
                 <div class="market-value">€3.9M</div>
@@ -1507,7 +1703,9 @@
         
         <a href="/players/thomas/" class="market-card" 
            data-value="3900000" 
-           data-change="-500000.0">
+           data-change="-500000.0"
+           data-championships="Bovisa"
+           data-name="thomas">
             <div class="market-card-header">
                 <h3>Thomas</h3>
                 <div class="market-value">€3.9M</div>
@@ -1523,7 +1721,9 @@
         
         <a href="/players/pedro/" class="market-card" 
            data-value="3900000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="pedro">
             <div class="market-card-header">
                 <h3>Pedro</h3>
                 <div class="market-value">€3.9M</div>
@@ -1539,7 +1739,9 @@
         
         <a href="/players/ale-g/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ale g.">
             <div class="market-card-header">
                 <h3>Ale G.</h3>
                 <div class="market-value">€3.9M</div>
@@ -1555,7 +1757,9 @@
         
         <a href="/players/davide-a/" class="market-card" 
            data-value="3900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="davide a.">
             <div class="market-card-header">
                 <h3>Davide A.</h3>
                 <div class="market-value">€3.9M</div>
@@ -1571,7 +1775,9 @@
         
         <a href="/players/coyote-cri/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="coyote (cri)">
             <div class="market-card-header">
                 <h3>Coyote (Cri)</h3>
                 <div class="market-value">€3.8M</div>
@@ -1587,7 +1793,9 @@
         
         <a href="/players/leon-g/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="leon g.">
             <div class="market-card-header">
                 <h3>Leon G.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1603,7 +1811,9 @@
         
         <a href="/players/giuseppe-p/" class="market-card" 
            data-value="3800000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="giuseppe p.">
             <div class="market-card-header">
                 <h3>Giuseppe P.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1619,7 +1829,9 @@
         
         <a href="/players/stefano-g/" class="market-card" 
            data-value="3800000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="stefano g.">
             <div class="market-card-header">
                 <h3>Stefano G.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1635,7 +1847,9 @@
         
         <a href="/players/orlando-f/" class="market-card" 
            data-value="3800000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="orlando f.">
             <div class="market-card-header">
                 <h3>Orlando F.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1651,7 +1865,9 @@
         
         <a href="/players/gio-matteo/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="gio (matteo)">
             <div class="market-card-header">
                 <h3>Gio (Matteo)</h3>
                 <div class="market-value">€3.8M</div>
@@ -1667,7 +1883,9 @@
         
         <a href="/players/fabrizio-gian/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="fabrizio (gian)">
             <div class="market-card-header">
                 <h3>Fabrizio (Gian)</h3>
                 <div class="market-value">€3.8M</div>
@@ -1683,7 +1901,9 @@
         
         <a href="/players/tiziano-r/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="tiziano r.">
             <div class="market-card-header">
                 <h3>Tiziano R.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1699,7 +1919,9 @@
         
         <a href="/players/jacopo-b/" class="market-card" 
            data-value="3800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="jacopo b.">
             <div class="market-card-header">
                 <h3>Jacopo B.</h3>
                 <div class="market-value">€3.8M</div>
@@ -1715,7 +1937,9 @@
         
         <a href="/players/antonio-g/" class="market-card" 
            data-value="3700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="antonio g.">
             <div class="market-card-header">
                 <h3>Antonio G.</h3>
                 <div class="market-value">€3.7M</div>
@@ -1731,7 +1955,9 @@
         
         <a href="/players/pouchner/" class="market-card" 
            data-value="3700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="pouchner">
             <div class="market-card-header">
                 <h3>Pouchner</h3>
                 <div class="market-value">€3.7M</div>
@@ -1747,7 +1973,9 @@
         
         <a href="/players/coco/" class="market-card" 
            data-value="3700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="cocò">
             <div class="market-card-header">
                 <h3>Cocò</h3>
                 <div class="market-value">€3.7M</div>
@@ -1763,7 +1991,9 @@
         
         <a href="/players/brambo/" class="market-card" 
            data-value="3700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="brambo">
             <div class="market-card-header">
                 <h3>Brambo</h3>
                 <div class="market-value">€3.7M</div>
@@ -1779,7 +2009,9 @@
         
         <a href="/players/matteo/" class="market-card" 
            data-value="3700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="matteo">
             <div class="market-card-header">
                 <h3>Matteo</h3>
                 <div class="market-value">€3.7M</div>
@@ -1795,7 +2027,9 @@
         
         <a href="/players/vincenzo-cava/" class="market-card" 
            data-value="3600000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="vincenzo (cava)">
             <div class="market-card-header">
                 <h3>Vincenzo (Cava)</h3>
                 <div class="market-value">€3.6M</div>
@@ -1811,7 +2045,9 @@
         
         <a href="/players/karlo/" class="market-card" 
            data-value="3600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="karlo">
             <div class="market-card-header">
                 <h3>Karlo</h3>
                 <div class="market-value">€3.6M</div>
@@ -1827,7 +2063,9 @@
         
         <a href="/players/alberto-cerro/" class="market-card" 
            data-value="3600000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="alberto (cerro)">
             <div class="market-card-header">
                 <h3>Alberto (Cerro)</h3>
                 <div class="market-value">€3.6M</div>
@@ -1843,7 +2081,9 @@
         
         <a href="/players/francesco/" class="market-card" 
            data-value="3600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="francesco">
             <div class="market-card-header">
                 <h3>Francesco</h3>
                 <div class="market-value">€3.6M</div>
@@ -1859,7 +2099,9 @@
         
         <a href="/players/emilano-dani/" class="market-card" 
            data-value="3600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="emilano (dani)">
             <div class="market-card-header">
                 <h3>Emilano (Dani)</h3>
                 <div class="market-value">€3.6M</div>
@@ -1875,7 +2117,9 @@
         
         <a href="/players/stefano-t/" class="market-card" 
            data-value="3500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="stefano t.">
             <div class="market-card-header">
                 <h3>Stefano T.</h3>
                 <div class="market-value">€3.5M</div>
@@ -1891,7 +2135,9 @@
         
         <a href="/players/matteo-gabri/" class="market-card" 
            data-value="3500000" 
-           data-change="-400000.0">
+           data-change="-400000.0"
+           data-championships="Bovisa"
+           data-name="matteo (gabri)">
             <div class="market-card-header">
                 <h3>Matteo (Gabri)</h3>
                 <div class="market-value">€3.5M</div>
@@ -1907,7 +2153,9 @@
         
         <a href="/players/stefano-cava/" class="market-card" 
            data-value="3500000" 
-           data-change="-300000.0">
+           data-change="-300000.0"
+           data-championships="Bovisa"
+           data-name="stefano (cava)">
             <div class="market-card-header">
                 <h3>Stefano (Cava)</h3>
                 <div class="market-value">€3.5M</div>
@@ -1923,7 +2171,9 @@
         
         <a href="/players/gian-s/" class="market-card" 
            data-value="3500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="gian s.">
             <div class="market-card-header">
                 <h3>Gian S.</h3>
                 <div class="market-value">€3.5M</div>
@@ -1939,7 +2189,9 @@
         
         <a href="/players/dario-gio/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="dario (gio)">
             <div class="market-card-header">
                 <h3>Dario (Gio)</h3>
                 <div class="market-value">€3.4M</div>
@@ -1955,7 +2207,9 @@
         
         <a href="/players/juan/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="juan">
             <div class="market-card-header">
                 <h3>Juan</h3>
                 <div class="market-value">€3.4M</div>
@@ -1971,7 +2225,9 @@
         
         <a href="/players/federico-a/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="federico a.">
             <div class="market-card-header">
                 <h3>Federico A.</h3>
                 <div class="market-value">€3.4M</div>
@@ -1987,7 +2243,9 @@
         
         <a href="/players/rohit-k/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="rohit k.">
             <div class="market-card-header">
                 <h3>Rohit K.</h3>
                 <div class="market-value">€3.4M</div>
@@ -2003,7 +2261,9 @@
         
         <a href="/players/fede-l/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="fede l.">
             <div class="market-card-header">
                 <h3>Fede L.</h3>
                 <div class="market-value">€3.4M</div>
@@ -2019,7 +2279,9 @@
         
         <a href="/players/jacopo-gianluca/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="jacopo (gianluca)">
             <div class="market-card-header">
                 <h3>Jacopo (Gianluca)</h3>
                 <div class="market-value">€3.4M</div>
@@ -2035,7 +2297,9 @@
         
         <a href="/players/guido-sergio/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="guido (sergio)">
             <div class="market-card-header">
                 <h3>Guido (Sergio)</h3>
                 <div class="market-value">€3.4M</div>
@@ -2051,7 +2315,9 @@
         
         <a href="/players/cristian-g/" class="market-card" 
            data-value="3400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="cristian g.">
             <div class="market-card-header">
                 <h3>Cristian G.</h3>
                 <div class="market-value">€3.4M</div>
@@ -2067,7 +2333,9 @@
         
         <a href="/players/fabio-gianluca/" class="market-card" 
            data-value="3300000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="fabio (gianluca)">
             <div class="market-card-header">
                 <h3>Fabio (Gianluca)</h3>
                 <div class="market-value">€3.3M</div>
@@ -2083,7 +2351,9 @@
         
         <a href="/players/luca-cava/" class="market-card" 
            data-value="3300000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="luca (cava)">
             <div class="market-card-header">
                 <h3>Luca (Cava)</h3>
                 <div class="market-value">€3.3M</div>
@@ -2099,7 +2369,9 @@
         
         <a href="/players/terni-damiano/" class="market-card" 
            data-value="3300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="terni (damiano)">
             <div class="market-card-header">
                 <h3>Terni (Damiano)</h3>
                 <div class="market-value">€3.3M</div>
@@ -2115,7 +2387,9 @@
         
         <a href="/players/andrea-s-2/" class="market-card" 
            data-value="3300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="andrea s.">
             <div class="market-card-header">
                 <h3>Andrea S.</h3>
                 <div class="market-value">€3.3M</div>
@@ -2131,7 +2405,9 @@
         
         <a href="/players/mario-c/" class="market-card" 
            data-value="3300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="mario c.">
             <div class="market-card-header">
                 <h3>Mario C.</h3>
                 <div class="market-value">€3.3M</div>
@@ -2147,7 +2423,9 @@
         
         <a href="/players/francesco-mazzu/" class="market-card" 
            data-value="3200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="francesco (mazzu)">
             <div class="market-card-header">
                 <h3>Francesco (Mazzu)</h3>
                 <div class="market-value">€3.2M</div>
@@ -2163,7 +2441,9 @@
         
         <a href="/players/stefano-c/" class="market-card" 
            data-value="3100000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="stefano c.">
             <div class="market-card-header">
                 <h3>Stefano C.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2179,7 +2459,9 @@
         
         <a href="/players/samuele-l/" class="market-card" 
            data-value="3100000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="samuele l.">
             <div class="market-card-header">
                 <h3>Samuele L.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2195,7 +2477,9 @@
         
         <a href="/players/samuele-mirko/" class="market-card" 
            data-value="3100000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="samuele (mirko)">
             <div class="market-card-header">
                 <h3>Samuele (Mirko)</h3>
                 <div class="market-value">€3.1M</div>
@@ -2211,7 +2495,9 @@
         
         <a href="/players/tommaso-s/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="tommaso s.">
             <div class="market-card-header">
                 <h3>Tommaso S.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2227,7 +2513,9 @@
         
         <a href="/players/max-m/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Moscova"
+           data-name="max m.">
             <div class="market-card-header">
                 <h3>Max M.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2243,7 +2531,9 @@
         
         <a href="/players/ale-mazzu/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ale (mazzu)">
             <div class="market-card-header">
                 <h3>Ale (Mazzu)</h3>
                 <div class="market-value">€3.1M</div>
@@ -2259,7 +2549,9 @@
         
         <a href="/players/ludovico-r/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ludovico r.">
             <div class="market-card-header">
                 <h3>Ludovico R.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2275,7 +2567,9 @@
         
         <a href="/players/zen/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="zen">
             <div class="market-card-header">
                 <h3>Zen</h3>
                 <div class="market-value">€3.1M</div>
@@ -2291,7 +2585,9 @@
         
         <a href="/players/amico-m/" class="market-card" 
            data-value="3100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="amico m.">
             <div class="market-card-header">
                 <h3>Amico M.</h3>
                 <div class="market-value">€3.1M</div>
@@ -2307,7 +2603,9 @@
         
         <a href="/players/cristian-p/" class="market-card" 
            data-value="3000000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="cristian p.">
             <div class="market-card-header">
                 <h3>Cristian P.</h3>
                 <div class="market-value">€3.0M</div>
@@ -2323,7 +2621,9 @@
         
         <a href="/players/andrea-francesco/" class="market-card" 
            data-value="2900000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="andrea (francesco)">
             <div class="market-card-header">
                 <h3>Andrea (Francesco)</h3>
                 <div class="market-value">€2.9M</div>
@@ -2339,7 +2639,9 @@
         
         <a href="/players/marco-t/" class="market-card" 
            data-value="2900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="marco t.">
             <div class="market-card-header">
                 <h3>Marco T.</h3>
                 <div class="market-value">€2.9M</div>
@@ -2355,7 +2657,9 @@
         
         <a href="/players/luca-s-2/" class="market-card" 
            data-value="2900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="luca s.">
             <div class="market-card-header">
                 <h3>Luca S.</h3>
                 <div class="market-value">€2.9M</div>
@@ -2371,7 +2675,9 @@
         
         <a href="/players/mirko-cava/" class="market-card" 
            data-value="2900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="mirko (cava)">
             <div class="market-card-header">
                 <h3>Mirko (Cava)</h3>
                 <div class="market-value">€2.9M</div>
@@ -2387,7 +2693,9 @@
         
         <a href="/players/tommaso-g/" class="market-card" 
            data-value="2800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="tommaso g.">
             <div class="market-card-header">
                 <h3>Tommaso G.</h3>
                 <div class="market-value">€2.8M</div>
@@ -2403,7 +2711,9 @@
         
         <a href="/players/mirco-erick/" class="market-card" 
            data-value="2800000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="mirco (erick)">
             <div class="market-card-header">
                 <h3>Mirco (Erick)</h3>
                 <div class="market-value">€2.8M</div>
@@ -2419,7 +2729,9 @@
         
         <a href="/players/dennis-difensore-gabri/" class="market-card" 
            data-value="2800000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="dennis difensore (gabri)">
             <div class="market-card-header">
                 <h3>Dennis Difensore (Gabri)</h3>
                 <div class="market-value">€2.8M</div>
@@ -2435,7 +2747,9 @@
         
         <a href="/players/cormac-m/" class="market-card" 
            data-value="2800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="cormac m.">
             <div class="market-card-header">
                 <h3>Cormac M.</h3>
                 <div class="market-value">€2.8M</div>
@@ -2451,7 +2765,9 @@
         
         <a href="/players/omar/" class="market-card" 
            data-value="2800000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="omar">
             <div class="market-card-header">
                 <h3>Omar</h3>
                 <div class="market-value">€2.8M</div>
@@ -2467,7 +2783,9 @@
         
         <a href="/players/diego-f/" class="market-card" 
            data-value="2700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="diego f.">
             <div class="market-card-header">
                 <h3>Diego F.</h3>
                 <div class="market-value">€2.7M</div>
@@ -2483,7 +2801,9 @@
         
         <a href="/players/ale-p/" class="market-card" 
            data-value="2700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ale p.">
             <div class="market-card-header">
                 <h3>Ale P.</h3>
                 <div class="market-value">€2.7M</div>
@@ -2499,7 +2819,9 @@
         
         <a href="/players/mirco-francesco/" class="market-card" 
            data-value="2700000" 
-           data-change="-300000.0">
+           data-change="-300000.0"
+           data-championships="Bovisa"
+           data-name="mirco (francesco)">
             <div class="market-card-header">
                 <h3>Mirco (Francesco)</h3>
                 <div class="market-value">€2.7M</div>
@@ -2515,7 +2837,9 @@
         
         <a href="/players/dario-francesco/" class="market-card" 
            data-value="2700000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="dario (francesco)">
             <div class="market-card-header">
                 <h3>Dario (Francesco)</h3>
                 <div class="market-value">€2.7M</div>
@@ -2531,7 +2855,9 @@
         
         <a href="/players/alessio/" class="market-card" 
            data-value="2600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="alessio">
             <div class="market-card-header">
                 <h3>Alessio</h3>
                 <div class="market-value">€2.6M</div>
@@ -2547,7 +2873,9 @@
         
         <a href="/players/kevin-gabri/" class="market-card" 
            data-value="2600000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="kevin (gabri)">
             <div class="market-card-header">
                 <h3>Kevin (Gabri)</h3>
                 <div class="market-value">€2.6M</div>
@@ -2563,7 +2891,9 @@
         
         <a href="/players/robi-m/" class="market-card" 
            data-value="2600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="robi m.">
             <div class="market-card-header">
                 <h3>Robi M.</h3>
                 <div class="market-value">€2.6M</div>
@@ -2579,7 +2909,9 @@
         
         <a href="/players/marco-g/" class="market-card" 
            data-value="2600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="marco g.">
             <div class="market-card-header">
                 <h3>Marco G.</h3>
                 <div class="market-value">€2.6M</div>
@@ -2595,7 +2927,9 @@
         
         <a href="/players/ivo/" class="market-card" 
            data-value="2600000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa,Lambrate"
+           data-name="ivo">
             <div class="market-card-header">
                 <h3>Ivo</h3>
                 <div class="market-value">€2.6M</div>
@@ -2611,7 +2945,9 @@
         
         <a href="/players/andrea-robi/" class="market-card" 
            data-value="2500000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="andrea (robi)">
             <div class="market-card-header">
                 <h3>Andrea (Robi)</h3>
                 <div class="market-value">€2.5M</div>
@@ -2627,7 +2963,9 @@
         
         <a href="/players/eugenio-g/" class="market-card" 
            data-value="2500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="eugenio g.">
             <div class="market-card-header">
                 <h3>Eugenio G.</h3>
                 <div class="market-value">€2.5M</div>
@@ -2643,7 +2981,9 @@
         
         <a href="/players/alessandro-g/" class="market-card" 
            data-value="2500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="alessandro g.">
             <div class="market-card-header">
                 <h3>Alessandro G.</h3>
                 <div class="market-value">€2.5M</div>
@@ -2659,7 +2999,9 @@
         
         <a href="/players/fabio-mario/" class="market-card" 
            data-value="2500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="fabio (mario)">
             <div class="market-card-header">
                 <h3>Fabio (Mario)</h3>
                 <div class="market-value">€2.5M</div>
@@ -2675,7 +3017,9 @@
         
         <a href="/players/roccos-b/" class="market-card" 
            data-value="2500000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="rocco's b.">
             <div class="market-card-header">
                 <h3>Rocco's B.</h3>
                 <div class="market-value">€2.5M</div>
@@ -2691,7 +3035,9 @@
         
         <a href="/players/mirko-gio/" class="market-card" 
            data-value="2400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="mirko (gio)">
             <div class="market-card-header">
                 <h3>Mirko (Gio)</h3>
                 <div class="market-value">€2.4M</div>
@@ -2707,7 +3053,9 @@
         
         <a href="/players/sergio-antonio/" class="market-card" 
            data-value="2400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="sergio (antonio)">
             <div class="market-card-header">
                 <h3>Sergio (Antonio)</h3>
                 <div class="market-value">€2.4M</div>
@@ -2723,7 +3071,9 @@
         
         <a href="/players/giacomo-damiano/" class="market-card" 
            data-value="2400000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Bovisa"
+           data-name="giacomo (damiano)">
             <div class="market-card-header">
                 <h3>Giacomo (Damiano)</h3>
                 <div class="market-value">€2.4M</div>
@@ -2739,7 +3089,9 @@
         
         <a href="/players/francesco-robi/" class="market-card" 
            data-value="2400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="francesco (robi)">
             <div class="market-card-header">
                 <h3>Francesco (Robi)</h3>
                 <div class="market-value">€2.4M</div>
@@ -2755,7 +3107,9 @@
         
         <a href="/players/sata-robi/" class="market-card" 
            data-value="2400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="sata (robi)">
             <div class="market-card-header">
                 <h3>Sata (Robi)</h3>
                 <div class="market-value">€2.4M</div>
@@ -2771,7 +3125,9 @@
         
         <a href="/players/gabriele/" class="market-card" 
            data-value="2400000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="gabriele">
             <div class="market-card-header">
                 <h3>Gabriele</h3>
                 <div class="market-value">€2.4M</div>
@@ -2787,7 +3143,9 @@
         
         <a href="/players/nicolo-basile/" class="market-card" 
            data-value="2300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="nicolò (basile)">
             <div class="market-card-header">
                 <h3>Nicolò (Basile)</h3>
                 <div class="market-value">€2.3M</div>
@@ -2803,7 +3161,9 @@
         
         <a href="/players/danilo-erick/" class="market-card" 
            data-value="2300000" 
-           data-change="-200000.0">
+           data-change="-200000.0"
+           data-championships="Bovisa"
+           data-name="danilo (erick)">
             <div class="market-card-header">
                 <h3>Danilo (Erick)</h3>
                 <div class="market-value">€2.3M</div>
@@ -2819,7 +3179,9 @@
         
         <a href="/players/puddi/" class="market-card" 
            data-value="2300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="puddi">
             <div class="market-card-header">
                 <h3>Puddi</h3>
                 <div class="market-value">€2.3M</div>
@@ -2835,7 +3197,9 @@
         
         <a href="/players/jacopo-robi/" class="market-card" 
            data-value="2300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="jacopo (robi)">
             <div class="market-card-header">
                 <h3>Jacopo (Robi)</h3>
                 <div class="market-value">€2.3M</div>
@@ -2851,7 +3215,9 @@
         
         <a href="/players/michelangelo-v/" class="market-card" 
            data-value="2300000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="michelangelo v.">
             <div class="market-card-header">
                 <h3>Michelangelo V.</h3>
                 <div class="market-value">€2.3M</div>
@@ -2867,7 +3233,9 @@
         
         <a href="/players/simone-zito/" class="market-card" 
            data-value="2300000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="simone (zito)">
             <div class="market-card-header">
                 <h3>Simone (Zito)</h3>
                 <div class="market-value">€2.3M</div>
@@ -2883,7 +3251,9 @@
         
         <a href="/players/mario-zito/" class="market-card" 
            data-value="2300000" 
-           data-change="-100000.0">
+           data-change="-100000.0"
+           data-championships="Lambrate"
+           data-name="mario (zito)">
             <div class="market-card-header">
                 <h3>Mario (Zito)</h3>
                 <div class="market-value">€2.3M</div>
@@ -2899,7 +3269,9 @@
         
         <a href="/players/nicola-federico/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="nicola (federico)">
             <div class="market-card-header">
                 <h3>Nicola (Federico)</h3>
                 <div class="market-value">€2.2M</div>
@@ -2915,7 +3287,9 @@
         
         <a href="/players/rudy-v/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="rudy v.">
             <div class="market-card-header">
                 <h3>Rudy V.</h3>
                 <div class="market-value">€2.2M</div>
@@ -2931,7 +3305,9 @@
         
         <a href="/players/braz/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="braz">
             <div class="market-card-header">
                 <h3>Braz</h3>
                 <div class="market-value">€2.2M</div>
@@ -2947,7 +3323,9 @@
         
         <a href="/players/ale-fabri/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="ale (fabri)">
             <div class="market-card-header">
                 <h3>Ale (Fabri)</h3>
                 <div class="market-value">€2.2M</div>
@@ -2963,7 +3341,9 @@
         
         <a href="/players/alessandro-maurizio/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="alessandro (maurizio)">
             <div class="market-card-header">
                 <h3>Alessandro (Maurizio)</h3>
                 <div class="market-value">€2.2M</div>
@@ -2979,7 +3359,9 @@
         
         <a href="/players/giuseppe-gio/" class="market-card" 
            data-value="2200000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="giuseppe (gio)">
             <div class="market-card-header">
                 <h3>Giuseppe (Gio)</h3>
                 <div class="market-value">€2.2M</div>
@@ -2995,7 +3377,9 @@
         
         <a href="/players/lipi-mirko/" class="market-card" 
            data-value="2100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="lipi (mirko)">
             <div class="market-card-header">
                 <h3>Lipi (Mirko)</h3>
                 <div class="market-value">€2.1M</div>
@@ -3011,7 +3395,9 @@
         
         <a href="/players/andrea-g/" class="market-card" 
            data-value="2000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="andrea g.">
             <div class="market-card-header">
                 <h3>Andrea G.</h3>
                 <div class="market-value">€2.0M</div>
@@ -3027,7 +3413,9 @@
         
         <a href="/players/fabrizio-s/" class="market-card" 
            data-value="1900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Lambrate"
+           data-name="fabrizio s.">
             <div class="market-card-header">
                 <h3>Fabrizio S.</h3>
                 <div class="market-value">€1.9M</div>
@@ -3043,7 +3431,9 @@
         
         <a href="/players/frank-cava/" class="market-card" 
            data-value="1900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="frank (cava)">
             <div class="market-card-header">
                 <h3>Frank (Cava)</h3>
                 <div class="market-value">€1.9M</div>
@@ -3059,7 +3449,9 @@
         
         <a href="/players/sergio-leo/" class="market-card" 
            data-value="1900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="sergio (leo)">
             <div class="market-card-header">
                 <h3>Sergio (Leo)</h3>
                 <div class="market-value">€1.9M</div>
@@ -3075,7 +3467,9 @@
         
         <a href="/players/jacopo-r/" class="market-card" 
            data-value="1900000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="jacopo r.">
             <div class="market-card-header">
                 <h3>Jacopo R.</h3>
                 <div class="market-value">€1.9M</div>
@@ -3091,7 +3485,9 @@
         
         <a href="/players/carlo-t/" class="market-card" 
            data-value="1100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="carlo t.">
             <div class="market-card-header">
                 <h3>Carlo T.</h3>
                 <div class="market-value">€1.1M</div>
@@ -3107,7 +3503,9 @@
         
         <a href="/players/davide-scotti/" class="market-card" 
            data-value="1100000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="davide (scotti)">
             <div class="market-card-header">
                 <h3>Davide (Scotti)</h3>
                 <div class="market-value">€1.1M</div>
@@ -3123,7 +3521,9 @@
         
         <a href="/players/mirco-jacopo/" class="market-card" 
            data-value="1000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="mirco (jacopo)">
             <div class="market-card-header">
                 <h3>Mirco (Jacopo)</h3>
                 <div class="market-value">€1.0M</div>
@@ -3139,7 +3539,9 @@
         
         <a href="/players/federico-m/" class="market-card" 
            data-value="1000000" 
-           data-change="0.0">
+           data-change="0.0"
+           data-championships="Bovisa"
+           data-name="federico m.">
             <div class="market-card-header">
                 <h3>Federico M.</h3>
                 <div class="market-value">€1.0M</div>
@@ -3165,36 +3567,52 @@ document.addEventListener('DOMContentLoaded', function() {
         drawSparkline(canvas, history);
     });
     
-    // Sort functionality
+    // Search + championship filter + sort functionality
     const sortSelect = document.getElementById('sortSelect');
+    const champFilter = document.getElementById('champFilter');
+    const searchInput = document.getElementById('searchInput');
     const grid = document.getElementById('marketGrid');
-    
-    sortSelect.addEventListener('change', function() {
+
+    function applyFilters() {
         const cards = Array.from(grid.querySelectorAll('.market-card'));
-        
-        cards.sort((a, b) => {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        const champ = champFilter ? champFilter.value : '';
+
+        // Filter
+        const visible = cards.filter(card => {
+            const matchesName = !query || (card.dataset.name || '').includes(query);
+            const champs = (card.dataset.championships || '').split(',');
+            const matchesChamp = !champ || champs.includes(champ);
+            return matchesName && matchesChamp;
+        });
+        const hidden = cards.filter(card => !visible.includes(card));
+
+        // Sort the visible set
+        visible.sort((a, b) => {
             const valueA = parseFloat(a.dataset.value);
             const valueB = parseFloat(b.dataset.value);
             const changeA = parseFloat(a.dataset.change);
             const changeB = parseFloat(b.dataset.change);
-            
-            switch(this.value) {
-                case 'value-desc':
-                    return valueB - valueA;
-                case 'value-asc':
-                    return valueA - valueB;
-                case 'gainer':
-                    return changeB - changeA;
-                case 'loser':
-                    return changeA - changeB;
-                default:
-                    return 0;
+
+            switch(sortSelect.value) {
+                case 'value-desc': return valueB - valueA;
+                case 'value-asc':  return valueA - valueB;
+                case 'gainer':     return changeB - changeA;
+                case 'loser':      return changeA - changeB;
+                default:           return 0;
             }
         });
-        
-        // Re-append in new order
-        cards.forEach(card => grid.appendChild(card));
-    });
+
+        // Render: visible cards first, hidden cards at the end (kept but display:none)
+        hidden.forEach(card => card.style.display = 'none');
+        visible.forEach(card => card.style.display = '');
+        visible.forEach(card => grid.appendChild(card));
+        hidden.forEach(card => grid.appendChild(card));
+    }
+
+    sortSelect.addEventListener('change', applyFilters);
+    if (champFilter) champFilter.addEventListener('change', applyFilters);
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
 });
 </script>
 

@@ -661,6 +661,34 @@ a:hover {
     box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
+/* Market search input */
+.search-input {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    min-width: 180px;
+}
+.search-input::placeholder {
+    color: var(--text-tertiary);
+}
+.search-input:hover {
+    border-color: var(--accent-primary);
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.filter-group-search {
+    flex: 1 1 220px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
 /* Tables */
 .table-responsive {
     overflow-x: auto;
