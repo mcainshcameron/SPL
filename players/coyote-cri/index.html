@@ -1,341 +1,523 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coyote (Cri) - SPL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Coyote (Cri) · SPL</title>
+    <meta name="description" content="Coyote (Cri): statistiche, valore di mercato e storico partite in Solo Pro League.">
+    <meta name="theme-color" content="#05090f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Solo Pro League">
+    <meta property="og:title" content="Coyote (Cri) · SPL">
+    <meta property="og:description" content="Coyote (Cri): statistiche, valore di mercato e storico partite in Solo Pro League.">
+    <meta property="og:image" content="https://fantaspl.com/static/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=202609250719">
+    <script>document.documentElement.classList.add('js');</script>
     
-<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js" defer></script>
 
 </head>
-<body>
-    <!-- Desktop Navigation -->
-    <nav class="nav-desktop">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">
-                <img src="/static/images/logo.png" alt="SPL Logo">
+<body class="page-player">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M8.5 3 12 5l3.5-2L21 6l-2 5-2.5-1V21h-9V10L5 11 3 6z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></symbol>
+    <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7.5 3.8 2.8-1.4 4.5H9.6l-1.4-4.5z"/><path d="M12 3v4.5M20.6 9.3l-4.8 1M17.3 19.4l-2.9-4.6M6.7 19.4l2.9-4.6M3.4 9.3l4.8 1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+    <symbol id="i-kit" viewBox="0 0 24 24"><path d="M8.5 3 12 5l3.5-2L21 6l-2 5-2.5-1V21h-9V10L5 11 3 6z"/></symbol>
+</svg>
+    <a class="skip-link" href="#main">Vai al contenuto</a>
+
+    <header class="topbar">
+        <div class="topbar-inner container">
+            <a href="/" class="brand" aria-label="Solo Pro League — Home">
+                <img src="/static/images/logo-web.png" alt="SPL — Solo Pro League" width="118" height="80">
             </a>
-            <div class="nav-links">
+            <nav class="nav-links" aria-label="Navigazione principale">
+                
                 <a href="/" class="nav-link ">Home</a>
+                
                 <a href="/classifica/" class="nav-link ">Classifica</a>
+                
                 <a href="/mercato/" class="nav-link ">Mercato</a>
+                
                 <a href="/squadre/" class="nav-link ">Squadre</a>
+                
                 <a href="/fantalega/" class="nav-link ">FantaSPL</a>
+                
                 <a href="/risultati/" class="nav-link ">Risultati</a>
+                
+            </nav>
+            <div class="topbar-meta" title="Ultima partita registrata">
+                <span class="live-dot" aria-hidden="true"></span>
+                <span>Ultima partita <strong>21 set 2026</strong></span>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Bottom Tab Bar -->
-    <nav class="nav-mobile">
-        <a href="/" class="nav-tab ">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <a href="/classifica/" class="nav-tab ">
-            <span class="nav-icon">📊</span>
-            <span class="nav-label">Classifica</span>
-        </a>
-        <a href="/mercato/" class="nav-tab ">
-            <span class="nav-icon">💹</span>
-            <span class="nav-label">Mercato</span>
-        </a>
-        <a href="/squadre/" class="nav-tab ">
-            <span class="nav-icon">⚔️</span>
-            <span class="nav-label">Squadre</span>
-        </a>
-        <a href="/fantalega/" class="nav-tab ">
-            <span class="nav-icon">⚽</span>
-            <span class="nav-label">FantaSPL</span>
-        </a>
-        <a href="/risultati/" class="nav-tab ">
-            <span class="nav-icon">📋</span>
-            <span class="nav-label">Risultati</span>
-        </a>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
+    <nav class="tabbar" aria-label="Navigazione">
         
-<section class="section">
-    <!-- Player Header -->
+        <a href="/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"/></svg>
+            <span>Home</span>
+        </a>
+        
+        <a href="/classifica/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trophy"/></svg>
+            <span>Classifica</span>
+        </a>
+        
+        <a href="/mercato/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trend"/></svg>
+            <span>Mercato</span>
+        </a>
+        
+        <a href="/squadre/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shirt"/></svg>
+            <span>Squadre</span>
+        </a>
+        
+        <a href="/fantalega/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-star"/></svg>
+            <span>FantaSPL</span>
+        </a>
+        
+        <a href="/risultati/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <span>Risultati</span>
+        </a>
+        
+    </nav>
+
+    <main id="main" class="main-content">
+        
+
+<section class="container player-page" style="--accent: #43e9c3">
     <div class="player-header">
-        <div class="player-info">
-            <h1>Coyote (Cri)</h1>
-            
-            <div class="player-value">€3.8M</div>
-            
-            
-            
-            
-            <div class="recent-form">
-                <span class="recent-form-label">Forma recente:</span>
-                <div class="form-dots">
-                    
-                    <div class="form-dot loss" title="loss"></div>
-                    
-                    <div class="form-dot loss" title="loss"></div>
-                    
-                    <div class="form-dot loss" title="loss"></div>
-                    
-                    <div class="form-dot loss" title="loss"></div>
-                    
-                    <div class="form-dot win" title="win"></div>
-                    
+        <div class="ph-main">
+            <span class="avatar avatar-xl" style="--accent: #43e9c3" aria-hidden="true">CC</span>
+            <div class="ph-id">
+                <div class="ph-tags"><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></div>
+                <h1>Coyote (Cri)</h1>
+                
+                <div class="recent-form">
+                    <span class="recent-form-label">Forma</span>
+                    <span class="form-badges" title="Ultime partite, la più recente a sinistra"><span class="form-badge form-s" title="Sconfitta">S</span><span class="form-badge form-s" title="Sconfitta">S</span><span class="form-badge form-s" title="Sconfitta">S</span><span class="form-badge form-s" title="Sconfitta">S</span><span class="form-badge form-v" title="Vittoria">V</span></span>
                 </div>
+                
             </div>
-            
         </div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="tabs">
-        <button class="tab active" data-tab="stats">Statistiche</button>
-        <button class="tab" data-tab="market">Valore</button>
+        
+        <div class="ph-value">
+            <span class="kpi-label">Valore di mercato</span>
+            <span class="player-value">€3.8M</span>
+            <span class="player-value-change"><span class="chg chg-flat">Invariato</span></span>
+            <span class="ph-value-meta">
+                #94 su 192
+                 · picco €15.0M
+            </span>
+        </div>
         
     </div>
 
-    <!-- Stats Tab -->
+    <dl class="kpi-strip">
+        <div><dt>Partite</dt><dd>14</dd></div>
+        <div><dt>Vittorie</dt><dd>2</dd></div>
+        <div><dt>Win%</dt><dd>14<small>%</small></dd></div>
+        <div><dt>Gol</dt><dd>5</dd></div>
+        <div><dt>Gol/partita</dt><dd>0.36</dd></div>
+        <div class="accent"><dt>PPG</dt><dd>6.29</dd></div>
+        <div><dt>Punti</dt><dd>88</dd></div>
+        <div><dt>Rank</dt><dd>#36</dd></div>
+    </dl>
+
+    <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="stats" role="tab">Statistiche</button>
+        <button type="button" class="tab" data-tab="market" role="tab">Valore</button>
+        <button type="button" class="tab" data-tab="games" role="tab">Partite <span class="tab-count">14</span></button>
+    </div>
+
+    <!-- Stats -->
     <div class="tab-content active" data-tab="stats">
         
-        <div class="stats-section">
-            <h2>Bovisa</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">14</div>
-                    <div class="stat-label">Partite</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Vittorie</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">14.3%</div>
-                    <div class="stat-label">Win%</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Gol</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0.36</div>
-                    <div class="stat-label">Gol/Partita</div>
-                </div>
-                <div class="stat-card highlight">
-                    <div class="stat-value">6.29</div>
-                    <div class="stat-label">PPG</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">88</div>
-                    <div class="stat-label">Punti Totali</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">35</div>
-                    <div class="stat-label">Rank</div>
-                </div>
-            </div>
-
-            <!-- Additional Stats -->
-            <div class="additional-stats">
-                <div class="stat-row">
-                    <span>MVP:</span>
-                    <span>2</span>
-                </div>
-                <div class="stat-row">
-                    <span>SPL Bonus:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Inviti amici:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Autogol:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Penalità:</span>
-                    <span>0</span>
-                </div>
-            </div>
+        <div class="seg champ-switch" role="tablist" aria-label="Campionato">
+            
+            <button type="button" class="seg-btn active" data-stats-champ="Bovisa" style="--accent: #43e9c3">Bovisa</button>
+            
+            <button type="button" class="seg-btn " data-stats-champ="Combinata" style="--accent: #c9d3dd">Combinata</button>
+            
         </div>
         
-        <div class="stats-section">
-            <h2>Combinata</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">14</div>
-                    <div class="stat-label">Partite</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Vittorie</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">14.3%</div>
-                    <div class="stat-label">Win%</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Gol</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0.36</div>
-                    <div class="stat-label">Gol/Partita</div>
-                </div>
-                <div class="stat-card highlight">
-                    <div class="stat-value">6.29</div>
-                    <div class="stat-label">PPG</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">88</div>
-                    <div class="stat-label">Punti Totali</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">36</div>
-                    <div class="stat-label">Rank</div>
-                </div>
+
+        
+        <div class="stats-section" data-stats-panel="Bovisa" style="--accent: #43e9c3" >
+            <h2>Bovisa <span class="muted">· storico</span></h2>
+            <div class="stat-tiles">
+                <div class="stat-tile"><span class="st-value">#35</span><span class="st-label">Rank</span></div>
+                <div class="stat-tile"><span class="st-value">88</span><span class="st-label">Punti</span></div>
+                <div class="stat-tile accent"><span class="st-value">6.29</span><span class="st-label">PPG</span></div>
+                <div class="stat-tile"><span class="st-value">14</span><span class="st-label">Partite</span></div>
+                <div class="stat-tile"><span class="st-value">2</span><span class="st-label">Vittorie</span></div>
+                <div class="stat-tile"><span class="st-value">14.3%</span><span class="st-label">Win%</span></div>
+                <div class="stat-tile"><span class="st-value">5</span><span class="st-label">Gol</span></div>
+                <div class="stat-tile"><span class="st-value">0.36</span><span class="st-label">Gol/partita</span></div>
+            </div>
+            <div class="additional-stats">
+                <div class="stat-row"><span>MVP</span><strong>2</strong></div>
+                <div class="stat-row"><span>SPL Bonus</span><strong>0</strong></div>
+                <div class="stat-row"><span>Inviti amici</span><strong>0</strong></div>
+                <div class="stat-row"><span>Autogol</span><strong>0</strong></div>
+                <div class="stat-row"><span>Penalità</span><strong>0</strong></div>
+                <div class="stat-row"><span>Gol subiti</span><strong>129</strong></div>
             </div>
 
-            <!-- Additional Stats -->
-            <div class="additional-stats">
-                <div class="stat-row">
-                    <span>MVP:</span>
-                    <span>2</span>
-                </div>
-                <div class="stat-row">
-                    <span>SPL Bonus:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Inviti amici:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Autogol:</span>
-                    <span>0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Penalità:</span>
-                    <span>0</span>
-                </div>
+            
+            <h3 class="subhead">Stagione per stagione</h3>
+            <div class="table-wrap">
+                <table class="data-table season-table">
+                    <thead><tr><th scope="col">Stagione</th><th scope="col">Rank</th><th scope="col">P</th><th class="col-opt" scope="col">V</th><th scope="col">Win%</th><th scope="col">Gol</th><th scope="col">PPG</th><th scope="col">Punti</th></tr></thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td><a href="/classifica/?championship=Bovisa&amp;season=3">Stagione 3</a></td>
+                            <td><span class="rank-chip ">41</span></td>
+                            <td class="tnum">2</td>
+                            <td class="col-opt tnum">0</td>
+                            <td class="tnum">0%</td>
+                            <td class="tnum">0</td>
+                            <td class="tnum highlight">5.0</td>
+                            <td class="tnum strong">10</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a href="/classifica/?championship=Bovisa&amp;season=2">Stagione 2</a></td>
+                            <td><span class="rank-chip ">38</span></td>
+                            <td class="tnum">2</td>
+                            <td class="col-opt tnum">0</td>
+                            <td class="tnum">0%</td>
+                            <td class="tnum">0</td>
+                            <td class="tnum highlight">6.5</td>
+                            <td class="tnum strong">13</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><a href="/classifica/?championship=Bovisa&amp;season=1">Stagione 1</a></td>
+                            <td><span class="rank-chip ">22</span></td>
+                            <td class="tnum">10</td>
+                            <td class="col-opt tnum">2</td>
+                            <td class="tnum">20%</td>
+                            <td class="tnum">5</td>
+                            <td class="tnum highlight">6.5</td>
+                            <td class="tnum strong">65</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
             </div>
+            
+        </div>
+        
+        <div class="stats-section" data-stats-panel="Combinata" style="--accent: #c9d3dd" hidden>
+            <h2>Combinata <span class="muted">· tutti i campionati</span></h2>
+            <div class="stat-tiles">
+                <div class="stat-tile"><span class="st-value">#36</span><span class="st-label">Rank</span></div>
+                <div class="stat-tile"><span class="st-value">88</span><span class="st-label">Punti</span></div>
+                <div class="stat-tile accent"><span class="st-value">6.29</span><span class="st-label">PPG</span></div>
+                <div class="stat-tile"><span class="st-value">14</span><span class="st-label">Partite</span></div>
+                <div class="stat-tile"><span class="st-value">2</span><span class="st-label">Vittorie</span></div>
+                <div class="stat-tile"><span class="st-value">14.3%</span><span class="st-label">Win%</span></div>
+                <div class="stat-tile"><span class="st-value">5</span><span class="st-label">Gol</span></div>
+                <div class="stat-tile"><span class="st-value">0.36</span><span class="st-label">Gol/partita</span></div>
+            </div>
+            <div class="additional-stats">
+                <div class="stat-row"><span>MVP</span><strong>2</strong></div>
+                <div class="stat-row"><span>SPL Bonus</span><strong>0</strong></div>
+                <div class="stat-row"><span>Inviti amici</span><strong>0</strong></div>
+                <div class="stat-row"><span>Autogol</span><strong>0</strong></div>
+                <div class="stat-row"><span>Penalità</span><strong>0</strong></div>
+                <div class="stat-row"><span>Gol subiti</span><strong>129</strong></div>
+            </div>
+
+            
         </div>
         
     </div>
 
-    <!-- Market Tab -->
+    <!-- Market value -->
     <div class="tab-content" data-tab="market">
         <h2>Andamento valore</h2>
         
-        <div id="marketChart" style="height: 400px; margin-top: 20px;"></div>
+        <div class="chart-panel">
+            <div id="marketChart" class="market-chart"></div>
+        </div>
         
     </div>
 
-    <!-- Games Tab -->
+    <!-- Game log -->
+    
+    <div class="tab-content" data-tab="games">
+        <h2>Storico partite</h2>
+        <div class="table-wrap">
+            <table class="data-table games-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Campionato</th>
+                        <th class="col-opt" scope="col">Giornata</th>
+                        <th scope="col">Squadra</th>
+                        <th scope="col">Risultato</th>
+                        <th scope="col">Gol</th>
+                        <th scope="col">Esito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td class="nowrap">13 feb 2025</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S3 · G18</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">8–10</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">30 gen 2025</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S3 · G16</td>
+                        <td class="nowrap"><svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Bianchi</span></td>
+                        <td class="tnum nowrap">6–7</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">4 dic 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S2 · G14</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">6–9</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">19 ott 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S2 · G7</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">4–10</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">4 mag 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G14</td>
+                        <td class="nowrap"><svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Bianchi</span></td>
+                        <td class="tnum nowrap">4–3</td>
+                        <td class="tnum"><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>1</span></td>
+                        <td><span class="form-badge form-v">V</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">6 apr 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G12</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">8–15</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">30 mar 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G11</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">9–7</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-v">V</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">23 mar 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G10</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">5–5</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-p">P</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">16 mar 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G9</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">8–14</td>
+                        <td class="tnum"><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>1</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">9 mar 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G8</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">8–9</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">2 mar 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G7</td>
+                        <td class="nowrap"><svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Bianchi</span></td>
+                        <td class="tnum nowrap">7–9</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">23 feb 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G6</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">5–7</td>
+                        <td class="tnum"><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>2</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">9 feb 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G5</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">6–11</td>
+                        <td class="tnum"><span class="muted">–</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="nowrap">2 feb 2023</td>
+                        <td><span class="champ-tag" style="--accent: #43e9c3">Bovisa</span></td>
+                        <td class="col-opt muted">S1 · G4</td>
+                        <td class="nowrap"><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> <span class="col-opt-inline">Neri</span></td>
+                        <td class="tnum nowrap">8–13</td>
+                        <td class="tnum"><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>1</span></td>
+                        <td><span class="form-badge form-s">S</span></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
     
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    let marketChartInitialized = false;
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <img src="/static/images/logo-web.png" alt="" width="74" height="50" class="footer-logo">
+            <p class="footer-tag">Il calcetto che conta · Milano</p>
+            <nav class="footer-links" aria-label="Link">
+                <a href="/">Home</a><a href="/classifica/">Classifica</a><a href="/mercato/">Mercato</a><a href="/squadre/">Squadre</a><a href="/fantalega/">FantaSPL</a><a href="/risultati/">Risultati</a>
+            </nav>
+            <p class="footer-meta">Aggiornato il 25 set 2026 · © 2026 Solo Pro League</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js?v=202609250719"></script>
     
-    // Market chart data (if available)
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+    let chartReady = false;
+
     
     const chartData = [2800000, 5300000, 8300000, 9500000, 10500000, 11100000, 12300000, 13300000, 14600000, 12900000, 15000000, 13700000, 12200000, 12100000, 12200000, 11700000, 11000000, 10200000, 10000000, 9400000, 9100000, 8600000, 8300000, 8000000, 7200000, 7600000, 7400000, 8400000, 8200000, 8400000, 8000000, 7700000, 7700000, 7400000, 7800000, 7500000, 7200000, 7300000, 7000000, 6900000, 6700000, 6400000, 6300000, 5500000, 6000000, 6000000, 5900000, 5800000, 5700000, 5700000, 5600000, 5500000, 5400000, 5400000, 5200000, 5200000, 5100000, 4900000, 4900000, 4900000, 4800000, 4800000, 4700000, 4700000, 4700000, 4700000, 4700000, 4600000, 4600000, 4600000, 4400000, 4400000, 5700000, 5600000, 5700000, 5700000, 5700000, 5500000, 5600000, 5500000, 5500000, 5300000, 5300000, 5200000, 5200000, 5200000, 5000000, 4900000, 4900000, 4700000, 4700000, 4800000, 4700000, 4400000, 4400000, 4300000, 4300000, 4300000, 4300000, 4200000, 4200000, 4200000, 4100000, 4100000, 4100000, 4100000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 4000000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3900000, 3800000, 3800000, 3800000, 3800000, 3800000];
     const weeks = ["2023-01-30/2023-02-05", "2023-02-06/2023-02-12", "2023-02-20/2023-02-26", "2023-02-27/2023-03-05", "2023-03-06/2023-03-12", "2023-03-13/2023-03-19", "2023-03-20/2023-03-26", "2023-03-27/2023-04-02", "2023-04-03/2023-04-09", "2023-04-10/2023-04-16", "2023-05-01/2023-05-07", "2023-05-08/2023-05-14", "2023-05-15/2023-05-21", "2023-05-22/2023-05-28", "2023-05-29/2023-06-04", "2023-06-05/2023-06-11", "2023-06-12/2023-06-18", "2023-06-19/2023-06-25", "2023-06-26/2023-07-02", "2023-07-03/2023-07-09", "2023-07-10/2023-07-16", "2023-09-04/2023-09-10", "2023-09-11/2023-09-17", "2023-09-18/2023-09-24", "2023-09-25/2023-10-01", "2023-10-02/2023-10-08", "2023-10-09/2023-10-15", "2023-10-16/2023-10-22", "2023-10-23/2023-10-29", "2023-10-30/2023-11-05", "2023-11-06/2023-11-12", "2023-11-13/2023-11-19", "2023-11-20/2023-11-26", "2023-11-27/2023-12-03", "2023-12-04/2023-12-10", "2024-01-08/2024-01-14", "2024-01-15/2024-01-21", "2024-01-22/2024-01-28", "2024-02-05/2024-02-11", "2024-02-12/2024-02-18", "2024-02-19/2024-02-25", "2024-02-26/2024-03-03", "2024-03-04/2024-03-10", "2024-03-11/2024-03-17", "2024-03-18/2024-03-24", "2024-03-25/2024-03-31", "2024-04-01/2024-04-07", "2024-04-08/2024-04-14", "2024-04-15/2024-04-21", "2024-04-22/2024-04-28", "2024-05-06/2024-05-12", "2024-05-13/2024-05-19", "2024-06-03/2024-06-09", "2024-06-24/2024-06-30", "2024-09-09/2024-09-15", "2024-09-16/2024-09-22", "2024-09-23/2024-09-29", "2024-09-30/2024-10-06", "2024-10-07/2024-10-13", "2024-10-14/2024-10-20", "2024-10-21/2024-10-27", "2024-10-28/2024-11-03", "2024-11-04/2024-11-10", "2024-11-11/2024-11-17", "2024-11-18/2024-11-24", "2024-11-25/2024-12-01", "2024-12-09/2024-12-15", "2024-12-16/2024-12-22", "2024-12-30/2025-01-05", "2025-01-06/2025-01-12", "2025-01-13/2025-01-19", "2025-01-20/2025-01-26", "2025-01-27/2025-02-02", "2025-02-03/2025-02-09", "2025-02-10/2025-02-16", "2025-02-17/2025-02-23", "2025-02-24/2025-03-02", "2025-03-03/2025-03-09", "2025-03-10/2025-03-16", "2025-03-17/2025-03-23", "2025-03-24/2025-03-30", "2025-03-31/2025-04-06", "2025-04-07/2025-04-13", "2025-04-14/2025-04-20", "2025-04-21/2025-04-27", "2025-04-28/2025-05-04", "2025-05-05/2025-05-11", "2025-05-12/2025-05-18", "2025-05-19/2025-05-25", "2025-05-26/2025-06-01", "2025-06-02/2025-06-08", "2025-06-09/2025-06-15", "2025-06-16/2025-06-22", "2025-09-22/2025-09-28", "2025-09-29/2025-10-05", "2025-10-06/2025-10-12", "2025-10-13/2025-10-19", "2025-10-27/2025-11-02", "2025-11-03/2025-11-09", "2025-11-10/2025-11-16", "2025-11-17/2025-11-23", "2025-12-08/2025-12-14", "2026-01-05/2026-01-11", "2026-01-12/2026-01-18", "2026-01-19/2026-01-25", "2026-02-09/2026-02-15", "2026-02-16/2026-02-22", "2026-02-23/2026-03-01", "2026-03-02/2026-03-08", "2026-03-09/2026-03-15", "2026-03-16/2026-03-22", "2026-03-30/2026-04-05", "2026-04-06/2026-04-12", "2026-04-13/2026-04-19", "2026-04-20/2026-04-26", "2026-04-27/2026-05-03", "2026-05-04/2026-05-10", "2026-05-11/2026-05-17", "2026-05-18/2026-05-24", "2026-05-25/2026-05-31", "2026-06-01/2026-06-07", "2026-06-08/2026-06-14", "2026-06-15/2026-06-21", "2026-06-22/2026-06-28", "2026-06-29/2026-07-05", "2026-09-21/2026-09-27"];
     
-    
+
     function initMarketChart() {
-        if (marketChartInitialized) return;
         
-        
-        const chartContainer = document.getElementById('marketChart');
-        if (!chartContainer) return;
-        
-        // Format data for Lightweight Charts
-        const data = chartData.map((value, index) => {
-            const weekStr = weeks[index];
-            const startDate = weekStr.includes('/') ? weekStr.split('/')[0] : weekStr;
-            return {
-                time: startDate,
-                value: value
-            };
+        if (chartReady || typeof LightweightCharts === 'undefined') return;
+        const el = document.getElementById('marketChart');
+        if (!el || !el.clientWidth) return;
+        // Week is "YYYY-MM-DD/YYYY-MM-DD": Lightweight Charts needs the start date only
+        const data = chartData.map((value, i) => ({
+            time: weeks[i].includes('/') ? weeks[i].split('/')[0] : weeks[i],
+            value: value
+        }));
+        const accent = getComputedStyle(el).getPropertyValue('--accent').trim() || '#43e9c3';
+        const chart = LightweightCharts.createChart(el, {
+            layout: { background: { color: 'transparent' }, textColor: '#7d8fa1', fontFamily: 'Inter, system-ui, sans-serif' },
+            grid: { vertLines: { visible: false }, horzLines: { color: 'rgba(148,178,209,0.08)' } },
+            rightPriceScale: { borderVisible: false },
+            timeScale: { borderVisible: false },
+            crosshair: { vertLine: { color: 'rgba(148,178,209,0.3)' }, horzLine: { color: 'rgba(148,178,209,0.3)' } },
+            localization: {
+                locale: 'it-IT',
+                priceFormatter: v => '€' + (v / 1e6).toFixed(1) + 'M'
+            },
+            width: el.clientWidth,
+            height: el.clientHeight
         });
-        
-        const chart = LightweightCharts.createChart(chartContainer, {
-            layout: {
-                background: { color: '#0a0f18' },
-                textColor: '#d1d4dc',
-            },
-            grid: {
-                vertLines: { color: '#1a1f2e' },
-                horzLines: { color: '#1a1f2e' },
-            },
-            timeScale: {
-                borderColor: '#2b3139',
-            },
-            rightPriceScale: {
-                borderColor: '#2b3139',
-            },
-            width: chartContainer.clientWidth,
-            height: 400
+        const series = chart.addAreaSeries({
+            topColor: accent + '66',
+            bottomColor: accent + '00',
+            lineColor: accent,
+            lineWidth: 2
         });
-        
-        const areaSeries = chart.addAreaSeries({
-            topColor: 'rgba(67, 233, 195, 0.4)',
-            bottomColor: 'rgba(67, 233, 195, 0.0)',
-            lineColor: 'rgba(67, 233, 195, 1)',
-            lineWidth: 2,
-        });
-        
-        areaSeries.setData(data);
+        series.setData(data);
         chart.timeScale().fitContent();
-        
-        // Handle resize
-        window.addEventListener('resize', () => {
-            chart.resize(chartContainer.clientWidth, 400);
-        });
-        
-        marketChartInitialized = true;
+        new ResizeObserver(() => chart.resize(el.clientWidth, el.clientHeight)).observe(el);
+        chartReady = true;
         
     }
-    
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const tabName = this.dataset.tab;
-            
-            // Update active tab
-            tabs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Show corresponding content
-            tabContents.forEach(content => {
-                if (content.dataset.tab === tabName) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
-            });
-            
-            // Initialize market chart when tab is clicked
-            if (tabName === 'market') {
-                setTimeout(initMarketChart, 100);
-            }
-        });
-    });
+
+    function openTab(name) {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+        contents.forEach(c => c.classList.toggle('active', c.dataset.tab === name));
+        if (name === 'market') requestAnimationFrame(initMarketChart);
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+        openTab(tab.dataset.tab);
+        history.replaceState(null, '', tab.dataset.tab === 'stats' ? location.pathname : '#' + ({ market: 'valore', games: 'partite' })[tab.dataset.tab]);
+    }));
+
+    function openFromHash() {
+        const name = ({ '#valore': 'market', '#partite': 'games' })[location.hash];
+        if (name && document.querySelector('.tab[data-tab="' + name + '"]')) openTab(name);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+
+    document.querySelectorAll('[data-stats-champ]').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-stats-champ]').forEach(b => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('[data-stats-panel]').forEach(p => { p.hidden = p.dataset.statsPanel !== btn.dataset.statsChamp; });
+    }));
 });
 </script>
 
-    </main>
-
-    <script src="/static/js/main.js"></script>
-    
 </body>
 </html>

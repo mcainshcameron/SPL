@@ -1,413 +1,757 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPL - Solo Pro League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SPL · Solo Pro League — Il calcetto che conta</title>
+    <meta name="description" content="Solo Pro League: classifiche, risultati, mercato e FantaSPL del calcetto che conta a Milano.">
+    <meta name="theme-color" content="#05090f">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Solo Pro League">
+    <meta property="og:title" content="SPL · Solo Pro League — Il calcetto che conta">
+    <meta property="og:description" content="Solo Pro League: classifiche, risultati, mercato e FantaSPL del calcetto che conta a Milano.">
+    <meta property="og:image" content="https://fantaspl.com/static/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=202609250719">
+    <script>document.documentElement.classList.add('js');</script>
     
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" defer></script>
 
 </head>
-<body>
-    <!-- Desktop Navigation -->
-    <nav class="nav-desktop">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">
-                <img src="/static/images/logo.png" alt="SPL Logo">
+<body class="page-home">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M8.5 3 12 5l3.5-2L21 6l-2 5-2.5-1V21h-9V10L5 11 3 6z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></symbol>
+    <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7.5 3.8 2.8-1.4 4.5H9.6l-1.4-4.5z"/><path d="M12 3v4.5M20.6 9.3l-4.8 1M17.3 19.4l-2.9-4.6M6.7 19.4l2.9-4.6M3.4 9.3l4.8 1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol>
+    <symbol id="i-kit" viewBox="0 0 24 24"><path d="M8.5 3 12 5l3.5-2L21 6l-2 5-2.5-1V21h-9V10L5 11 3 6z"/></symbol>
+</svg>
+    <a class="skip-link" href="#main">Vai al contenuto</a>
+
+    <header class="topbar">
+        <div class="topbar-inner container">
+            <a href="/" class="brand" aria-label="Solo Pro League — Home">
+                <img src="/static/images/logo-web.png" alt="SPL — Solo Pro League" width="118" height="80">
             </a>
-            <div class="nav-links">
-                <a href="/" class="nav-link active">Home</a>
+            <nav class="nav-links" aria-label="Navigazione principale">
+                
+                <a href="/" class="nav-link active" aria-current="page">Home</a>
+                
                 <a href="/classifica/" class="nav-link ">Classifica</a>
+                
                 <a href="/mercato/" class="nav-link ">Mercato</a>
+                
                 <a href="/squadre/" class="nav-link ">Squadre</a>
+                
                 <a href="/fantalega/" class="nav-link ">FantaSPL</a>
+                
                 <a href="/risultati/" class="nav-link ">Risultati</a>
+                
+            </nav>
+            <div class="topbar-meta" title="Ultima partita registrata">
+                <span class="live-dot" aria-hidden="true"></span>
+                <span>Ultima partita <strong>21 set 2026</strong></span>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Bottom Tab Bar -->
-    <nav class="nav-mobile">
-        <a href="/" class="nav-tab active">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </a>
-        <a href="/classifica/" class="nav-tab ">
-            <span class="nav-icon">📊</span>
-            <span class="nav-label">Classifica</span>
-        </a>
-        <a href="/mercato/" class="nav-tab ">
-            <span class="nav-icon">💹</span>
-            <span class="nav-label">Mercato</span>
-        </a>
-        <a href="/squadre/" class="nav-tab ">
-            <span class="nav-icon">⚔️</span>
-            <span class="nav-label">Squadre</span>
-        </a>
-        <a href="/fantalega/" class="nav-tab ">
-            <span class="nav-icon">⚽</span>
-            <span class="nav-label">FantaSPL</span>
-        </a>
-        <a href="/risultati/" class="nav-tab ">
-            <span class="nav-icon">📋</span>
-            <span class="nav-label">Risultati</span>
-        </a>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
+    <nav class="tabbar" aria-label="Navigazione">
         
-<!-- Hero Section -->
+        <a href="/" class="tab-item active" aria-current="page">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"/></svg>
+            <span>Home</span>
+        </a>
+        
+        <a href="/classifica/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trophy"/></svg>
+            <span>Classifica</span>
+        </a>
+        
+        <a href="/mercato/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trend"/></svg>
+            <span>Mercato</span>
+        </a>
+        
+        <a href="/squadre/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shirt"/></svg>
+            <span>Squadre</span>
+        </a>
+        
+        <a href="/fantalega/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-star"/></svg>
+            <span>FantaSPL</span>
+        </a>
+        
+        <a href="/risultati/" class="tab-item ">
+            <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <span>Risultati</span>
+        </a>
+        
+    </nav>
+
+    <main id="main" class="main-content">
+        
+<!-- Hero -->
 <section class="hero">
-    <div class="hero-content">
-        <img src="/static/images/logo.png" alt="SPL Logo" class="hero-logo">
-        <p class="hero-tagline">Il calcetto che conta</p>
-    </div>
-</section>
+    <div class="hero-pitch" aria-hidden="true"></div>
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">Solo Pro League · Milano</span>
+            <h1 class="hero-title">Il calcetto<br><span class="text-accent">che conta</span></h1>
+            <p class="hero-sub">Classifiche, risultati, valori di mercato e FantaSPL di 3 campionati:
+                <strong style="color: #43e9c3">Bovisa</strong>, <strong style="color: #f6c453">Lambrate</strong> e <strong style="color: #a78bfa">Moscova</strong>.</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="/classifica/">Classifica <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn-ghost" href="/mercato/">Mercato</a>
+            </div>
+            <dl class="hero-stats">
+                <div class="hero-stat"><dt>Partite</dt><dd data-count="144">144</dd></div>
+                <div class="hero-stat"><dt>Gol</dt><dd data-count="2399">2.399</dd></div>
+                <div class="hero-stat"><dt>Giocatori</dt><dd data-count="192">192</dd></div>
+                <div class="hero-stat"><dt>Gol / partita</dt><dd>16,7</dd></div>
+            </dl>
+        </div>
 
-<!-- Quick Stats -->
-<section class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-value" data-target="144">0</div>
-        <div class="stat-label">Partite</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value" data-target="2399">0</div>
-        <div class="stat-label">Gol</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-value" data-target="192">0</div>
-        <div class="stat-label">Giocatori</div>
-    </div>
-</section>
-
-<!-- Hall of Fame -->
-<section class="section hall-of-fame">
-    <h2>Hall of Fame</h2>
-    <div class="podium-grid">
         
-        <div class="podium-card gold">
-            <div class="podium-medal">
-                🥇
+        
+        
+        
+        <article class="scoreboard" style="--accent: #a78bfa">
+            <header class="sb-head">
+                <span class="sb-label"><span class="live-dot" aria-hidden="true"></span>Ultima partita</span>
+                <span class="champ-tag">Moscova</span>
+            </header>
+            <p class="sb-meta">lun 21 set 2026 · Stagione 1 · Giornata 1</p>
+            <div class="sb-main">
+                <div class="sb-team is-loss">
+                    <svg class="kit kit-neri kit-lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg>
+                    <span class="sb-name">Neri</span>
+                </div>
+                <div class="sb-score" aria-label="Neri 6, Bianchi 9">
+                    <span class="">6</span>
+                    <span class="sb-sep">:</span>
+                    <span class="is-win">9</span>
+                </div>
+                <div class="sb-team is-win">
+                    <svg class="kit kit-bianchi kit-lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg>
+                    <span class="sb-name">Bianchi</span>
+                </div>
+            </div>
+            <div class="sb-lineups">
+                
+                <ul class="sb-lineup">
+                    
+                    <li><a href="/players/pietro-p/">Pietro P.</a><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>5</span></li>
+                    
+                    <li><a href="/players/cameron-m/">Cameron M.</a><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>1</span></li>
+                    
+                    <li><a href="/players/andrea-l/">Andrea L.</a></li>
+                    
+                    <li><a href="/players/tommaso-s/">Tommaso S.</a></li>
+                    
+                    <li><a href="/players/max-m/">Max M.</a></li>
+                    
+                </ul>
+                
+                <ul class="sb-lineup">
+                    
+                    <li><a href="/players/giacomo-g/">Giacomo G.</a><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>5</span></li>
+                    
+                    <li><a href="/players/daniele-r/">Daniele R.</a><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>3</span></li>
+                    
+                    <li><a href="/players/alessandro-s/">Alessandro S.</a><span class="goal-count"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ball"/></svg>1</span></li>
+                    
+                    <li><a href="/players/marco-v/">Marco V.</a></li>
+                    
+                    <li><a href="/players/luca-s-1/">Luca S.</a></li>
+                    
+                </ul>
                 
             </div>
-            <h3>
-                <a href="/players/luca-s-1/" class="player-name">Luca S.</a>
-            </h3>
-            <div class="podium-points">849</div>
-            <div class="podium-label">Punti Totali</div>
-        </div>
-        
-        <div class="podium-card silver">
-            <div class="podium-medal">
-                🥈
-                
-            </div>
-            <h3>
-                <a href="/players/andrea-l/" class="player-name">Andrea L.</a>
-            </h3>
-            <div class="podium-points">743</div>
-            <div class="podium-label">Punti Totali</div>
-        </div>
-        
-        <div class="podium-card bronze">
-            <div class="podium-medal">
-                🥉
-                
-            </div>
-            <h3>
-                <a href="/players/jacopo/" class="player-name">Jacopo</a>
-            </h3>
-            <div class="podium-points">736</div>
-            <div class="podium-label">Punti Totali</div>
-        </div>
-        
-    </div>
-</section>
-
-<!-- Goals per Week Chart -->
-<section class="section">
-    <h2>Gol per Settimana — Bovisa S3</h2>
-    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--spacing-lg);">
-        <canvas id="goalsChart" style="max-height: 400px;"></canvas>
-    </div>
-</section>
-
-<!-- Recent Games -->
-<section class="section">
-    <h2>Ultime Partite</h2>
-    <div class="games-grid">
-        
-        
-        <div class="game-card">
-            <div class="game-header">
-                <span class="game-championship">Lambrate</span>
-                <span class="game-date">2025-09-29</span>
-            </div>
-            <div class="game-score">
-                <div class="team">
-                    <span class="team-label">Team A</span>
-                    <span class="team-score">1</span>
-                </div>
-                <div class="score-divider">-</div>
-                <div class="team">
-                    <span class="team-score">5</span>
-                    <span class="team-label">Team B</span>
-                </div>
-            </div>
-            <div class="game-meta">
-                <span>5-a-side</span>
-                <span>•</span>
-                <span>S2 W1</span>
-            </div>
-        </div>
-        
-        
-        
-        <div class="game-card">
-            <div class="game-header">
-                <span class="game-championship">Bovisa</span>
-                <span class="game-date">2026-07-02</span>
-            </div>
-            <div class="game-score">
-                <div class="team">
-                    <span class="team-label">Team A</span>
-                    <span class="team-score">3</span>
-                </div>
-                <div class="score-divider">-</div>
-                <div class="team">
-                    <span class="team-score">7</span>
-                    <span class="team-label">Team B</span>
-                </div>
-            </div>
-            <div class="game-meta">
-                <span>7-a-side</span>
-                <span>•</span>
-                <span>S4 W32</span>
-            </div>
-        </div>
-        
-        
-        
-        <div class="game-card">
-            <div class="game-header">
-                <span class="game-championship">Moscova</span>
-                <span class="game-date">2026-09-21</span>
-            </div>
-            <div class="game-score">
-                <div class="team">
-                    <span class="team-label">Team A</span>
-                    <span class="team-score">6</span>
-                </div>
-                <div class="score-divider">-</div>
-                <div class="team">
-                    <span class="team-score">9</span>
-                    <span class="team-label">Team B</span>
-                </div>
-            </div>
-            <div class="game-meta">
-                <span>5-a-side</span>
-                <span>•</span>
-                <span>S1 W1</span>
-            </div>
-        </div>
-        
+            <a class="sb-link" href="/risultati/?championship=Moscova">Tutti i risultati Moscova <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </article>
         
     </div>
 </section>
 
 <!-- Championships -->
-<section class="section">
-    <h2>Campionati</h2>
-    <div class="championship-grid">
+<section class="section container">
+    <div class="section-head">
+        <div>
+            <span class="eyebrow">I tornei</span>
+            <h2>Campionati</h2>
+        </div>
+        <a class="link-more" href="/classifica/">Classifica completa <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="champ-grid">
         
-        <a href="/classifica/?championship=Bovisa" class="championship-card">
-            <h3>Bovisa</h3>
-            <p>Classifica →</p>
+        <a class="champ-card" href="/classifica/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+            <div class="cc-top">
+                <span class="cc-format">Calcio a 7</span>
+                <span class="cc-season">Stagione 4</span>
+            </div>
+            <h3 class="cc-name">Bovisa</h3>
+            <div class="cc-stats">
+                <div><strong>128</strong><span>partite</span></div>
+                <div><strong>2.190</strong><span>gol</span></div>
+                <div><strong>160</strong><span>giocatori</span></div>
+            </div>
+            
+            <div class="cc-leader">
+                <span class="avatar avatar-sm" style="--accent: #43e9c3" aria-hidden="true">GM</span>
+                <div class="cc-leader-text">
+                    <span class="cc-leader-label">In testa · S4</span>
+                    <span class="cc-leader-name">Gabry M.</span>
+                </div>
+                <span class="cc-pts">321<small>pt</small></span>
+            </div>
+            
+            
+            <div class="cc-last">Ultima: Neri <strong>3–7</strong> Bianchi · 2 lug 2026</div>
         </a>
         
-        <a href="/classifica/?championship=Lambrate" class="championship-card">
-            <h3>Lambrate</h3>
-            <p>Classifica →</p>
+        <a class="champ-card" href="/classifica/?championship=Lambrate" style="--accent: #f6c453" data-reveal>
+            <div class="cc-top">
+                <span class="cc-format">Calcio a 5</span>
+                <span class="cc-season">Stagione 2</span>
+            </div>
+            <h3 class="cc-name">Lambrate</h3>
+            <div class="cc-stats">
+                <div><strong>15</strong><span>partite</span></div>
+                <div><strong>194</strong><span>gol</span></div>
+                <div><strong>50</strong><span>giocatori</span></div>
+            </div>
+            
+            <div class="cc-leader">
+                <span class="avatar avatar-sm" style="--accent: #f6c453" aria-hidden="true">ME</span>
+                <div class="cc-leader-text">
+                    <span class="cc-leader-label">In testa · S2</span>
+                    <span class="cc-leader-name">Mehmet</span>
+                </div>
+                <span class="cc-pts">11<small>pt</small></span>
+            </div>
+            
+            
+            <div class="cc-last">Ultima: Neri <strong>1–5</strong> Bianchi · 29 set 2025</div>
         </a>
         
-        <a href="/classifica/?championship=Moscova" class="championship-card">
-            <h3>Moscova</h3>
-            <p>Classifica →</p>
+        <a class="champ-card" href="/classifica/?championship=Moscova" style="--accent: #a78bfa" data-reveal>
+            <div class="cc-top">
+                <span class="cc-format">Calcio a 5</span>
+                <span class="cc-season">Stagione 1</span>
+            </div>
+            <h3 class="cc-name">Moscova</h3>
+            <div class="cc-stats">
+                <div><strong>1</strong><span>partite</span></div>
+                <div><strong>15</strong><span>gol</span></div>
+                <div><strong>10</strong><span>giocatori</span></div>
+            </div>
+            
+            <div class="cc-leader">
+                <span class="avatar avatar-sm" style="--accent: #a78bfa" aria-hidden="true">GG</span>
+                <div class="cc-leader-text">
+                    <span class="cc-leader-label">In testa · S1</span>
+                    <span class="cc-leader-name">Giacomo G.</span>
+                </div>
+                <span class="cc-pts">12<small>pt</small></span>
+            </div>
+            
+            
+            <div class="cc-last">Ultima: Neri <strong>6–9</strong> Bianchi · 21 set 2026</div>
         </a>
         
     </div>
 </section>
 
-<!-- SPLNews Ticker (Fixed at bottom) -->
-<div class="news-ticker-fixed">
-    <div class="ticker-label">📰 SPLNews</div>
+<!-- Hall of Fame + Records -->
+<section class="section container split">
+    <div class="card hof" data-reveal>
+        <div class="section-head compact">
+            <div>
+                <span class="eyebrow">Di sempre</span>
+                <h2>Hall of Fame</h2>
+            </div>
+            <span class="muted small">Punti totali, tutti i campionati</span>
+        </div>
+        
+        <div class="podium">
+            
+            
+            <a class="podium-col p2" href="/players/andrea-l/">
+                <span class="podium-avatar"><span class="avatar avatar-lg" aria-hidden="true">AL</span></span>
+                <span class="podium-name">Andrea L.</span>
+                <span class="podium-pts">743 <small>pt</small></span>
+                <span class="podium-step"><span>2</span></span>
+            </a>
+            
+            
+            <a class="podium-col p1" href="/players/luca-s-1/">
+                <span class="podium-avatar"><span class="avatar avatar-lg" aria-hidden="true">LS</span></span>
+                <span class="podium-name">Luca S.</span>
+                <span class="podium-pts">849 <small>pt</small></span>
+                <span class="podium-step"><span>1</span></span>
+            </a>
+            
+            
+            <a class="podium-col p3" href="/players/jacopo/">
+                <span class="podium-avatar"><span class="avatar avatar-lg" aria-hidden="true">JA</span></span>
+                <span class="podium-name">Jacopo</span>
+                <span class="podium-pts">736 <small>pt</small></span>
+                <span class="podium-step"><span>3</span></span>
+            </a>
+            
+        </div>
+        
+    </div>
+
+    <div class="card records" data-reveal>
+        <div class="section-head compact">
+            <div>
+                <span class="eyebrow">Albo d'oro</span>
+                <h2>Record SPL</h2>
+            </div>
+        </div>
+        <div class="records-grid">
+            
+            <a class="record" href="/players/jacopo/">
+                <span class="record-label">Bomber</span>
+                <span class="record-value">193</span>
+                <span class="record-player">Jacopo</span>
+                <span class="record-note">gol</span>
+            </a>
+            
+            <a class="record" href="/players/luca-s-1/">
+                <span class="record-label">Presenze</span>
+                <span class="record-value">116</span>
+                <span class="record-player">Luca S.</span>
+                <span class="record-note">partite</span>
+            </a>
+            
+            <a class="record" href="/players/andrea-l/">
+                <span class="record-label">Vittorie</span>
+                <span class="record-value">59</span>
+                <span class="record-player">Andrea L.</span>
+                <span class="record-note">vittorie</span>
+            </a>
+            
+            <a class="record" href="/players/daniele-m/">
+                <span class="record-label">Miglior PPG</span>
+                <span class="record-value">10,30</span>
+                <span class="record-player">Daniele M.</span>
+                <span class="record-note">min. 20 partite</span>
+            </a>
+            
+            <a class="record" href="/players/matteo-l/">
+                <span class="record-label">Win rate</span>
+                <span class="record-value">69%</span>
+                <span class="record-player">Matteo L.</span>
+                <span class="record-note">min. 20 partite</span>
+            </a>
+            
+            <a class="record" href="/players/luca-s-1/">
+                <span class="record-label">MVP</span>
+                <span class="record-value">4</span>
+                <span class="record-player">Luca S.</span>
+                <span class="record-note">premi MVP</span>
+            </a>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Goals chart + market movers -->
+<section class="section container split split-wide">
+    
+    <div class="card chart-card" data-reveal>
+        <div class="section-head compact">
+            <div>
+                <span class="eyebrow">Trend</span>
+                <h2>Gol per giornata</h2>
+            </div>
+            <div class="seg" role="tablist" aria-label="Campionato">
+                
+                <button type="button" class="seg-btn active" data-chart-champ="Bovisa" style="--accent: #43e9c3" role="tab" aria-selected="true">Bovisa</button>
+                
+                <button type="button" class="seg-btn " data-chart-champ="Lambrate" style="--accent: #f6c453" role="tab" aria-selected="false">Lambrate</button>
+                
+            </div>
+        </div>
+        <p class="chart-caption" id="goalsChartCaption"></p>
+        <div class="chart-box"><canvas id="goalsChart" aria-label="Gol per giornata, Neri contro Bianchi" role="img"></canvas></div>
+        <div class="chart-legend">
+            <span><svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> Neri</span>
+            <span><svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg> Bianchi</span>
+        </div>
+    </div>
+    
+
+    <div class="card movers" data-reveal>
+        <div class="section-head compact">
+            <div>
+                <span class="eyebrow">Questa settimana</span>
+                <h2>Mercato</h2>
+            </div>
+            <a class="link-more" href="/mercato/">Tutti <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <h3 class="movers-title up"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trend"/></svg> In rialzo</h3>
+        <ul class="mover-list">
+            
+            <li><a href="/players/cameron-m/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">CM</span>
+                <span class="mover-name">Cameron M.</span>
+                <span class="mover-value">€14.5M</span>
+                <span class="chg chg-up">+€1.6M</span>
+            </a></li>
+            
+            <li><a href="/players/luca-s-1/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">LS</span>
+                <span class="mover-name">Luca S.</span>
+                <span class="mover-value">€19.8M</span>
+                <span class="chg chg-up">+€1.5M</span>
+            </a></li>
+            
+            <li><a href="/players/andrea-l/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">AL</span>
+                <span class="mover-name">Andrea L.</span>
+                <span class="mover-value">€14.6M</span>
+                <span class="chg chg-up">+€600K</span>
+            </a></li>
+            
+        </ul>
+        <h3 class="movers-title down"><svg class="icon flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trend"/></svg> In ribasso</h3>
+        <ul class="mover-list">
+            
+            <li><a href="/players/mirko-b/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">MB</span>
+                <span class="mover-name">Mirko B.</span>
+                <span class="mover-value">€8.9M</span>
+                <span class="chg chg-down">−€2.1M</span>
+            </a></li>
+            
+            <li><a href="/players/gabry-m/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">GM</span>
+                <span class="mover-name">Gabry M.</span>
+                <span class="mover-value">€8.4M</span>
+                <span class="chg chg-down">−€1.4M</span>
+            </a></li>
+            
+            <li><a href="/players/stefano-m/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">SM</span>
+                <span class="mover-name">Stefano M.</span>
+                <span class="mover-value">€7.4M</span>
+                <span class="chg chg-down">−€800K</span>
+            </a></li>
+            
+            <li><a href="/players/ruiz-eric/" class="mover">
+                <span class="avatar avatar-sm" aria-hidden="true">RE</span>
+                <span class="mover-name">Ruiz (Eric)</span>
+                <span class="mover-value">€6.3M</span>
+                <span class="chg chg-down">−€800K</span>
+            </a></li>
+            
+        </ul>
+    </div>
+</section>
+
+<!-- Recent games -->
+
+<section class="section container">
+    <div class="section-head">
+        <div>
+            <span class="eyebrow">Tabellini</span>
+            <h2>Ultime partite</h2>
+        </div>
+        <a class="link-more" href="/risultati/">Tutti i risultati <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="match-grid">
+        
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">2 lug 2026</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">3</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">7</span>
+    </div>
+    
+    <div class="match-foot">S4 · G32 · 7 vs 7</div>
+</a>
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">25 giu 2026</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">7</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">10</span>
+    </div>
+    
+    <div class="match-foot">S4 · G31 · 7 vs 7</div>
+</a>
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">18 giu 2026</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">14</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">4</span>
+    </div>
+    
+    <div class="match-foot">S4 · G30 · 7 vs 7</div>
+</a>
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">11 giu 2026</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">14</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">9</span>
+    </div>
+    
+    <div class="match-foot">S4 · G29 · 7 vs 7</div>
+</a>
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">4 giu 2026</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">8</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">12</span>
+    </div>
+    
+    <div class="match-foot">S4 · G28 · 7 vs 7</div>
+</a>
+
+<a class="match-card" href="/risultati/?championship=Bovisa" style="--accent: #43e9c3" data-reveal>
+    <div class="match-top">
+        <span class="champ-tag">Bovisa</span>
+        <span class="match-date">28 mag 2026</span>
+    </div>
+    <div class="match-row is-loss">
+        <svg class="kit kit-neri " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Neri</span><span class="match-goals">6</span>
+    </div>
+    <div class="match-row is-win">
+        <svg class="kit kit-bianchi " viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kit"/></svg><span class="match-team">Bianchi</span><span class="match-goals">8</span>
+    </div>
+    
+    <div class="match-foot">S4 · G27 · 7 vs 7</div>
+</a>
+    </div>
+</section>
+
+
+<!-- SPLNews ticker (fixed at the bottom of the viewport) -->
+
+<div class="news-ticker-fixed" role="region" aria-label="SPLNews">
+    <div class="ticker-label">SPL<span>News</span></div>
     <div class="ticker-content">
         <div class="ticker-scroll">
             
-            <span class="ticker-item">Cameron M. in forte rialzo: +€1.6M questa settimana</span>
             
-            <span class="ticker-item">Luca S. in forte rialzo: +€1.5M questa settimana</span>
+            <span class="ticker-item ticker-gainer">
+                <span class="ticker-mark">▲</span>Cameron M. in forte rialzo: +€1.6M questa settimana
+            </span>
             
-            <span class="ticker-item">Andrea L. in forte rialzo: +€600K questa settimana</span>
+            <span class="ticker-item ticker-gainer">
+                <span class="ticker-mark">▲</span>Luca S. in forte rialzo: +€1.5M questa settimana
+            </span>
             
-            <span class="ticker-item">Mirko B. crolla del 19%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-gainer">
+                <span class="ticker-mark">▲</span>Andrea L. in forte rialzo: +€600K questa settimana
+            </span>
             
-            <span class="ticker-item">Gabry M. crolla del 14%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-loser">
+                <span class="ticker-mark">▼</span>Mirko B. crolla del 19%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Ruiz (Eric) crolla del 11%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-loser">
+                <span class="ticker-mark">▼</span>Gabry M. crolla del 14%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Benvenuto Ale (Fabri)! Debutto con valore iniziale di €2.2M</span>
+            <span class="ticker-item ticker-loser">
+                <span class="ticker-mark">▼</span>Ruiz (Eric) crolla del 11%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Benvenuto Ale P.! Debutto con valore iniziale di €2.7M</span>
+            <span class="ticker-item ticker-debut">
+                <span class="ticker-mark">+</span>Benvenuto Ale (Fabri)! Debutto con valore iniziale di €2.2M
+            </span>
             
-            <span class="ticker-item">Benvenuto Alessandro S.! Debutto con valore iniziale di €5.7M</span>
+            <span class="ticker-item ticker-debut">
+                <span class="ticker-mark">+</span>Benvenuto Ale P.! Debutto con valore iniziale di €2.7M
+            </span>
             
-            <span class="ticker-item">Luca S. inarrestabile: 11 settimane consecutive sul campo</span>
+            <span class="ticker-item ticker-debut">
+                <span class="ticker-mark">+</span>Benvenuto Alessandro S.! Debutto con valore iniziale di €5.7M
+            </span>
+            
+            <span class="ticker-item ticker-streak">
+                <span class="ticker-mark">●</span>Luca S. inarrestabile: 11 settimane consecutive sul campo
+            </span>
             
             
-            <span class="ticker-item">Cameron M. in forte rialzo: +€1.6M questa settimana</span>
             
-            <span class="ticker-item">Luca S. in forte rialzo: +€1.5M questa settimana</span>
+            <span class="ticker-item ticker-gainer" aria-hidden="true">
+                <span class="ticker-mark">▲</span>Cameron M. in forte rialzo: +€1.6M questa settimana
+            </span>
             
-            <span class="ticker-item">Andrea L. in forte rialzo: +€600K questa settimana</span>
+            <span class="ticker-item ticker-gainer" aria-hidden="true">
+                <span class="ticker-mark">▲</span>Luca S. in forte rialzo: +€1.5M questa settimana
+            </span>
             
-            <span class="ticker-item">Mirko B. crolla del 19%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-gainer" aria-hidden="true">
+                <span class="ticker-mark">▲</span>Andrea L. in forte rialzo: +€600K questa settimana
+            </span>
             
-            <span class="ticker-item">Gabry M. crolla del 14%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-loser" aria-hidden="true">
+                <span class="ticker-mark">▼</span>Mirko B. crolla del 19%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Ruiz (Eric) crolla del 11%: 12 settimane di assenza</span>
+            <span class="ticker-item ticker-loser" aria-hidden="true">
+                <span class="ticker-mark">▼</span>Gabry M. crolla del 14%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Benvenuto Ale (Fabri)! Debutto con valore iniziale di €2.2M</span>
+            <span class="ticker-item ticker-loser" aria-hidden="true">
+                <span class="ticker-mark">▼</span>Ruiz (Eric) crolla del 11%: 12 settimane di assenza
+            </span>
             
-            <span class="ticker-item">Benvenuto Ale P.! Debutto con valore iniziale di €2.7M</span>
+            <span class="ticker-item ticker-debut" aria-hidden="true">
+                <span class="ticker-mark">+</span>Benvenuto Ale (Fabri)! Debutto con valore iniziale di €2.2M
+            </span>
             
-            <span class="ticker-item">Benvenuto Alessandro S.! Debutto con valore iniziale di €5.7M</span>
+            <span class="ticker-item ticker-debut" aria-hidden="true">
+                <span class="ticker-mark">+</span>Benvenuto Ale P.! Debutto con valore iniziale di €2.7M
+            </span>
             
-            <span class="ticker-item">Luca S. inarrestabile: 11 settimane consecutive sul campo</span>
+            <span class="ticker-item ticker-debut" aria-hidden="true">
+                <span class="ticker-mark">+</span>Benvenuto Alessandro S.! Debutto con valore iniziale di €5.7M
+            </span>
+            
+            <span class="ticker-item ticker-streak" aria-hidden="true">
+                <span class="ticker-mark">●</span>Luca S. inarrestabile: 11 settimane consecutive sul campo
+            </span>
+            
             
         </div>
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Count-up animation for stats
-    function animateValue(element, start, end, duration) {
-        const range = end - start;
-        const increment = range / (duration / 16); // 60fps
-        let current = start;
-        const isDecimal = end % 1 !== 0;
-        
-        function easeOutQuart(t) {
-            return 1 - Math.pow(1 - t, 4);
-        }
-        
-        const startTime = performance.now();
-        
-        function step(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeOutQuart(progress);
-            
-            current = start + (range * easedProgress);
-            
-            if (isDecimal) {
-                element.textContent = current.toFixed(1);
-            } else {
-                element.textContent = Math.floor(current);
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                element.textContent = isDecimal ? end.toFixed(1) : end;
-            }
-        }
-        
-        requestAnimationFrame(step);
-    }
-    
-    // Animate all stat values
-    const statValues = document.querySelectorAll('.stat-value[data-target]');
-    statValues.forEach(element => {
-        const target = parseFloat(element.dataset.target);
-        animateValue(element, 0, target, 1500);
-    });
-    
-    // Goals per Week chart
-    const ctx = document.getElementById('goalsChart');
-    if (ctx) {
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8", "W9", "W10", "W11", "W12", "W13", "W14", "W15", "W16", "W17", "W18", "W19", "W20", "W21", "W22", "W23", "W24", "W25", "W26", "W27", "W28", "W29", "W30", "W31", "W32", "W33", "W34"],
-                datasets: [{
-                    label: 'Gol Totali',
-                    data: [14, 14, 14, 14, 17, 17, 22, 16, 20, 13, 16, 31, 17, 10, 22, 13, 12, 18, 21, 24, 17, 14, 15, 12, 16, 14, 28, 25, 15, 14, 17, 24, 23, 16],
-                    borderColor: 'rgba(67, 233, 195, 1)',
-                    backgroundColor: 'rgba(67, 233, 195, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: 'rgba(67, 233, 195, 1)',
-                    pointBorderColor: '#0a0f18',
-                    pointBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: '#1a1f2e',
-                        titleColor: '#f9fafb',
-                        bodyColor: '#d1d4dc',
-                        borderColor: '#43e9c3',
-                        borderWidth: 1,
-                        padding: 12,
-                        displayColors: false
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            color: '#1a1f2e'
-                        },
-                        ticks: {
-                            color: '#9ca3af',
-                            maxRotation: 45,
-                            minRotation: 0
-                        }
-                    },
-                    y: {
-                        grid: {
-                            color: '#1a1f2e'
-                        },
-                        ticks: {
-                            color: '#9ca3af'
-                        },
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-});
-</script>
 
     </main>
 
-    <script src="/static/js/main.js"></script>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <img src="/static/images/logo-web.png" alt="" width="74" height="50" class="footer-logo">
+            <p class="footer-tag">Il calcetto che conta · Milano</p>
+            <nav class="footer-links" aria-label="Link">
+                <a href="/">Home</a><a href="/classifica/">Classifica</a><a href="/mercato/">Mercato</a><a href="/squadre/">Squadre</a><a href="/fantalega/">FantaSPL</a><a href="/risultati/">Risultati</a>
+            </nav>
+            <p class="footer-meta">Aggiornato il 25 set 2026 · © 2026 Solo Pro League</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js?v=202609250719"></script>
     
+
+<script>
+window.addEventListener('load', function () {
+    const data = {"Bovisa": {"accent": "#43e9c3", "bianchi": [7, 7, 8, 7, 5, 5, 2, 12, 12, 13, 7, 12, 9, 4, 9, 7, 7, 5, 10, 11, 4, 8, 11, 7, 8, 17, 8, 12, 9, 4, 10, 7], "dates": ["25 set 2025", "2 ott 2025", "9 ott 2025", "16 ott 2025", "30 ott 2025", "6 nov 2025", "13 nov 2025", "20 nov 2025", "11 dic 2025", "8 gen 2026", "15 gen 2026", "22 gen 2026", "12 feb 2026", "19 feb 2026", "26 feb 2026", "5 mar 2026", "12 mar 2026", "19 mar 2026", "2 apr 2026", "9 apr 2026", "16 apr 2026", "23 apr 2026", "30 apr 2026", "7 mag 2026", "14 mag 2026", "21 mag 2026", "28 mag 2026", "4 giu 2026", "11 giu 2026", "18 giu 2026", "25 giu 2026", "2 lug 2026"], "labels": ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14", "G15", "G16", "G17", "G18", "G19", "G20", "G21", "G22", "G23", "G24", "G25", "G26", "G27", "G28", "G29", "G30", "G31", "G32"], "neri": [11, 10, 10, 12, 7, 17, 4, 3, 13, 9, 8, 6, 7, 6, 8, 8, 8, 11, 12, 5, 7, 14, 8, 17, 7, 9, 6, 8, 14, 14, 7, 3], "season": 4}, "Lambrate": {"accent": "#f6c453", "bianchi": [8, 6, 5, 1, 7, 8, 11, 8, 4, 8, 6, 6, 10, 8], "dates": ["25 nov 2024", "9 dic 2024", "16 dic 2024", "14 gen 2025", "27 gen 2025", "3 feb 2025", "17 feb 2025", "4 mar 2025", "17 mar 2025", "31 mar 2025", "19 mag 2025", "26 mag 2025", "3 giu 2025", "10 giu 2025"], "labels": ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14"], "neri": [2, 4, 9, 7, 3, 4, 5, 15, 7, 10, 8, 4, 10, 4], "season": 1}};
+    const canvas = document.getElementById('goalsChart');
+    const caption = document.getElementById('goalsChartCaption');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+    Chart.defaults.color = '#7d8fa1';
+    let chart = null;
+
+    function show(champ) {
+        const d = data[champ];
+        if (!d) return;
+        const total = d.neri.reduce((s, v, i) => s + v + d.bianchi[i], 0);
+        caption.textContent = champ + ' · Stagione ' + d.season + ' · ' + d.labels.length + ' partite · ' +
+            (total / d.labels.length).toFixed(1).replace('.', ',') + ' gol a partita';
+        const cfg = {
+            type: 'bar',
+            data: {
+                labels: d.labels,
+                datasets: [
+                    { label: 'Neri', data: d.neri, backgroundColor: '#3b4a5c', borderColor: '#566779', borderWidth: 1, borderRadius: 3, stack: 'g' },
+                    { label: 'Bianchi', data: d.bianchi, backgroundColor: '#e8eef3', borderRadius: 3, stack: 'g' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 500 },
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f1824', borderColor: d.accent, borderWidth: 1,
+                        titleColor: '#eef4f8', bodyColor: '#b4c2cf', padding: 12, displayColors: false,
+                        callbacks: {
+                            title: items => items[0].label + ' · ' + d.dates[items[0].dataIndex],
+                            label: () => null,
+                            afterBody: items => {
+                                const i = items[0].dataIndex;
+                                return ['Neri ' + d.neri[i] + ' – ' + d.bianchi[i] + ' Bianchi'];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false }, ticks: { maxRotation: 0, autoSkipPadding: 8 } },
+                    y: { stacked: true, beginAtZero: true, grid: { color: 'rgba(148,178,209,0.08)' }, border: { display: false } }
+                }
+            }
+        };
+        if (chart) chart.destroy();
+        chart = new Chart(canvas, cfg);
+    }
+
+    document.querySelectorAll('[data-chart-champ]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-chart-champ]').forEach(b => {
+                b.classList.toggle('active', b === btn);
+                b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+            });
+            show(btn.dataset.chartChamp);
+        });
+    });
+    show(Object.keys(data)[0]);
+});
+</script>
+
+
 </body>
 </html>

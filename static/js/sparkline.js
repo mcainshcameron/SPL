@@ -1,88 +1,64 @@
 /**
- * SPL v2 - Sparkline Chart Renderer
- * Lightweight canvas-based sparklines for market value history
+ * SPL v3 — canvas sparklines for market value history (retina-aware).
+ * <canvas class="sparkline" width="120" height="44" data-history="[...]"> — rendered on load.
  */
-
 function drawSparkline(canvas, data) {
-    if (!data || data.length === 0) return;
-    
+    if (!data || data.length < 2) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    const width = canvas.width, height = canvas.height;   // CSS size (attributes)
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
     const ctx = canvas.getContext('2d');
-    const width = canvas.width;
-    const height = canvas.height;
-    const padding = 2;
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, width, height);
-    
-    // Calculate min/max for scaling
-    const min = Math.min(...data);
-    const max = Math.max(...data);
-    const range = max - min || 1; // Prevent division by zero
-    
-    // Scale data points to canvas
-    const points = data.map((value, index) => {
-        const x = padding + (index / (data.length - 1)) * (width - 2 * padding);
-        const y = height - padding - ((value - min) / range) * (height - 2 * padding);
-        return { x, y };
-    });
-    
-    // Determine color based on trend
-    const firstValue = data[0];
-    const lastValue = data[data.length - 1];
-    const isPositive = lastValue >= firstValue;
-    const lineColor = isPositive ? 'rgba(16, 185, 129, 1)' : 'rgba(239, 68, 68, 1)';
-    const fillColor = isPositive ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
-    
-    // Draw filled area
+    ctx.scale(dpr, dpr);
+    const pad = 3;
+    const min = Math.min(...data), max = Math.max(...data);
+    const range = max - min || 1;
+    const points = data.map((v, i) => ({
+        x: pad + (i / (data.length - 1)) * (width - 2 * pad),
+        y: height - pad - ((v - min) / range) * (height - 2 * pad)
+    }));
+
+    const up = data[data.length - 1] >= data[0];
+    const color = up ? '52, 211, 153' : '255, 92, 92';
+
+    const grad = ctx.createLinearGradient(0, 0, 0, height);
+    grad.addColorStop(0, 'rgba(' + color + ', 0.28)');
+    grad.addColorStop(1, 'rgba(' + color + ', 0)');
     ctx.beginPath();
-    ctx.moveTo(points[0].x, height - padding);
-    points.forEach((point, index) => {
-        if (index === 0) {
-            ctx.lineTo(point.x, point.y);
-        } else {
-            ctx.lineTo(point.x, point.y);
-        }
-    });
-    ctx.lineTo(points[points.length - 1].x, height - padding);
+    ctx.moveTo(points[0].x, height);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[points.length - 1].x, height);
     ctx.closePath();
-    ctx.fillStyle = fillColor;
+    ctx.fillStyle = grad;
     ctx.fill();
-    
-    // Draw line
+
     ctx.beginPath();
-    points.forEach((point, index) => {
-        if (index === 0) {
-            ctx.moveTo(point.x, point.y);
-        } else {
-            ctx.lineTo(point.x, point.y);
-        }
-    });
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
+    points.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+    ctx.strokeStyle = 'rgb(' + color + ')';
+    ctx.lineWidth = 1.8;
     ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
     ctx.stroke();
-    
-    // Draw point at the end
-    const lastPoint = points[points.length - 1];
+
+    const last = points[points.length - 1];
     ctx.beginPath();
-    ctx.arc(lastPoint.x, lastPoint.y, 3, 0, 2 * Math.PI);
-    ctx.fillStyle = lineColor;
+    ctx.arc(last.x, last.y, 2.6, 0, 2 * Math.PI);
+    ctx.fillStyle = 'rgb(' + color + ')';
     ctx.fill();
 }
 
-// Auto-render sparklines on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const sparklines = document.querySelectorAll('.sparkline[data-history]');
-    sparklines.forEach(canvas => {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.sparkline[data-history]').forEach(canvas => {
         try {
-            const history = JSON.parse(canvas.dataset.history);
-            drawSparkline(canvas, history);
+            drawSparkline(canvas, JSON.parse(canvas.dataset.history));
         } catch (e) {
             console.error('Error rendering sparkline:', e);
         }
     });
 });
 
-// Export for use in other scripts
 window.drawSparkline = drawSparkline;
