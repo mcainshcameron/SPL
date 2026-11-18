@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=202611181744">
+    <link rel="stylesheet" href="/static/css/styles.css?v=202611182123">
     <script>document.documentElement.classList.add('js');</script>
     
 <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js" defer></script>
@@ -62,7 +62,7 @@
             </nav>
             <div class="topbar-meta" title="Ultima partita registrata">
                 <span class="live-dot" aria-hidden="true"></span>
-                <span>Ultima partita <strong>12 nov 2026</strong></span>
+                <span>Ultima partita <strong>18 nov 2026</strong></span>
             </div>
         </div>
     </header>
@@ -123,9 +123,9 @@
         <div class="ph-value">
             <span class="kpi-label">Valore di mercato</span>
             <span class="player-value">€4.6M</span>
-            <span class="player-value-change"><span class="chg chg-up">▲ €100K <small>2.2%</small></span></span>
+            <span class="player-value-change"><span class="chg chg-flat">Invariato</span></span>
             <span class="ph-value-meta">
-                #64 su 225
+                #66 su 226
                  · picco €4.7M
             </span>
         </div>
@@ -192,7 +192,7 @@
                         
                         <tr>
                             <td><a href="/classifica/?championship=Lambrate&amp;season=3">Stagione 3</a></td>
-                            <td><span class="rank-chip ">6</span></td>
+                            <td><span class="rank-chip ">7</span></td>
                             <td class="tnum">6</td>
                             <td class="col-opt tnum">1</td>
                             <td class="tnum">17%</td>
@@ -342,7 +342,7 @@
         </div>
     </footer>
 
-    <script src="/static/js/main.js?v=202611181744"></script>
+    <script src="/static/js/main.js?v=202611182123"></script>
     
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -351,8 +351,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let chartReady = false;
 
     
-    const chartData = [3100000, 2800000, 3400000, 4400000, 4700000, 4500000, 4600000];
-    const weeks = ["2026-09-21/2026-09-27", "2026-09-28/2026-10-04", "2026-10-05/2026-10-11", "2026-10-12/2026-10-18", "2026-10-26/2026-11-01", "2026-11-02/2026-11-08", "2026-11-09/2026-11-15"];
+    const chartData = [3100000, 2800000, 3400000, 4400000, 4700000, 4500000, 4600000, 4600000];
+    const weeks = ["2026-09-21/2026-09-27", "2026-09-28/2026-10-04", "2026-10-05/2026-10-11", "2026-10-12/2026-10-18", "2026-10-26/2026-11-01", "2026-11-02/2026-11-08", "2026-11-09/2026-11-15", "2026-11-16/2026-11-22"];
     
 
     function initMarketChart() {
