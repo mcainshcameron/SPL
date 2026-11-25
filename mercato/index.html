@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=202611250759">
+    <link rel="stylesheet" href="/static/css/styles.css?v=202611250805">
     <script>document.documentElement.classList.add('js');</script>
     
 </head>
@@ -111,7 +111,7 @@
     <div class="kpi-row">
         <div class="kpi-card">
             <span class="kpi-label">Valore della lega</span>
-            <span class="kpi-value">€995.4M</span>
+            <span class="kpi-value">€995.7M</span>
             <span class="kpi-note">229 giocatori quotati</span>
         </div>
         <div class="kpi-card">
@@ -809,13 +809,38 @@
             </div>
         </a>
         
+        <a href="/players/riccardo-b/" class="market-card"
+           data-value="6200000"
+           data-change="800000.0"
+           data-championships="Lambrate"
+           data-name="riccardo b.">
+            <div class="mc-top">
+                <span class="mc-rank">#27</span>
+                <span class="mc-champs">
+                    <span class="dot" style="--accent: #f6c453" title="Lambrate"></span>
+                </span>
+            </div>
+            <div class="mc-player">
+                <span class="avatar " aria-hidden="true">RB</span>
+                <h3>Riccardo B.</h3>
+            </div>
+            <div class="mc-bottom">
+                <div>
+                    <div class="market-value">€6.2M</div>
+                    <div class="market-change"><span class="chg chg-up">▲ €800K <small>14.8%</small></span></div>
+                </div>
+                <canvas class="sparkline" width="120" height="44"
+                        data-history='[5800000, 5600000, 6300000, 6700000, 6300000, 5800000, 6300000, 5900000, 5400000, 6200000]'></canvas>
+            </div>
+        </a>
+        
         <a href="/players/francesco-a-1/" class="market-card"
            data-value="6100000"
            data-change="300000.0"
            data-championships="Lambrate"
            data-name="francesco a.">
             <div class="mc-top">
-                <span class="mc-rank">#27</span>
+                <span class="mc-rank">#28</span>
                 <span class="mc-champs">
                     <span class="dot" style="--accent: #f6c453" title="Lambrate"></span>
                 </span>
@@ -840,7 +865,7 @@
            data-championships="Bovisa"
            data-name="gianpiero">
             <div class="mc-top">
-                <span class="mc-rank">#28</span>
+                <span class="mc-rank">#29</span>
                 <span class="mc-champs">
                     <span class="dot" style="--accent: #43e9c3" title="Bovisa"></span>
                 </span>
@@ -865,7 +890,7 @@
            data-championships="Bovisa,Lambrate"
            data-name="federico (damiano)">
             <div class="mc-top">
-                <span class="mc-rank">#29</span>
+                <span class="mc-rank">#30</span>
                 <span class="mc-champs">
                     <span class="dot" style="--accent: #43e9c3" title="Bovisa"></span><span class="dot" style="--accent: #f6c453" title="Lambrate"></span>
                 </span>
@@ -881,31 +906,6 @@
                 </div>
                 <canvas class="sparkline" width="120" height="44"
                         data-history='[5000000, 5000000, 4900000, 5000000, 4800000, 6500000, 6400000, 6300000, 6000000, 6000000]'></canvas>
-            </div>
-        </a>
-        
-        <a href="/players/riccardo-b/" class="market-card"
-           data-value="5900000"
-           data-change="500000.0"
-           data-championships="Lambrate"
-           data-name="riccardo b.">
-            <div class="mc-top">
-                <span class="mc-rank">#30</span>
-                <span class="mc-champs">
-                    <span class="dot" style="--accent: #f6c453" title="Lambrate"></span>
-                </span>
-            </div>
-            <div class="mc-player">
-                <span class="avatar " aria-hidden="true">RB</span>
-                <h3>Riccardo B.</h3>
-            </div>
-            <div class="mc-bottom">
-                <div>
-                    <div class="market-value">€5.9M</div>
-                    <div class="market-change"><span class="chg chg-up">▲ €500K <small>9.3%</small></span></div>
-                </div>
-                <canvas class="sparkline" width="120" height="44"
-                        data-history='[5800000, 5600000, 6300000, 6700000, 6300000, 5800000, 6300000, 5900000, 5400000, 5900000]'></canvas>
             </div>
         </a>
         
@@ -5901,9 +5901,9 @@
         </div>
     </footer>
 
-    <script src="/static/js/main.js?v=202611250759"></script>
+    <script src="/static/js/main.js?v=202611250805"></script>
     
-<script src="/static/js/sparkline.js?v=202611250759"></script>
+<script src="/static/js/sparkline.js?v=202611250805"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const sortSelect = document.getElementById('sortSelect');
